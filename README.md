@@ -7,7 +7,8 @@ Pregunta central: **¿Cómo pasó el socialismo de ser una utopía a convertirse
 
 - **Finalidad:** educativa y divulgativa. Explicar, con fuentes académicas y documentos de época, cómo el socialismo pasó de ser una idea a convertirse en un Estado (1516–1924).
 - **Público:** estudiantes de los primeros ciclos de universidad y de los últimos años de secundaria, sin conocimientos previos.
-- **Ver en línea:** [Completar con el enlace de GitHub Pages, ver abajo].
+- **Ver en línea:** https://diegosucasacacohata-wq.github.io/pagina-web-historia/
+- **Código fuente:** https://github.com/diegosucasacacohata-wq/pagina-web-historia
 
 Versión: **Nivel 5 (máximo)** de efectos de scroll: secuencias fijadas estilo Apple, parallax de 4 capas y el «cubo de los seis pasos».
 
@@ -17,9 +18,11 @@ Doble clic en `index.html`. No necesita instalar nada ni un servidor. Las fuente
 
 ## Cómo subirlo a GitHub y verlo en línea
 
-1. En github.com: **New repository**, nombre por ejemplo `webdoc-socialismo-grupo2`, **Public** (GitHub Pages gratis necesita un repositorio público) y sin README (este ya lo trae).
+Ya está publicado (enlaces arriba). Para actualizarlo después de un cambio, desde esta carpeta: `git add -A`, `git commit -m "qué cambió"` y `git push`. Si alguien del grupo quiere publicar su propia copia:
+
+1. En github.com: **New repository**, nombre por ejemplo `pagina-web-historia`, **Public** (GitHub Pages gratis necesita un repositorio público) y sin README (este ya lo trae).
 2. En el repositorio vacío: **uploading an existing file**. Arrastra el **contenido** de esta carpeta (`index.html`, `README.md`, `FUENTES.md`, `GUIA-SUSTENTACION.md`, `.gitignore` y las carpetas `css`, `js`, `img`, `video`), no la carpeta entera. Cada archivo pesa menos de 25 MB, el límite de la subida por la web. Escribe un mensaje y pulsa **Commit changes**.
-3. Para tener un enlace público: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, rama `main`, carpeta `/ (root)`, **Save**. En uno o dos minutos la página queda en `https://TU-USUARIO.github.io/webdoc-socialismo-grupo2/`.
+3. Para tener un enlace público: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, rama `main`, carpeta `/ (root)`, **Save**. En uno o dos minutos la página queda en `https://TU-USUARIO.github.io/pagina-web-historia/`.
 4. Pega ese enlace en `config.repositorio` (`js/datos.js`) y arriba en «Ver en línea», y sube de nuevo `js/datos.js` y `README.md`.
 
 Antes de publicar: completen los nombres de los integrantes y la declaración de uso de IA (ver «Qué editar antes de entregar»).

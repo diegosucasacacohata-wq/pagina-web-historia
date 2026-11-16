@@ -39,7 +39,7 @@ const config = {
   creditoImagenes: "Ilustración del equipo",
 
   // Código y recursos (la rúbrica pide que estén disponibles); salen al final de Fuentes
-  repositorio: "",   // pegar aquí el enlace al código fuente (GitHub, Drive…)
+  repositorio: "https://github.com/diegosucasacacohata-wq/pagina-web-historia",   // pegar aquí el enlace al código fuente (GitHub, Drive…)
   recursos: [
     "Código propio en HTML, CSS y JavaScript, sin librerías: motor de scroll, cubo 3D con matrices, red en SVG, línea de tiempo y preguntas.",
     "Tipografías Source Serif 4 y Source Sans 3 (Google Fonts, licencia libre).",
