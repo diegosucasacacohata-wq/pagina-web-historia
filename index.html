@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Del «no-lugar» al Estado: el socialismo de 1516 a 1924 | Historia Conectada, Grupo 2</title>
+  <meta name="description" content="Webdoc educativo: cómo pasó el socialismo de ser una utopía a convertirse en el primer Estado comunista del mundo (1516–1924).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&display=swap">
+  <link rel="stylesheet" href="css/estilos.css">
+  <script>
+    // Antes de dibujar la página: aplica el «Modo lectura» guardado,
+    // o lo activa si el sistema pide «reducir movimiento».
+    (function () {
+      var guardado = null;
+      try { guardado = localStorage.getItem("webdoc-g2-modo-lectura"); } catch (e) { guardado = null; }
+      var reducir = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (guardado === "1" || (guardado === null && reducir)) document.documentElement.classList.add("modo-lectura");
+    })();
+
+  </script>
+</head>
+<body>
+  <a class="saltar-al-contenido" href="#contexto">Saltar al contenido</a>
+
+  <!-- Barra superior: pregunta central, «Capítulo N de 6», mini-mapa, Modo lectura y progreso -->
+  <header class="barra-superior">
+    <div class="barra-fila">
+      <button type="button" class="boton-indice" id="boton-indice" aria-expanded="false" aria-controls="indice">Índice</button>
+      <p class="barra-pregunta" id="barra-pregunta"></p>
+      <p class="migas" id="migas"><span class="migas-bloque">Inicio</span><span class="migas-detalle"></span></p>
+      <nav class="minimapa" id="minimapa" aria-label="Los 6 capítulos"></nav>
+      <label class="interruptor">
+        <input type="checkbox" id="interruptor-lectura">
+        <span class="interruptor-pista" aria-hidden="true"></span>
+        <span class="interruptor-texto">Modo lectura</span>
+      </label>
+    </div>
+    <div class="barra-progreso" aria-hidden="true"><i id="barra-progreso"></i></div>
+  </header>
+
+  <!-- Índice lateral fijo (en celular, desplegable arriba) -->
+  <nav class="indice" id="indice" aria-label="Índice de la página"><ol id="indice-lista"></ol></nav>
+
+  <!-- El cubo de los seis pasos (atajo visual; el índice cumple la misma función con teclado) -->
+  <div class="capa-cubo" id="capa-cubo" aria-hidden="true"><div class="cubo-posicion"><div class="cubo"></div></div></div>
+
+  <!-- Reloj del recorrido: el año del relato -->
+  <div class="reloj" id="reloj" aria-hidden="true"><span class="reloj-etiqueta">Año del relato</span><span class="reloj-anio" id="reloj-anio">1516</span></div>
+
+  <main id="contenido">
+
+    <!-- ① INICIO ======================================================= -->
+    <section id="inicio" data-indice="bloque" data-titulo-indice="Inicio" aria-labelledby="titulo-principal">
+      <div class="secuencia inicio-secuencia" id="inicio-secuencia" data-tipo="fijada" data-pantallas="3" data-fases="3" data-parallax data-anio="1516" data-migas="Inicio">
+        <div class="escenario inicio-escenario">
+          <div class="capa-parallax capa-mosaico-fondo solo-animacion" data-velocidad="0.5" aria-hidden="true"></div>
+          <div class="capa-parallax capa-particulas solo-animacion" data-velocidad="0.7" data-particula="dorada" aria-hidden="true"></div>
+          <div class="capa-parallax capa-papel solo-animacion" data-velocidad="0.85" aria-hidden="true"></div>
+          <div class="inicio-texto">
+            <p class="inicio-proyecto">Historia Conectada, Grupo 2</p>
+            <h1 class="titulo-principal" id="titulo-principal"><span>Del «no‑lugar» al Estado:</span> <span class="titulo-sub">el socialismo de 1516 a 1924</span></h1>
+            <!-- Eslogan (texto en config.eslogan de datos.js) -->
+            <p class="eslogan" id="eslogan"></p>
+            <p class="gancho" id="gancho"></p>
+            <p class="inicio-acciones"><a class="boton-continuar" href="#contexto">Empezar a leer</a></p>
+          </div>
+          <div class="mosaico-inicio solo-animacion" id="mosaico-inicio" aria-hidden="true"></div>
+          <p class="indicacion-bajar solo-animacion" aria-hidden="true">Baja para empezar</p>
+          <div class="inicio-pregunta">
+            <p class="etiqueta-pregunta">Pregunta central</p>
+            <p class="pregunta-central" id="pregunta-inicio"></p>
+          </div>
+          <div class="control-secuencia"><span class="control-fase">Fase 1 de 3</span><span class="control-barra" aria-hidden="true"><i></i></span><button type="button" class="boton-saltar">Saltar animación</button></div>
+        </div>
+      </div>
+      <div class="inicio-ficha lectura">
+        <figure class="portada">
+          <img src="img/paneles-completos.jpg" width="1672" height="941" alt="Los 6 paneles del equipo, uno por capítulo: Moro escribe Utopía; Marx junto a una vela y las fábricas; una barricada bajo una bandera roja; el Domingo Sangriento frente al Palacio de Invierno; Lenin ante la multitud; un cartel soviético rasgado y la sombra de Stalin.">
+          <figcaption id="credito-portada"></figcaption>
+        </figure>
+        <dl class="ficha-curso">
+          <div><dt>Curso</dt><dd id="dato-curso"></dd></div>
+          <div><dt>Proyecto</dt><dd id="dato-proyecto"></dd></div>
+          <!-- Finalidad y público objetivo (los pide la rúbrica) -->
+          <div><dt>Finalidad</dt><dd id="dato-finalidad"></dd></div>
+          <div><dt>Público</dt><dd id="dato-publico"></dd></div>
+          <div><dt>Integrantes</dt><dd><ul id="lista-integrantes"></ul></dd></div>
+        </dl>
+        <p class="continuar"><a href="#contexto">Continuar con el Contexto histórico</a></p>
+      </div>
+    </section>
+
+    <!-- ② CONTEXTO HISTÓRICO =========================================== -->
+    <section id="contexto" class="bloque contexto" data-indice="bloque" data-parallax aria-labelledby="titulo-contexto">
+      <div class="capa-parallax capa-mosaico-fondo solo-animacion" data-velocidad="0.5" aria-hidden="true"></div>
+      <div class="capa-parallax capa-particulas solo-animacion" data-velocidad="0.7" data-particula="polvo" aria-hidden="true"></div>
+      <div class="capa-parallax capa-papel solo-animacion" data-velocidad="0.85" aria-hidden="true"></div>
+      <div class="lectura">
+        <h2 id="titulo-contexto">Contexto histórico</h2>
+        <p class="entradilla"><b>Periodo:</b> de 1516 a 1924. <b>Problema:</b> cómo una idea, la sociedad sin propiedad privada, llegó a convertirse en un Estado.</p>
+      </div>
+      <div class="contexto-scrolly">
+        <figure class="contexto-figura">
+          <div class="contexto-mosaico" id="contexto-mosaico"></div>
+          <figcaption>Se resaltan los paneles del capítulo del que habla cada oración.</figcaption>
+        </figure>
+        <div class="contexto-oraciones" id="contexto-oraciones"></div>
+      </div>
+      <div class="ancho">
+        <h3 class="tarjetas-titulo">El recorrido en 6 capítulos</h3>
+        <ol class="tarjetas" id="contexto-tarjetas"></ol>
+      </div>
+      <p class="continuar lectura"><a href="#proceso">Continuar con El proceso en 6 capítulos</a></p>
+    </section>
+
+    <!-- ③ EL PROCESO EN 6 CAPÍTULOS ===================================== -->
+    <section id="proceso" class="proceso" data-indice="bloque" aria-labelledby="titulo-proceso">
+      <div class="lectura bloque-cabecera">
+        <h2 id="titulo-proceso">El proceso en 6 capítulos</h2>
+        <p>Cada capítulo responde una parte de la pregunta central. El cubo de la esquina muestra en qué capítulo estás; al hacer clic en una de sus caras, te lleva a ese capítulo.</p>
+      </div>
+      <div id="capitulos"></div>
+    </section>
+
+    <!-- ④ RED DE RELACIONES HISTÓRICAS ================================== -->
+    <section id="red" class="bloque" data-indice="bloque" data-anio="1516–1924" aria-labelledby="titulo-red">
+      <div class="lectura">
+        <h2 id="titulo-red">Red de relaciones históricas</h2>
+        <p>Cómo se conectan causas, ideas y obras, actores, acontecimientos y consecuencias de los 6 capítulos. De izquierda a derecha avanza el tiempo; cada carril es un tipo. Toca un nodo para ver sus conexiones escritas como frases.</p>
+      </div>
+      <div class="secuencia red-secuencia" id="red-secuencia" data-tipo="fijada" data-pantallas="2" data-fases="3" data-final-interactivo="true" data-migas="Red de relaciones históricas">
+        <div class="escenario red-escenario" id="red-escenario">
+          <div class="red-herramientas" id="red-herramientas"></div>
+          <div class="red-area">
+            <div class="red-lienzo" id="red-lienzo" data-foco-final tabindex="-1">
+              <svg id="red-svg" viewBox="0 0 1400 770" role="group" aria-label="Red de relaciones históricas. Cada nodo es un botón."></svg>
+            </div>
+            <aside class="red-panel" id="red-panel" hidden aria-live="polite"></aside>
+            <p class="red-subtitulo" id="red-subtitulo" aria-hidden="true"></p>
+          </div>
+          <div class="red-leyenda" id="red-leyenda"></div>
+          <div class="control-secuencia"><span class="control-fase">Fase 1 de 3</span><span class="control-barra" aria-hidden="true"><i></i></span><button type="button" class="boton-saltar">Saltar animación</button></div>
+        </div>
+      </div>
+      <div class="lectura red-lista" id="red-lista" hidden></div>
+      <p class="continuar lectura"><a href="#video">Continuar con los Videos del equipo</a></p>
+    </section>
+
+    <!-- ⑤ VIDEOS DEL EQUIPO (introducción, un video por capítulo y conclusión) == -->
+    <section id="video" class="bloque" data-indice="bloque" data-anio="1516–1924" aria-labelledby="titulo-video">
+      <div class="lectura">
+        <h2 id="titulo-video">Videos del equipo</h2>
+        <p>El documental del grupo: una introducción, un capítulo por integrante y la conclusión. Con «Al terminar, pasar al siguiente» se ve completo, parte por parte; cada capítulo también aparece dentro de su sección.</p>
+      </div>
+      <div class="video-bloque">
+        <div class="video-marco" id="video-marco"></div>
+        <div class="video-barra">
+          <p class="video-ahora" id="video-ahora" aria-live="polite"></p>
+          <label class="video-seguir"><input type="checkbox" id="video-seguir" checked> Al terminar, pasar al siguiente</label>
+        </div>
+        <!-- Botones para saltar a un minuto (solo si el video tiene «marcas») y duración total -->
+        <div class="video-marcas" id="video-marcas" hidden></div>
+        <p class="video-total" id="video-total" aria-live="polite"></p>
+        <details class="transcripcion"><summary>Ver transcripción de este video</summary><p id="video-transcripcion"></p></details>
+        <ol class="video-lista" id="video-lista"></ol>
+        <h3>Créditos</h3>
+        <ul class="creditos" id="creditos-video"></ul>
+      </div>
+      <p class="continuar lectura"><a href="#linea-tiempo">Continuar con la Línea de tiempo interactiva</a></p>
+    </section>
+
+    <!-- ⑥ LÍNEA DE TIEMPO =============================================== -->
+    <section id="linea-tiempo" class="bloque" data-indice="bloque" aria-labelledby="titulo-lt">
+      <div class="lectura">
+        <h2 id="titulo-lt">Línea de tiempo interactiva</h2>
+        <p>Baja para recorrer de 1516 a 1924, o usa los botones ← → y las flechas del teclado. Toca una fecha para ver qué pasó y por qué importa.</p>
+      </div>
+      <div class="secuencia lt-secuencia" id="lt-secuencia" data-tipo="fijada" data-pantallas="3" data-fases="1" data-final-interactivo="true" data-anio="1516–1924" data-migas="Línea de tiempo interactiva">
+        <div class="escenario lt-escenario">
+          <div class="lt-cabecera">
+            <p class="lt-anio-centro" id="lt-anio-centro" aria-hidden="true">1516</p>
+            <div class="lt-botones">
+              <button type="button" class="boton-flecha" id="lt-anterior" aria-label="Fecha anterior">←</button>
+              <button type="button" class="boton-flecha" id="lt-siguiente" aria-label="Fecha siguiente">→</button>
+            </div>
+            <details class="lt-filtros" id="lt-filtros"></details>
+          </div>
+          <div class="lt-ventana" id="lt-ventana" tabindex="0" role="region" data-foco-final aria-label="Línea de tiempo de 1516 a 1924. Usa las flechas izquierda y derecha para pasar de una fecha a otra.">
+            <div class="lt-centro" aria-hidden="true"></div>
+            <div class="lt-pista" id="lt-pista"></div>
+          </div>
+          <article class="lt-ficha" id="lt-ficha" aria-live="polite"></article>
+          <div class="control-secuencia sin-fases"><span class="control-fase">Fase 1 de 1</span><span class="control-barra" aria-hidden="true"><i></i></span><button type="button" class="boton-saltar">Saltar animación</button></div>
+        </div>
+      </div>
+      <p class="continuar lectura"><a href="#conclusiones">Continuar con las Conclusiones</a></p>
+    </section>
+
+    <!-- ⑦ CONCLUSIONES ================================================== -->
+    <section id="conclusiones" class="bloque conclusiones" data-indice="bloque" data-parallax data-anio="1516–1924" aria-labelledby="titulo-conclusiones">
+      <div class="capa-parallax capa-mosaico-fondo solo-animacion" data-velocidad="0.5" aria-hidden="true"></div>
+      <div class="capa-parallax capa-particulas solo-animacion" data-velocidad="0.7" data-particula="volantes" aria-hidden="true"></div>
+      <div class="capa-parallax capa-papel solo-animacion" data-velocidad="0.85" aria-hidden="true"></div>
+      <div class="lectura">
+        <h2 id="titulo-conclusiones">Conclusiones</h2>
+        <p class="pregunta-grande" id="pregunta-conclusiones"></p>
+        <p class="respuesta-grupo" id="respuesta-grupo"></p>
+      </div>
+      <!-- Vista explotada del cubo (nivel 5): solo con 3D -->
+      <div class="secuencia explosion" id="explosion" data-tipo="fijada" data-pantallas="3" data-fases="3" data-migas="La respuesta en 6 pasos">
+        <div class="escenario explosion-escenario">
+          <p class="explosion-titulo">La respuesta en 6 pasos</p>
+          <p class="explosion-cierre">De una idea a un Estado.</p>
+          <div class="control-secuencia"><span class="control-fase">Fase 1 de 3</span><span class="control-barra" aria-hidden="true"><i></i></span><button type="button" class="boton-saltar">Saltar animación</button></div>
+        </div>
+      </div>
+      <div class="lectura">
+        <h3 class="subtitulo-bloque">La respuesta en 6 pasos</h3>
+        <ol class="seis-pasos" id="seis-pasos"></ol>
+        <h3 class="subtitulo-bloque">3 ideas clave del grupo</h3>
+        <ol class="ideas-clave" id="ideas-clave"></ol>
+        <h3 class="subtitulo-bloque">Lo que proponía Marx y lo que ocurrió</h3>
+        <div class="comparador-bloque" id="comparador"></div>
+        <aside class="fuentes-trabajo">
+          <h3>Cómo trabajamos las fuentes</h3>
+          <div id="fuentes-trabajo"></div>
+        </aside>
+      </div>
+      <p class="continuar lectura"><a href="#fuentes">Continuar con las Fuentes</a></p>
+    </section>
+
+    <!-- ⑧ FUENTES ====================================================== -->
+    <section id="fuentes" class="bloque" data-indice="bloque" data-anio="1516–1924" aria-labelledby="titulo-fuentes">
+      <div class="lectura">
+        <h2 id="titulo-fuentes">Fuentes</h2>
+        <p>Formato APA 7, en orden alfabético dentro de cada categoría.</p>
+        <div id="lista-fuentes"></div>
+        <!-- Código fuente, recursos usados y declaración de uso de IA (los arma construirRecursos) -->
+        <h3>Código, recursos y uso de IA</h3>
+        <div id="recursos"></div>
+        <p class="continuar"><a href="#inicio">Volver al Inicio</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie" id="pie"></footer>
+
+  <button type="button" class="volver-arriba" id="volver-arriba" aria-label="Volver arriba"><span aria-hidden="true">↑</span><span class="volver-texto">Volver arriba</span></button>
+
+  <script src="js/datos.js" defer></script>
+  <script src="js/motor-scroll.js" defer></script>
+  <script src="js/cubo.js" defer></script>
+  <script src="js/capitulos.js" defer></script>
+  <script src="js/red.js" defer></script>
+  <script src="js/linea-tiempo.js" defer></script>
+  <script src="js/comprueba.js" defer></script>
+  <script src="js/chispa.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
