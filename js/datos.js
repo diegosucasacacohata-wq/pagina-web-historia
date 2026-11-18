@@ -25,14 +25,13 @@ const config = {
   finalidad: "Educativa y divulgativa: explicar, con fuentes académicas y documentos de época, cómo el socialismo pasó de ser una idea a convertirse en un Estado (1516–1924).",
   publico: "Estudiantes universitarios de los primeros ciclos y de los últimos años de secundaria, y cualquier lector curioso sin conocimientos previos de historia.",
 
-  // Integrantes: escribir el nombre real y el capítulo que narra cada uno (sale en su video)
+  // Integrantes del grupo (salen en la ficha del Inicio y en el pie de página)
   integrantes: [
-    { nombre: "Integrante 1", capitulo: 1 },
-    { nombre: "Integrante 2", capitulo: 2 },
-    { nombre: "Integrante 3", capitulo: 3 },
-    { nombre: "Integrante 4", capitulo: 4 },
-    { nombre: "Integrante 5", capitulo: 5 },
-    { nombre: "Integrante 6", capitulo: 6 }
+    "Sucasaca Cohata, Diego",
+    "Flores Mango, Esteban",
+    "Flores, Gabriel",
+    "Puma Pacori, Miguel",
+    "Gómez Macedo, Sebastián"
   ],
 
   // Pie de cada ilustración (crédito editable)
@@ -52,9 +51,9 @@ const config = {
 };
 
 // ---------------------------------------------------------------------
-// 2. Videos del equipo: introducción, UNO POR CAPÍTULO y conclusión
-//    Son los videos editados del documental. Cada capítulo aparece dentro de su
-//    sección y todos juntos en «Videos del equipo».
+// 2. Videos del documental: introducción, UNO POR CAPÍTULO y conclusión
+//    Son los videos editados del documental. La introducción va en el Inicio,
+//    cada capítulo dentro de su sección y la conclusión en Conclusiones.
 //    Para poner un video hay dos formas (con una basta):
 //    a) ARCHIVO: copiar el video a la carpeta video/ con el nombre EXACTO
 //       introduccion.mp4, capitulo-1.mp4 … capitulo-6.mp4 y conclusion.mp4.
@@ -65,10 +64,9 @@ const config = {
 //    Subtítulos (opcional): guardar capitulo-1.vtt… en video/ y escribir la ruta en «subtitulos».
 //    Mientras no haya video, se ve «próximamente» y el diseño no se rompe.
 //    ¿No habrá conclusión? Cambiar activo: true por activo: false.
-//    narraCapitulo: quién narra la introducción y la conclusión (el integrante de ese capítulo).
 // ---------------------------------------------------------------------
 const videos = [
-  { id: "introduccion", capitulo: 0, etiqueta: "Introducción", titulo: "Introducción: la pregunta central", narraCapitulo: 1,
+  { id: "introduccion", capitulo: 0, etiqueta: "Introducción", titulo: "Introducción: la pregunta central",
     archivo: "video/introduccion.mp4", subtitulos: "", enlace: "",
     transcripcion: "Año 1516. Un humanista inglés, Tomás Moro, imagina una isla donde nadie es dueño de nada. La llama Utopía, una palabra que inventa a partir del griego. Cuatro siglos después, en 1922, nace un Estado que dice hacer realidad ese sueño: la Unión Soviética. ¿Cómo pasó el socialismo de ser una utopía a convertirse en el primer Estado comunista del mundo? Lo vamos a responder en seis pasos." },
   { id: "capitulo-1", capitulo: 1, archivo: "video/capitulo-1.mp4", subtitulos: "", enlace: "",
@@ -83,7 +81,7 @@ const videos = [
     transcripcion: "Un dato antes de seguir: Rusia usaba el calendario juliano, trece días atrasado respecto al nuestro. Por eso la «Revolución de Febrero» ocurrió en marzo y la «de Octubre», en noviembre. En febrero de 1917, Petrogrado se llena de huelgas y protestas por la falta de pan, y los soldados se suman a los manifestantes. Nicolás II abdica. Se forma un Gobierno Provisional, encabezado primero por el príncipe Lvov y, desde julio, por Aleksandr Kérenski, que sigue en la guerra. Al mismo tiempo, obreros y soldados se organizan en soviets. Lenin llega a Petrogrado el 3 de abril y presenta sus Tesis de Abril: la revolución debe pasar a una segunda etapa que ponga el poder en manos del proletariado y de los campesinos pobres; ningún apoyo al Gobierno Provisional; las tierras, nacionalizadas y administradas por los soviets campesinos. Los bolcheviques lo resumen en un lema: «paz, pan y tierra». El 25 de octubre, nuestro 7 de noviembre, los bolcheviques, dirigidos por Lenin y Trotski y apoyados en los soviets, derrocan al Gobierno Provisional y toman el Palacio de Invierno. Proclaman un gobierno de los soviets de obreros, soldados y campesinos. Como señala la lectura, la toma del palacio importó más por lo que simbolizó que por lo que fue." },
   { id: "capitulo-6", capitulo: 6, archivo: "video/capitulo-6.mp4", subtitulos: "", enlace: "",
     transcripcion: "Para cumplir su promesa de paz, los bolcheviques firman el Tratado de Brest-Litovsk el 3 de marzo de 1918. Rusia sale de la guerra, pero a un costo enorme: pierde 780 000 km², 56 millones de habitantes, el 73 % de su producción de hierro y el 89 % de la de carbón. Estalla la guerra civil: el Ejército Rojo contra los blancos, sus opositores. Para ganarla, el gobierno aplica el comunismo de guerra: el Estado toma el control de la economía, y la dictadura se endurece en lo económico y en lo político. En 1921, con el país devastado, Lenin anuncia en el X Congreso del partido la Nueva Política Económica, la NEP: una vuelta parcial al mercado para reconstruir el país. En 1922 nace la Unión de Repúblicas Socialistas Soviéticas, la URSS, con Rusia como eje. En 1924 muere Lenin. Tras luchas internas y purgas, José Stalin se convierte en el amo de la Unión Soviética, que gobernará con mano de hierro hasta 1953." },
-  { id: "conclusion", capitulo: 0, etiqueta: "Conclusión", titulo: "Conclusión: la respuesta en seis pasos", narraCapitulo: 6, activo: true,
+  { id: "conclusion", capitulo: 0, etiqueta: "Conclusión", titulo: "Conclusión: la respuesta en seis pasos", activo: true,
     archivo: "video/conclusion.mp4", subtitulos: "", enlace: "",
     transcripcion: "¿Cómo pasó el comunismo de ser tan solo una idea utópica a instituir el primer gobierno comunista del mundo, la URSS? Lo podemos resumir en seis pasos. Primero, una idea: la isla de Moro sin propiedad privada. Segundo, una profunda herida: la miseria que dejó la Revolución Industrial en la mayoría de la población. Tercero, una teoría: la lucha de clases planteada por Marx y Engels. Cuarto, una organización: la de cada una de las Internacionales. Quinto, una oportunidad: la Rusia del zar, hundida en la Primera Guerra Mundial. Y sexto, una toma del poder: la que sucedió en 1917. Aquí nos planteamos una nueva pregunta, la paradoja: Marx soñaba con una sociedad sin Estado; sin embargo, sus ideas desembocaron en un Estado gobernado con mano de hierro hasta 1953. Muchas gracias." }
 ];
@@ -180,7 +178,6 @@ const capitulos = [
     },
     contadores: null,
     cita: null,
-    sabiasQue: "La palabra «utopía» la creó Moro. Viene del griego y significa «no-lugar»: por eso el título de esta página.",
     paraRecordar: [
       "Moro imagina en 1516 una isla sin propiedad privada.",
       "La Revolución Industrial crea la «cuestión social».",
@@ -226,7 +223,6 @@ const capitulos = [
     },
     contadores: null,
     cita: { texto: "¡Proletarios de todos los países, uníos!", autor: "Marx y Engels", obra: "Manifiesto Comunista", anio: 1848 },
-    sabiasQue: "Entre el Manifiesto Comunista (1848) y el primer tomo de El capital (1867) pasaron 19 años.",
     paraRecordar: [
       "La historia es lucha de clases: burguesía contra proletariado.",
       "Plusvalía: lo que el obrero produce y no se le paga.",
@@ -237,7 +233,7 @@ const capitulos = [
       tipo: "semana",
       anio: 1867,   // año que muestra el reloj durante esta secuencia
       titulo: "La semana del obrero",
-      pie: "Esquema didáctico de la plusvalía (ejemplo de Engels, según el guion del grupo).",
+      pie: "Esquema didáctico de la plusvalía (ejemplo de Engels, 1868).",
       subtitulos: [
         "El obrero trabaja de lunes a sábado.",
         "Hasta el miércoles produce el valor de su salario.",
@@ -288,7 +284,6 @@ const capitulos = [
       { valor: 1889, texto: "II Internacional", formato: "anio" }
     ],
     cita: null,
-    sabiasQue: "La Comuna de París fue aplastada en 1871, pero Lenin la tomó como referencia en sus Tesis de Abril, 46 años después.",
     paraRecordar: [
       "1864: la Primera Internacional organiza a los obreros.",
       "1871: la Comuna de París es aplastada.",
@@ -347,7 +342,6 @@ const capitulos = [
     },
     contadores: null,
     cita: null,
-    sabiasQue: "El nombre «bolchevique» salió de una votación del congreso del partido en 1903: el grupo de Lenin quedó como «mayoritario».",
     paraRecordar: [
       "Rusia es una autocracia: el zar concentra todo el poder.",
       "1903: el partido se divide en bolcheviques y mencheviques.",
@@ -410,7 +404,6 @@ const capitulos = [
     },
     contadores: null,
     cita: { texto: "Ningún apoyo al Gobierno Provisional.", autor: "Lenin", obra: "Tesis de Abril", anio: 1917 },
-    sabiasQue: "La Revolución de Octubre ocurrió el 7 de noviembre según nuestro calendario.",
     paraRecordar: [
       "Febrero (marzo) de 1917: cae el zar.",
       "Abril: Lenin niega todo apoyo al Gobierno Provisional.",
@@ -475,7 +468,6 @@ const capitulos = [
       { valor: 56, texto: "millones de habitantes perdidos", formato: "simple", sufijo: " millones" }
     ],
     cita: null,
-    sabiasQue: "Entre la toma del poder (1917) y la creación de la URSS (1922) pasaron cinco años de guerra civil, comunismo de guerra y NEP.",
     paraRecordar: [
       "1918: Brest-Litovsk saca a Rusia de la guerra a un alto precio.",
       "1922: se crea la URSS, el primer Estado comunista del mundo.",
@@ -909,41 +901,40 @@ const conclusiones = {
 };
 
 // ---------------------------------------------------------------------
-// 13. Fuentes en APA 7 (las del guion y la lectura base; NO inventar)
+// 13. Fuentes en APA 7: solo las que sustentan los textos y los videos (NO inventar)
 //     Cada categoría se ordena sola alfabéticamente.
-//     «nota» (opcional) se muestra debajo de la referencia, en gris.
+//     «nota» (opcional) se muestra debajo de la referencia, en gris: dice qué parte sustenta.
 //     PLANTILLA para agregar una fuente:
-//     { apa: "Apellido, N. (Año). <em>Título</em>. Editorial.", enlace: "https://..." }
+//     { apa: "Apellido, N. (Año). <em>Título</em>. Editorial.", enlace: "https://...", nota: "Capítulo N: ..." }
 // ---------------------------------------------------------------------
 const fuentes = [
   { categoria: "Lectura base del curso", lista: [
     { apa: "Hubeñák, F. (2020). <em>Historia integral de Occidente: Desde una perspectiva cristiana</em> (con la colaboración de G. Gómez de Aso y M. E. Santiago de Camusso). Educa.", enlace: "",
-      nota: "Capítulos usados: 7 (pp. 156–158), 11 (pp. 279–284, 299–303 y 321–322) y 12 (pp. 363–375)." }
+      nota: "Sustenta los 6 capítulos. Capítulos usados: 7 (pp. 156–158), 11 (pp. 279–284, 299–303 y 321–322) y 12 (pp. 363–375)." }
   ] },
-  { categoria: "Documentos históricos", lista: [
-    { apa: "Engels, F. (1868). <em>Reseña del primer tomo de El Capital de Carlos Marx para el Demokratisches Wochenblatt</em>. Marxists Internet Archive.", enlace: "https://www.marxists.org/espanol/m-e/1860s/resena.htm" },
-    { apa: "Lenin, V. I. (1917). <em>Las tareas del proletariado en la presente revolución («Tesis de abril»)</em>. Marxists Internet Archive.", enlace: "https://www.marxists.org/espanol/lenin/obras/1910s/abril.htm" },
-    { apa: "Marx, K. y Engels, F. (1848). <em>Manifiesto del Partido Comunista</em>. Marxists Internet Archive.", enlace: "https://www.marxists.org/espanol/m-e/1840s/48-manif.htm" },
-    { apa: "Moro, T. (2007). <em>Utopía</em> (P. Voltes, trad.; prólogo de F. Savater). Espasa Calpe. (Obra original publicada en 1516).", enlace: "" }
+  { categoria: "Obras de la época (se citan en la página)", lista: [
+    { apa: "Engels, F. (1868). <em>Reseña del primer tomo de El Capital de Carlos Marx para el Demokratisches Wochenblatt</em>. Marxists Internet Archive.", enlace: "https://www.marxists.org/espanol/m-e/1860s/resena.htm",
+      nota: "Capítulo 2: el ejemplo de «la semana del obrero» para explicar la plusvalía." },
+    { apa: "Lenin, V. I. (1917). <em>Las tareas del proletariado en la presente revolución («Tesis de abril»)</em>. Marxists Internet Archive.", enlace: "https://www.marxists.org/espanol/lenin/obras/1910s/abril.htm",
+      nota: "Capítulo 5: las Tesis de Abril y la cita «Ningún apoyo al Gobierno Provisional»." },
+    { apa: "Marx, K. y Engels, F. (1848). <em>Manifiesto del Partido Comunista</em>. Marxists Internet Archive.", enlace: "https://www.marxists.org/espanol/m-e/1840s/48-manif.htm",
+      nota: "Capítulo 2: la fecha (febrero de 1848) y la cita «¡Proletarios de todos los países, uníos!»." },
+    { apa: "Moro, T. (2007). <em>Utopía</em> (P. Voltes, trad.; prólogo de F. Savater). Espasa Calpe. (Obra original publicada en 1516).", enlace: "",
+      nota: "Introducción y capítulo 1: la isla sin propiedad privada." }
   ] },
-  { categoria: "Libros y artículos académicos", lista: [
-    { apa: "Adamovsky, E. (2005). La revolución rusa de 1905: el año en que nacieron los soviets. <em>Encrucijadas</em>. Universidad de Buenos Aires.", enlace: "https://repositoriouba.sisbi.uba.ar/gsdl/collect/encruci/index/assoc/HWA_511.dir/511.PDF" },
-    { apa: "Departamento de Historia, IRI-UNLP. (2017). Artículo sobre la Revolución rusa. <em>Revista IRI</em>. [Completar autor desde el PDF].", enlace: "https://www.iri.edu.ar/wp-content/uploads/2018/03/dep-historia-articulo-rev.rusa_.pdf" },
-    { apa: "El pensamiento utópico y la práctica comunitaria: Robert Owen. <em>Política y Sociedad</em>. Universidad Complutense de Madrid. [Completar autor y año desde el PDF].", enlace: "https://revistas.ucm.es/index.php/POSO/article/download/POSO9292220123A/30465" },
-    { apa: "En el centenario de la Revolución rusa. (2017). <em>Razón y Fe</em>. Universidad Pontificia Comillas.", enlace: "https://revistas.comillas.edu/index.php/razonyfe/article/download/9314/8735/20385" },
-    { apa: "González Quesada. (2021). <em>Análisis iconográfico de las medallas de la Revolución rusa de febrero</em>. Universidad de Murcia.", enlace: "https://digitum.um.es/digitum/bitstream/10201/114885/1/Gonzalez-Quesada2021.pdf" },
-    { apa: "Ideas políticas y económicas de Carlos Marx en el contexto contemporáneo. <em>Revista IECOS, 25</em>(1). Universidad Nacional de Ingeniería (Perú).", enlace: "https://doi.org/10.21754/iecos.v25i1.2159" },
-    { apa: "Instituto de Investigaciones Jurídicas, UNAM. (s. f.). Capítulo 2: El orden soviético.", enlace: "https://archivos.juridicas.unam.mx/www/bjv/libros/6/2792/23.pdf" },
-    { apa: "Pro, J. (s. f.). <em>Utopía y socialismo, un horizonte compartido</em>. Instituto de Investigaciones Históricas, UNAM.", enlace: "https://historicas.unam.mx/publicaciones/publicadigital/libros/726/726_04_01_utopia.pdf" }
-  ] },
-  { categoria: "Recursos audiovisuales", lista: [
-    { apa: "Grupo 2, Historia Conectada. (2026). <em>Del «no-lugar» al Estado</em> [Documental]. Universidad Católica San Pablo.", enlace: "" },
-    { apa: "Música de fondo del documental: obras de Borodin, Chaikovski y Músorgski, en grabaciones de dominio público (Musopen y European Archive). Wikimedia Commons.", enlace: "" }
-  ] },
-  { categoria: "Créditos de imágenes", lista: [
-    { apa: "Grupo 2, Historia Conectada. (2026). <em>Paneles 1 a 6</em> [Ilustraciones]. [Completar de dónde salieron; si se generaron con IA, nombrar la herramienta].", enlace: "" },
-    { apa: "Mayall, J. J. E. (1875). <em>Karl Marx</em> [Fotografía]. Wikimedia Commons. Dominio público.", enlace: "https://commons.wikimedia.org/wiki/File:Karl_Marx_by_John_Jabez_Edwin_Mayall_1875_-_Restored.png" },
-    { apa: "Retratos y mapas del documental (Moro, Ricardo, Saint-Simon, Fourier, Owen, Hegel, Nicolás II, Gapón, Lvov, Kérenski y Trotski; mapas de Natural Earth). Wikimedia Commons. Dominio público.", enlace: "" }
+  { categoria: "Artículos y capítulos académicos", lista: [
+    { apa: "Adamovsky, E. (2005). La revolución rusa de 1905: el año en que nacieron los soviets. <em>Encrucijadas</em>. Universidad de Buenos Aires.", enlace: "https://repositoriouba.sisbi.uba.ar/gsdl/collect/encruci/index/assoc/HWA_511.dir/511.PDF",
+      nota: "Capítulo 4: 1905, el Domingo Sangriento y el nacimiento de los soviets." },
+    { apa: "González Quesada. (2021). <em>Análisis iconográfico de las medallas de la Revolución rusa de febrero</em>. Universidad de Murcia.", enlace: "https://digitum.um.es/digitum/bitstream/10201/114885/1/Gonzalez-Quesada2021.pdf",
+      nota: "Capítulo 5: la Revolución de Febrero y el calendario juliano." },
+    { apa: "Kreibohm, P. (2017). A 100 años de la doble Revolución Rusa. <em>Revista IRI</em>. Departamento de Historia, Instituto de Relaciones Internacionales, Universidad Nacional de La Plata.", enlace: "https://www.iri.edu.ar/wp-content/uploads/2018/03/dep-historia-articulo-rev.rusa_.pdf",
+      nota: "Capítulos 4 a 6: la división de 1903, el Gobierno Provisional, el regreso de Lenin (3 de abril de 1917) y las Tesis de Abril, Brest-Litovsk (780 000 km², 56 millones de habitantes), el comunismo de guerra, la NEP y la URSS (1922)." },
+    { apa: "Kumar, K. (1992). El pensamiento utópico y la práctica comunitaria: Robert Owen y las comunidades owenianas (C. Narocki, trad.). <em>Política y Sociedad</em>, <em>11</em>, 123–143.", enlace: "https://revistas.ucm.es/index.php/POSO/article/download/POSO9292220123A/30465",
+      nota: "Capítulo 1: Robert Owen y la comunidad de New Harmony (1825)." },
+    { apa: "Pro, J. (s. f.). <em>Utopía y socialismo, un horizonte compartido</em>. Instituto de Investigaciones Históricas, UNAM.", enlace: "https://historicas.unam.mx/publicaciones/publicadigital/libros/726/726_04_01_utopia.pdf",
+      nota: "Introducción y capítulo 1: la palabra «utopía» y su relación con el socialismo." },
+    { apa: "Rocha Valencia, A. (2024). Ideas políticas y económicas de Carlos Marx en el contexto contemporáneo. <em>Revista IECOS</em>, <em>25</em>(1), 143–148.", enlace: "https://doi.org/10.21754/iecos.v25i1.2159",
+      nota: "Capítulo 2: la lucha de clases y la plusvalía." }
   ] }
 ];
 
@@ -1013,9 +1004,6 @@ const curiosidades = {
   "red": [
     "En la red, las flechas dicen qué provocó qué. ¡Prueba el recorrido guiado de 10 pasos!",
     "La Revolución de Octubre y el Socialismo utópico son los nodos más conectados de la red: seis flechas cada uno."
-  ],
-  "video": [
-    "Cada integrante grabó el video de su capítulo. ¡Dale play y conócelos!"
   ],
   "linea-tiempo": [
     "Usa las flechas ← → del teclado para viajar de fecha en fecha.",

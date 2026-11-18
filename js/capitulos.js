@@ -117,8 +117,7 @@ function htmlCapitulo(cap) {
     '<div class="lectura cuerpo-capitulo">' +
       htmlDatosClave(cap) +
       (cap.cita ? htmlCita(cap.cita) : "") +
-      '<aside class="sabias-que"><h3>¿Sabías que…?</h3><p>' + cap.sabiasQue + '</p></aside>' +
-      htmlClip(cap) +
+      htmlClip(videos.find(v => v.capitulo === n), "El video del capítulo " + n) +
       '<div class="comprueba" data-capitulo="' + n + '"></div>' +
       '<div class="para-recordar"><h3>Para recordar</h3><ul>' + cap.paraRecordar.map(t => '<li>' + t + '</li>').join("") + '</ul></div>' +
       '<p class="enlaces-capitulo">' +
@@ -206,12 +205,11 @@ function htmlCita(cita) {
     '<figcaption>' + cita.autor + ', <cite>' + cita.obra + '</cite> (' + cita.anio + ')</figcaption></figure>';
 }
 
-// f: el video del capítulo (lo graba su integrante; el reproductor lo arma main.js) y su transcripción
-function htmlClip(cap) {
-  const video = videos.find(v => v.capitulo === cap.numero);
-  return '<section class="clip" data-capitulo="' + cap.numero + '" data-video="' + video.id + '" aria-label="Video del capítulo ' + cap.numero + '">' +
-    '<h3>El video del capítulo ' + cap.numero + '</h3>' +
-    '<p class="clip-narra">Narra: ' + narradorDe(video) + '</p>' +
+// f: un video del documental con su transcripción (el reproductor lo arma main.js).
+//    Sirve para cada capítulo y también para la introducción y la conclusión.
+function htmlClip(video, titulo) {
+  return '<section class="clip" data-video="' + video.id + '" aria-label="' + titulo + '">' +
+    '<h3>' + titulo + '</h3>' +
     '<div class="clip-reproductor"></div>' +
     '<details class="transcripcion"><summary>Ver transcripción del video</summary><p>' + video.transcripcion + '</p></details>' +
     '</section>';

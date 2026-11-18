@@ -59,8 +59,7 @@ function construirInicio() {
   document.getElementById("dato-publico").textContent = config.publico;
   document.getElementById("dato-curso").textContent = config.curso + ". " + config.universidad + ", " + config.anio + ".";
   document.getElementById("dato-proyecto").textContent = config.proyecto + ". " + config.grupo + ".";
-  document.getElementById("lista-integrantes").innerHTML = config.integrantes
-    .map(i => "<li>" + i.nombre + " <span>(capítulo " + i.capitulo + ")</span></li>").join("");
+  document.getElementById("lista-integrantes").innerHTML = config.integrantes.map(nombre => "<li>" + nombre + "</li>").join("");
   document.getElementById("credito-portada").textContent = config.creditoImagenes + ": los 6 paneles, uno por capítulo.";
 
   // Mosaico en 2D para pantallas sin 3D: los 6 paneles llegan uno por uno
@@ -149,7 +148,7 @@ function actualizarIndice() {
   document.documentElement.style.setProperty("--color-actual", numero ? "var(--c" + numero + ")" : "var(--tinta)");
   document.documentElement.style.setProperty("--tinta-actual", numero ? "var(--t" + numero + ")" : "var(--tinta)");
   // Mini-mapa: se llenan los capítulos ya recorridos
-  const despues = ["red", "video", "linea-tiempo", "conclusiones", "fuentes"].includes(actual.id);
+  const despues = ["red", "linea-tiempo", "conclusiones", "fuentes"].includes(actual.id);
   document.querySelectorAll("#minimapa a").forEach(a => {
     const n = Number(a.dataset.capitulo);
     a.classList.toggle("visto", despues || (numero > 0 && n <= numero));
@@ -247,27 +246,10 @@ function prepararDefiniciones() {
   });
 }
 
-// ---------- Videos del equipo (uno por capítulo) ----------
-const estadoVideos = {};   // id del video → { estado: "listo" | "falta" | "enlace", duracion }
-let videoActual = null;    // id del video que está en el reproductor grande
-
-// Busca un video por su id ("capitulo-3", "cierre")
+// ---------- Videos del documental (introducción, capítulos y conclusión) ----------
+// Busca un video por su id ("capitulo-3", "conclusion")
 function videoPorId(id) {
   return videos.find(v => v.id === id);
-}
-
-// Videos que se muestran (la conclusión se puede apagar con activo: false)
-function videosActivos() {
-  return videos.filter(v => v.activo !== false);
-}
-
-// Nombre de quien narra el video: el integrante de ese capítulo
-// (la introducción y la conclusión lo indican con «narraCapitulo»)
-function narradorDe(video) {
-  const capitulo = video.capitulo || video.narraCapitulo;
-  if (!capitulo) return "todo el grupo";
-  const integrante = config.integrantes.find(i => i.capitulo === capitulo);
-  return integrante ? integrante.nombre : "";
 }
 
 // Título del video: «Capítulo 3: El movimiento obrero se organiza»
@@ -275,7 +257,7 @@ function tituloDeVideo(video) {
   return video.capitulo ? "Capítulo " + video.capitulo + ": " + capitulos[video.capitulo - 1].titulo : video.titulo;
 }
 
-// Portada mientras no se reproduce: el panel del capítulo (o la imagen completa en el cierre)
+// Portada mientras no se reproduce: el panel del capítulo (o la imagen completa en la introducción y la conclusión)
 function portadaDe(video) {
   return rutaImagen(video.capitulo ? "panel-" + capitulos[video.capitulo - 1].panel + ".jpg" : "paneles-completos.jpg");
 }
@@ -289,12 +271,6 @@ function enlaceIncrustado(enlace) {
   return null;
 }
 
-// Escribe una duración en minutos y segundos (192 → «3:12»)
-function formatearDuracion(segundos) {
-  const s = Math.round(segundos);
-  return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
-}
-
 // Marcador «próximamente» mientras todavía no hay video (dice qué nombre debe tener el archivo)
 function htmlVideoPendiente(video) {
   return '<div class="video-pendiente"><img src="' + portadaDe(video) + '" alt="">' +
@@ -303,129 +279,32 @@ function htmlVideoPendiente(video) {
 }
 
 // Crea el reproductor de un video: enlace (YouTube o Drive), archivo .mp4 o «próximamente» si falta
-function crearReproductor(contenedor, video, opciones) {
+function crearReproductor(contenedor, video) {
   const enlace = (video.enlace || "").trim();
   const incrustado = enlace ? enlaceIncrustado(enlace) : null;
   if (incrustado) {
-    const auto = opciones.autoplay ? (incrustado.includes("?") ? "&" : "?") + "autoplay=1" : "";
     contenedor.innerHTML = '<iframe loading="lazy" title="' + tituloDeVideo(video) + '" ' +
-      'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen src="' + incrustado + auto + '"></iframe>';
+      'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen src="' + incrustado + '"></iframe>';
     return;
   }
   // Un archivo de la carpeta video/ (o un enlace directo a un .mp4)
   contenedor.innerHTML = '<video controls playsinline preload="metadata" poster="' + portadaDe(video) + '" src="' + (enlace || video.archivo) + '">' +
     (video.subtitulos ? '<track kind="subtitles" srclang="es" label="Español" src="' + video.subtitulos + '" default>' : '') + '</video>';
-  const reproductor = contenedor.querySelector("video");
-  reproductor.addEventListener("error", () => { contenedor.innerHTML = htmlVideoPendiente(video); });
-  if (opciones.alTerminar) reproductor.addEventListener("ended", opciones.alTerminar);
-  if (opciones.autoplay) reproductor.play().catch(() => {});
+  contenedor.querySelector("video").addEventListener("error", () => { contenedor.innerHTML = htmlVideoPendiente(video); });
 }
 
-// Revisa si cada video existe (sin reproducirlo) para marcar su tarjeta: duración o «próximamente»
-function revisarVideos() {
-  videosActivos().forEach(video => {
-    const enlace = (video.enlace || "").trim();
-    if (enlace && enlaceIncrustado(enlace)) { marcarEstadoVideo(video.id, "enlace"); return; }
-    const prueba = document.createElement("video");
-    prueba.preload = "metadata";
-    prueba.addEventListener("loadedmetadata", () => marcarEstadoVideo(video.id, "listo", prueba.duration));
-    prueba.addEventListener("error", () => marcarEstadoVideo(video.id, "falta"));
-    prueba.src = enlace || video.archivo;
-  });
-}
-
-// Guarda el estado de un video y lo muestra en su tarjeta
-function marcarEstadoVideo(id, estado, duracion) {
-  estadoVideos[id] = { estado, duracion };
-  const etiqueta = document.querySelector('.video-tarjeta[data-video="' + id + '"] .video-estado-tarjeta');
-  if (!etiqueta) return;
-  etiqueta.className = "video-estado-tarjeta " + estado;
-  etiqueta.textContent = estado === "listo" ? "▶ " + formatearDuracion(duracion)
-    : estado === "enlace" ? "▶ Video en línea" : "Próximamente";
-  actualizarDuracionTotal();
-}
-
-// Suma la duración de las partes del documental que ya están y dice cuántas faltan
-function actualizarDuracionTotal() {
-  const caja = document.getElementById("video-total");
-  const partes = videosActivos().filter(v => !v.marcas);
-  if (!caja || !partes.every(v => estadoVideos[v.id])) return;
-  const listas = partes.filter(v => estadoVideos[v.id].estado === "listo");
-  const total = listas.reduce((suma, v) => suma + estadoVideos[v.id].duracion, 0);
-  const faltan = partes.length - listas.length;
-  caja.textContent = "Duración de las " + listas.length + " partes: " + formatearDuracion(total) + " min" +
-    (faltan ? " · falta" + (faltan > 1 ? "n " : " ") + faltan + " parte" + (faltan > 1 ? "s" : "") : "") + ".";
-}
-
-// Arma la sección «Videos del equipo»: reproductor grande, tarjetas de los videos y créditos
+// Pone cada video del documental en su lugar: la introducción en el Inicio, cada capítulo
+// dentro de su sección (el bloque lo arma capitulos.js) y la conclusión en Conclusiones
 function construirVideos() {
-  document.getElementById("video-lista").innerHTML = videosActivos().map(v => {
-    const color = v.capitulo ? "var(--c" + v.capitulo + ")" : "var(--tinta)";
-    const tinta = v.capitulo ? "var(--t" + v.capitulo + ")" : "var(--tinta)";
-    return '<li><button type="button" class="video-tarjeta" data-video="' + v.id + '" aria-pressed="false" style="--color: ' + color + '; --tinta-cap: ' + tinta + '">' +
-      '<img src="' + portadaDe(v) + '" alt="">' +
-      '<span class="video-tarjeta-texto"><span class="video-num">' + (v.capitulo ? "Capítulo " + v.capitulo : (v.etiqueta || "Cierre")) + '</span>' +
-      '<b>' + (v.capitulo ? capitulos[v.capitulo - 1].titulo : v.titulo.replace(/^[^:]+: /, "")) + '</b>' +
-      '<span class="video-narra">Narra: ' + narradorDe(v) + '</span>' +
-      '<span class="video-estado-tarjeta">Revisando…</span></span></button></li>';
-  }).join("");
-  document.querySelectorAll(".video-tarjeta").forEach(b => b.addEventListener("click", () => elegirVideo(b.dataset.video, true)));
-
-  document.getElementById("creditos-video").innerHTML = videosActivos().map(v =>
-    '<li style="--tinta-cap: ' + (v.capitulo ? "var(--t" + v.capitulo + ")" : "var(--tinta)") + '"><b>' +
-    narradorDe(v).replace(/^todo/, "Todo") + '</b>: ' + tituloDeVideo(v) + '</li>').join("");
-
-  // El video de cada capítulo, dentro de su capítulo
-  document.querySelectorAll(".clip").forEach(clip => {
-    crearReproductor(clip.querySelector(".clip-reproductor"), videoPorId(clip.dataset.video), {});
+  [["introduccion", "clip-introduccion", "El video de la introducción"],
+   ["conclusion", "clip-conclusion", "El video de la conclusión"]].forEach(([id, caja, titulo]) => {
+    const video = videoPorId(id);
+    const contenedor = document.getElementById(caja);
+    if (video && video.activo !== false && contenedor) contenedor.innerHTML = htmlClip(video, titulo);
   });
-
-  elegirVideo(videosActivos()[0].id, false);
-  revisarVideos();
-}
-
-// Pone un video en el reproductor grande (y lo reproduce si se pidió)
-function elegirVideo(id, reproducir) {
-  const video = videoPorId(id);
-  videoActual = id;
-  crearReproductor(document.getElementById("video-marco"), video, { autoplay: reproducir, alTerminar: pasarAlSiguienteVideo });
-  document.getElementById("video-ahora").textContent = "Ahora: " + tituloDeVideo(video) + ". Narra " + narradorDe(video) + ".";
-  document.getElementById("video-transcripcion").textContent = video.transcripcion;
-  mostrarMarcas(video);
-  document.querySelectorAll(".video-tarjeta").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.video === id)));
-  if (reproducir) {
-    const marco = document.getElementById("video-marco");
-    if (marco.getBoundingClientRect().top < motor.altoBarra) marco.scrollIntoView({ block: "start" });
-  }
-}
-
-// Botones para saltar a un minuto dentro de un video que tenga «marcas» (por ejemplo, un documental completo)
-function mostrarMarcas(video) {
-  const caja = document.getElementById("video-marcas");
-  if (!caja) return;
-  caja.hidden = !video.marcas;
-  if (!video.marcas) { caja.innerHTML = ""; return; }
-  caja.innerHTML = '<span>Ir a:</span>' + video.marcas.map(m =>
-    '<button type="button" class="boton-pequeno boton-borde" data-inicio="' + m.inicio + '">' + m.titulo + ' <small>' + formatearDuracion(m.inicio) + '</small></button>').join("");
-  caja.querySelectorAll("button").forEach(b => b.addEventListener("click", () => irAlMinutoDelVideo(Number(b.dataset.inicio))));
-}
-
-// Salta a un momento del video del reproductor grande (en segundos) y lo reproduce
-function irAlMinutoDelVideo(segundos) {
-  const reproductor = document.querySelector("#video-marco video");
-  if (!reproductor) return;
-  reproductor.currentTime = segundos;
-  reproductor.play().catch(() => {});
-}
-
-// Al terminar un video, pasa al siguiente que exista (si la casilla está marcada)
-function pasarAlSiguienteVideo() {
-  if (!document.getElementById("video-seguir").checked) return;
-  if (videoPorId(videoActual).marcas) return;
-  const lista = videosActivos();
-  const desde = lista.findIndex(v => v.id === videoActual);
-  const siguiente = lista.slice(desde + 1).find(v => !estadoVideos[v.id] || estadoVideos[v.id].estado !== "falta");
-  if (siguiente) elegirVideo(siguiente.id, true);
+  document.querySelectorAll(".clip").forEach(clip => {
+    crearReproductor(clip.querySelector(".clip-reproductor"), videoPorId(clip.dataset.video));
+  });
 }
 
 // ---------- Conclusiones ----------
@@ -502,14 +381,14 @@ function construirRecursos() {
     '<p class="uso-ia"><b>Uso de inteligencia artificial:</b> ' + config.usoIA + '</p>';
 }
 
-// Pie de página: integrantes, curso, universidad, año y crédito de las imágenes
+// Pie de página: integrantes, curso, universidad, año y nota sobre las imágenes
 function construirPie() {
   document.getElementById("pie").innerHTML =
     '<p class="pie-titulo">' + config.titulo + '</p>' +
     '<p>' + config.proyecto + '. ' + config.grupo + '.</p>' +
-    '<p><b>Integrantes:</b> ' + config.integrantes.map(i => i.nombre).join(", ") + '.</p>' +
+    '<p><b>Integrantes:</b> ' + config.integrantes.join("; ") + '.</p>' +
     '<p>' + config.curso + '. ' + config.universidad + ', ' + config.anio + '.</p>' +
-    '<p><b>Imágenes:</b> ' + config.creditoImagenes + '. Son ilustraciones, no documentos históricos; su origen figura en Fuentes.</p>';
+    '<p><b>Imágenes:</b> ' + config.creditoImagenes + '. Son ilustraciones, no documentos históricos.</p>';
 }
 
 // ---------- Eventos generales ----------

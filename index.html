@@ -88,6 +88,8 @@
           <div><dt>Público</dt><dd id="dato-publico"></dd></div>
           <div><dt>Integrantes</dt><dd><ul id="lista-integrantes"></ul></dd></div>
         </dl>
+        <!-- Video de la introducción (lo arma construirVideos en main.js) -->
+        <div id="clip-introduccion"></div>
         <p class="continuar"><a href="#contexto">Continuar con el Contexto histórico</a></p>
       </div>
     </section>
@@ -145,33 +147,10 @@
         </div>
       </div>
       <div class="lectura red-lista" id="red-lista" hidden></div>
-      <p class="continuar lectura"><a href="#video">Continuar con los Videos del equipo</a></p>
-    </section>
-
-    <!-- ⑤ VIDEOS DEL EQUIPO (introducción, un video por capítulo y conclusión) == -->
-    <section id="video" class="bloque" data-indice="bloque" data-anio="1516–1924" aria-labelledby="titulo-video">
-      <div class="lectura">
-        <h2 id="titulo-video">Videos del equipo</h2>
-        <p>El documental del grupo: una introducción, un capítulo por integrante y la conclusión. Con «Al terminar, pasar al siguiente» se ve completo, parte por parte; cada capítulo también aparece dentro de su sección.</p>
-      </div>
-      <div class="video-bloque">
-        <div class="video-marco" id="video-marco"></div>
-        <div class="video-barra">
-          <p class="video-ahora" id="video-ahora" aria-live="polite"></p>
-          <label class="video-seguir"><input type="checkbox" id="video-seguir" checked> Al terminar, pasar al siguiente</label>
-        </div>
-        <!-- Botones para saltar a un minuto (solo si el video tiene «marcas») y duración total -->
-        <div class="video-marcas" id="video-marcas" hidden></div>
-        <p class="video-total" id="video-total" aria-live="polite"></p>
-        <details class="transcripcion"><summary>Ver transcripción de este video</summary><p id="video-transcripcion"></p></details>
-        <ol class="video-lista" id="video-lista"></ol>
-        <h3>Créditos</h3>
-        <ul class="creditos" id="creditos-video"></ul>
-      </div>
       <p class="continuar lectura"><a href="#linea-tiempo">Continuar con la Línea de tiempo interactiva</a></p>
     </section>
 
-    <!-- ⑥ LÍNEA DE TIEMPO =============================================== -->
+    <!-- ⑤ LÍNEA DE TIEMPO =============================================== -->
     <section id="linea-tiempo" class="bloque" data-indice="bloque" aria-labelledby="titulo-lt">
       <div class="lectura">
         <h2 id="titulo-lt">Línea de tiempo interactiva</h2>
@@ -198,7 +177,7 @@
       <p class="continuar lectura"><a href="#conclusiones">Continuar con las Conclusiones</a></p>
     </section>
 
-    <!-- ⑦ CONCLUSIONES ================================================== -->
+    <!-- ⑥ CONCLUSIONES ================================================== -->
     <section id="conclusiones" class="bloque conclusiones" data-indice="bloque" data-parallax data-anio="1516–1924" aria-labelledby="titulo-conclusiones">
       <div class="capa-parallax capa-mosaico-fondo solo-animacion" data-velocidad="0.5" aria-hidden="true"></div>
       <div class="capa-parallax capa-particulas solo-animacion" data-velocidad="0.7" data-particula="volantes" aria-hidden="true"></div>
@@ -207,6 +186,8 @@
         <h2 id="titulo-conclusiones">Conclusiones</h2>
         <p class="pregunta-grande" id="pregunta-conclusiones"></p>
         <p class="respuesta-grupo" id="respuesta-grupo"></p>
+        <!-- Video de la conclusión (lo arma construirVideos en main.js) -->
+        <div id="clip-conclusion"></div>
       </div>
       <!-- Vista explotada del cubo (nivel 5): solo con 3D -->
       <div class="secuencia explosion" id="explosion" data-tipo="fijada" data-pantallas="3" data-fases="3" data-migas="La respuesta en 6 pasos">
@@ -231,7 +212,7 @@
       <p class="continuar lectura"><a href="#fuentes">Continuar con las Fuentes</a></p>
     </section>
 
-    <!-- ⑧ FUENTES ====================================================== -->
+    <!-- ⑦ FUENTES ====================================================== -->
     <section id="fuentes" class="bloque" data-indice="bloque" data-anio="1516–1924" aria-labelledby="titulo-fuentes">
       <div class="lectura">
         <h2 id="titulo-fuentes">Fuentes</h2>

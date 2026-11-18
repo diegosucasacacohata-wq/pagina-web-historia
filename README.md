@@ -25,13 +25,13 @@ Ya está publicado (enlaces arriba). Para actualizarlo después de un cambio, de
 3. Para tener un enlace público: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, rama `main`, carpeta `/ (root)`, **Save**. En uno o dos minutos la página queda en `https://TU-USUARIO.github.io/pagina-web-historia/`.
 4. Pega ese enlace en `config.repositorio` (`js/datos.js`) y arriba en «Ver en línea», y sube de nuevo `js/datos.js` y `README.md`.
 
-Antes de publicar: completen los nombres de los integrantes y la declaración de uso de IA (ver «Qué editar antes de entregar»).
+Antes de publicar: completen la declaración de uso de IA (ver «Qué editar antes de entregar»).
 
 ## Archivos
 
 | Archivo | Qué contiene |
 |---|---|
-| `index.html` | Estructura de los 8 bloques en el orden de la rúbrica |
+| `index.html` | Estructura de los 7 bloques en el orden de la rúbrica (los videos van dentro del Inicio, de cada capítulo y de Conclusiones) |
 | `css/estilos.css` | Diseño: colores por capítulo, tipografía, secuencias, modo lectura y modo oscuro |
 | `js/datos.js` | **Todas las estructuras de datos** (arreglos de objetos): capítulos, pasos, nodos, conexiones, eventos, preguntas, fuentes |
 | `js/motor-scroll.js` | Motor de scroll sin librerías: avance de secuencias, parallax, «Saltar animación», «Modo lectura» |
@@ -68,24 +68,24 @@ Son los videos **editados** del documental (con cortes, tarjetas con fechas, ret
 
 **Ojo con la duración:** las 7 partes suman **9:34**. La rúbrica pide un video de **12 a 15 minutos**; con el capítulo 3 (unos 1:30) llegarían a unos 11 minutos, así que todavía falta material. Además, el capítulo 6 es la versión del 3 de noviembre: no se volvió a exportar después de los cambios del 9 (no tiene música ni gráficos 3D, como los otros).
 
-Cuando esté el capítulo 3, basta copiarlo a `video/` con el nombre `capitulo-3.mp4`: la página lo encuentra sola (mientras tanto muestra «próximamente»). En «Videos del equipo», con la casilla «Al terminar, pasar al siguiente», las partes se ven seguidas. Para usar un enlace en vez de un archivo, se pega el link de YouTube o Drive en `enlace` (arreglo `videos` de `js/datos.js`).
+Cuando esté el capítulo 3, basta copiarlo a `video/` con el nombre `capitulo-3.mp4`: la página lo encuentra sola (mientras tanto muestra «próximamente»). La introducción se ve en el Inicio, cada capítulo dentro de su sección y la conclusión en Conclusiones (ya no hay una sección «Videos del equipo» al final). Para usar un enlace en vez de un archivo, se pega el link de YouTube o Drive en `enlace` (arreglo `videos` de `js/datos.js`).
 
 Subtítulos (opcional): si los hacen, guarden `capitulo-1.vtt`, etc. en `video/` y escriban la ruta en `subtitulos`; mientras esté vacío, no se buscan.
 
-Las transcripciones salen del guion (la de la conclusión, de lo que se grabó). Revisen que coincidan con lo que dice cada uno.
+Las transcripciones salen del guion (la de la conclusión, de lo que se grabó). Revisen que coincidan con lo que dice cada uno: en los videos de los capítulos 2, 5 y 6 hay diferencias con la página (por ejemplo, el capítulo 6 dice 280 000 km² y 1923).
 
 ## Qué editar antes de entregar (todo en `js/datos.js`)
 
-1. **Integrantes** y el capítulo que narra cada uno: `config.integrantes` (el nombre sale en su video y en los créditos). Según los videos: el mismo integrante narra la apertura y el capítulo 1, y el del capítulo 6 narra el cierre.
+1. **Integrantes**: `config.integrantes`, una lista de nombres (salen en el Inicio y en el pie). Los videos no dicen quién narra.
 2. **Transcripción** de cada video: campo `transcripcion` del arreglo `videos`.
-3. **Fuentes**: ya están las del guion y la lectura base, en el arreglo `fuentes`. Para agregar una, se copia una línea con este formato: `{ apa: "Apellido, N. (Año). <em>Título</em>. Editorial.", enlace: "https://..." }` (y `nota` si se quiere aclarar algo). Donde dice `[Completar…]` falta un dato.
+3. **Fuentes**: quedan solo las que sustentan los textos (la lectura base, 4 obras de la época y 6 artículos académicos), en el arreglo `fuentes`; cada una tiene una `nota` con lo que sustenta. Para agregar una, se copia una línea con este formato: `{ apa: "Apellido, N. (Año). <em>Título</em>. Editorial.", enlace: "https://..." }` (y `nota` si se quiere aclarar algo). Donde dice `[Completar…]` falta un dato.
 4. **Cifras del Domingo Sangriento**: completar la fuente de cada cifra en `concepto.cifras` del capítulo 4.
 5. **Crédito de los paneles**: decir de dónde salieron; si se generaron con IA, nombrar la herramienta.
 6. **Respuesta del grupo** e **ideas clave**: `conclusiones.respuesta` y `conclusiones.ideasClave` (el texto actual es un borrador hecho con el texto base).
 7. **Datos del guía (Marx)**: arreglo `curiosidades`. Casi todos salen del texto base; en la guía de sustentación figuran los que se agregaron sobre la vida de Marx.
 8. **Código fuente**: pegar el enlace al repositorio en `config.repositorio`.
 9. **Uso de IA**: revisar `config.usoIA` y completarlo con el formato de la docente.
-10. **Fuentes F5 y F12**: completar autor y año desde el PDF (está marcado en Fuentes).
+10. **González Quesada (2021) y Pro (s. f.)**: completar la inicial del nombre y el año desde el PDF.
 
 Para cambiar el enfoque de un paso del scrollytelling, editar `x`, `y` (en %) y `zoom` en el arreglo `pasos` (sigue la tabla 5.1 del documento de los 5 niveles).
 
@@ -184,7 +184,7 @@ Como pide el documento de los 5 niveles (página 5), en cada paso la imagen **so
 | `htmlScrolly(cap)` | c: bloque de scrollytelling (panel fijo + 4 pasos de texto) | Contexto histórico y los 6 capítulos | `js/capitulos.js` |
 | `htmlDatosClave(cap)` | d: recuadro «Datos clave» con la cifra principal en grande | Contexto histórico y los 6 capítulos | `js/capitulos.js` |
 | `htmlCita(cita)` | Cita destacada en grande con autor y año | Contexto histórico y los 6 capítulos | `js/capitulos.js` |
-| `htmlClip(cap)` | f: el video del capítulo (lo graba su integrante; el reproductor lo arma main.js) y su transcripción | Contexto histórico y los 6 capítulos | `js/capitulos.js` |
+| `htmlClip(video, titulo)` | f: un video del documental con su transcripción (sirve para cada capítulo, la introducción y la conclusión) | Inicio, los 6 capítulos y Conclusiones | `js/capitulos.js` |
 | `htmlPuente(cap)` | i: frase puente y botón para seguir | Contexto histórico y los 6 capítulos | `js/capitulos.js` |
 | `htmlTransicion(siguiente)` | Transición entre capítulos: una cortina del color del capítulo siguiente cruza la pantalla | Contexto histórico y los 6 capítulos | `js/capitulos.js` |
 | `calcularEnfoque(anchoMarco, altoMarco, x, y, zoom)` | Calcula zoom y desplazamiento para que el punto (x, y) del panel quede al centro del marco | Contexto histórico y los 6 capítulos | `js/capitulos.js` |
@@ -228,18 +228,18 @@ Como pide el documento de los 5 niveles (página 5), en cada paso la imagen **so
 | `construirLeyendaRed()` | Leyenda siempre visible: formas por tipo y colores por capítulo | ④ Red de relaciones históricas | `js/red.js` |
 | `construirListaRed()` | Vista de lista: la misma información, accesible para lectores de pantalla y celulares pequeños | ④ Red de relaciones históricas | `js/red.js` |
 | `irARedFiltrada(capitulo)` | Lleva a la red ya armada y filtrada por un capítulo (desde los enlaces de cada capítulo) | ④ Red de relaciones históricas | `js/red.js` |
-| `eventoPorId(id)` | Busca un evento por su id | ⑥ Línea de tiempo interactiva | `js/linea-tiempo.js` |
-| `eventosVisibles()` | Eventos que pasan los filtros, en orden de tiempo | ⑥ Línea de tiempo interactiva | `js/linea-tiempo.js` |
-| `fechaCorta(e)` | Fecha que se muestra en la etiqueta (en 1905 y 1917, con los dos calendarios) | ⑥ Línea de tiempo interactiva | `js/linea-tiempo.js` |
-| `dibujarLineaTiempo()` | Dibuja la línea: eje, corte comprimido, marcas de décadas y un botón por cada fecha | ⑥ Línea de tiempo interactiva | `js/linea-tiempo.js` |
-| `dibujarAvanceLinea(avance)` | Secuencia: al bajar, la línea se desplaza de 1516 a 1924 | ⑥ Línea de tiempo interactiva | `js/linea-tiempo.js` |
-| `mostrarFichaEvento(id)` | Muestra la ficha de una fecha: qué pasó, por qué importa, fuente y botones | ⑥ Línea de tiempo interactiva | `js/linea-tiempo.js` |
-| `centrarEvento(id)` | Lleva la fecha al centro de la línea: en la secuencia, mueve la página; en modo lectura, la línea | ⑥ Línea de tiempo interactiva | `js/linea-tiempo.js` |
-| `moverSeleccion(direccion)` | Pasa a la fecha anterior (-1) o siguiente (+1) entre las visibles | ⑥ Línea de tiempo interactiva | `js/linea-tiempo.js` |
-| `filtrarEventos(capitulo)` | Filtra las fechas por capítulo (null = todos) y por los tipos marcados | ⑥ Línea de tiempo interactiva | `js/linea-tiempo.js` |
-| `construirFiltrosLinea()` | Arma los filtros de la línea: botones por capítulo y casillas por tipo de hecho | ⑥ Línea de tiempo interactiva | `js/linea-tiempo.js` |
-| `irALineaDelCapitulo(capitulo)` | Desde un capítulo: abre la línea en la primera fecha de ese capítulo | ⑥ Línea de tiempo interactiva | `js/linea-tiempo.js` |
-| `irANodoRed(id)` | Desde la línea de tiempo: abre la red ya armada con el nodo seleccionado | ⑥ Línea de tiempo interactiva | `js/linea-tiempo.js` |
+| `eventoPorId(id)` | Busca un evento por su id | ⑤ Línea de tiempo interactiva | `js/linea-tiempo.js` |
+| `eventosVisibles()` | Eventos que pasan los filtros, en orden de tiempo | ⑤ Línea de tiempo interactiva | `js/linea-tiempo.js` |
+| `fechaCorta(e)` | Fecha que se muestra en la etiqueta (en 1905 y 1917, con los dos calendarios) | ⑤ Línea de tiempo interactiva | `js/linea-tiempo.js` |
+| `dibujarLineaTiempo()` | Dibuja la línea: eje, corte comprimido, marcas de décadas y un botón por cada fecha | ⑤ Línea de tiempo interactiva | `js/linea-tiempo.js` |
+| `dibujarAvanceLinea(avance)` | Secuencia: al bajar, la línea se desplaza de 1516 a 1924 | ⑤ Línea de tiempo interactiva | `js/linea-tiempo.js` |
+| `mostrarFichaEvento(id)` | Muestra la ficha de una fecha: qué pasó, por qué importa, fuente y botones | ⑤ Línea de tiempo interactiva | `js/linea-tiempo.js` |
+| `centrarEvento(id)` | Lleva la fecha al centro de la línea: en la secuencia, mueve la página; en modo lectura, la línea | ⑤ Línea de tiempo interactiva | `js/linea-tiempo.js` |
+| `moverSeleccion(direccion)` | Pasa a la fecha anterior (-1) o siguiente (+1) entre las visibles | ⑤ Línea de tiempo interactiva | `js/linea-tiempo.js` |
+| `filtrarEventos(capitulo)` | Filtra las fechas por capítulo (null = todos) y por los tipos marcados | ⑤ Línea de tiempo interactiva | `js/linea-tiempo.js` |
+| `construirFiltrosLinea()` | Arma los filtros de la línea: botones por capítulo y casillas por tipo de hecho | ⑤ Línea de tiempo interactiva | `js/linea-tiempo.js` |
+| `irALineaDelCapitulo(capitulo)` | Desde un capítulo: abre la línea en la primera fecha de ese capítulo | ⑤ Línea de tiempo interactiva | `js/linea-tiempo.js` |
+| `irANodoRed(id)` | Desde la línea de tiempo: abre la red ya armada con el nodo seleccionado | ⑤ Línea de tiempo interactiva | `js/linea-tiempo.js` |
 | `prepararComprueba()` | Arma la pregunta de cada capítulo dentro de su recuadro .comprueba | Recuadro «Comprueba» de cada capítulo | `js/comprueba.js` |
 | `comprobarRespuesta(capitulo, opcion)` | Revisa la opción elegida y explica cada opción con el texto base | Recuadro «Comprueba» de cada capítulo | `js/comprueba.js` |
 | `dibujarChispa()` | Arma el muñeco de Marx con sus 4 piezas recortadas (cuerpo, fondo de la boca, mandíbula y cabeza) | Guía Marx, abajo a la derecha | `js/chispa.js` |
@@ -266,28 +266,18 @@ Como pide el documento de los 5 niveles (página 5), en cada paso la imagen **so
 | `crearParticulas(capa)` | Crea las partículas de una capa (máximo 40). Solo se animan con transform y opacity. | Varias partes (ver la función) | `js/main.js` |
 | `crearTodasLasParticulas()` | Crea todas las capas de partículas y solo las anima cuando están en pantalla | Varias partes (ver la función) | `js/main.js` |
 | `prepararDefiniciones()` | Corre la definición si se sale de la pantalla y permite abrirla con un toque | Varias partes (ver la función) | `js/main.js` |
-| `videoPorId(id)` | Busca un video por su id ("capitulo-3", "cierre") | Varias partes (ver la función) | `js/main.js` |
-| `videosActivos()` | Videos que se muestran (el de cierre se puede apagar con activo: false) | Varias partes (ver la función) | `js/main.js` |
-| `narradorDe(video)` | Nombre de quien narra el video (el integrante de ese capítulo) | Varias partes (ver la función) | `js/main.js` |
+| `videoPorId(id)` | Busca un video por su id ("capitulo-3", "conclusion") | Varias partes (ver la función) | `js/main.js` |
 | `tituloDeVideo(video)` | Título del video: «Capítulo 3: El movimiento obrero se organiza» | Varias partes (ver la función) | `js/main.js` |
-| `portadaDe(video)` | Portada mientras no se reproduce: el panel del capítulo (o la imagen completa en el cierre) | Varias partes (ver la función) | `js/main.js` |
+| `portadaDe(video)` | Portada mientras no se reproduce: el panel del capítulo (o la imagen completa en la introducción y la conclusión) | Varias partes (ver la función) | `js/main.js` |
 | `enlaceIncrustado(enlace)` | Convierte un enlace de YouTube o de Google Drive en la dirección para incrustarlo (null si no es ninguno) | Varias partes (ver la función) | `js/main.js` |
-| `formatearDuracion(segundos)` | Escribe una duración en minutos y segundos (192 → «3:12») | Varias partes (ver la función) | `js/main.js` |
 | `htmlVideoPendiente(video)` | Marcador «próximamente» mientras todavía no hay video (dice qué nombre debe tener el archivo) | Varias partes (ver la función) | `js/main.js` |
-| `crearReproductor(contenedor, video, opciones)` | Crea el reproductor de un video: enlace (YouTube o Drive), archivo .mp4 o «próximamente» si falta | Video de cada capítulo y reproductor grande | `js/main.js` |
-| `revisarVideos()` | Revisa si cada video existe (sin reproducirlo) para marcar su tarjeta: duración o «próximamente» | ⑤ Duración o «Próximamente» en cada tarjeta | `js/main.js` |
-| `marcarEstadoVideo(id, estado, duracion)` | Guarda el estado de un video y lo muestra en su tarjeta | Varias partes (ver la función) | `js/main.js` |
-| `construirVideos()` | Arma la sección «Videos del equipo»: reproductor grande, tarjetas de los videos y créditos | ⑤ Videos del equipo y el video de cada capítulo | `js/main.js` |
-| `elegirVideo(id, reproducir)` | Pone un video en el reproductor grande (y lo reproduce si se pidió) | ⑤ Tarjetas de los videos | `js/main.js` |
-| `pasarAlSiguienteVideo()` | Al terminar un video, pasa al siguiente que exista (si la casilla está marcada) | ⑤ Casilla «Al terminar, pasar al siguiente» | `js/main.js` |
-| `construirConclusiones()` | Arma las conclusiones: respuesta, los 6 pasos, ideas clave, comparador y trabajo con fuentes | ⑦ Conclusiones | `js/main.js` |
+| `crearReproductor(contenedor, video)` | Crea el reproductor de un video: enlace (YouTube o Drive), archivo .mp4 o «próximamente» si falta | Los videos del Inicio, de cada capítulo y de Conclusiones | `js/main.js` |
+| `construirVideos()` | Pone cada video en su lugar: la introducción en el Inicio, cada capítulo en su sección y la conclusión en Conclusiones | Inicio, los 6 capítulos y Conclusiones | `js/main.js` |
+| `construirConclusiones()` | Arma las conclusiones: respuesta, los 6 pasos, ideas clave, comparador y trabajo con fuentes | ⑥ Conclusiones | `js/main.js` |
 | `dibujarExplosion(avance, el)` | La vista explotada la mueve cubo.js; aquí solo aparecen los textos del escenario | Varias partes (ver la función) | `js/main.js` |
-| `construirComparador()` | Comparador con deslizador: «Lo que proponía Marx» frente a «Lo que ocurrió» | ⑦ Comparador con deslizador | `js/main.js` |
-| `construirFuentes()` | Lista de fuentes en APA 7, por categoría y en orden alfabético | ⑧ Fuentes | `js/main.js` |
-| `actualizarDuracionTotal()` | Suma la duración de las partes del documental que ya están y dice cuántas faltan | ⑤ Videos del equipo | `js/main.js` |
-| `mostrarMarcas(video)` | Botones «Ir a: …» para saltar a un minuto, si el video tiene `marcas` (por ejemplo, un documental completo) | ⑤ Videos del equipo | `js/main.js` |
-| `irAlMinutoDelVideo(segundos)` | Salta a ese momento del video del reproductor grande y lo reproduce | ⑤ Videos del equipo | `js/main.js` |
-| `construirRecursos()` | Código fuente, recursos usados y declaración de uso de IA | ⑧ Fuentes | `js/main.js` |
-| `construirPie()` | Pie de página: integrantes, curso, universidad, año y crédito de las imágenes | Varias partes (ver la función) | `js/main.js` |
+| `construirComparador()` | Comparador con deslizador: «Lo que proponía Marx» frente a «Lo que ocurrió» | ⑥ Comparador con deslizador | `js/main.js` |
+| `construirFuentes()` | Lista de fuentes en APA 7, por categoría y en orden alfabético | ⑦ Fuentes | `js/main.js` |
+| `construirRecursos()` | Código fuente, recursos usados y declaración de uso de IA | ⑦ Fuentes | `js/main.js` |
+| `construirPie()` | Pie de página: integrantes, curso, universidad, año y nota sobre las imágenes | Varias partes (ver la función) | `js/main.js` |
 | `prepararEventosGenerales()` | Interruptor de modo lectura, índice en celular, enlaces de los capítulos, «Volver arriba» y tamaño de ventana | Varias partes (ver la función) | `js/main.js` |
 | `iniciar()` | Pone todo en marcha, en orden: textos, capítulos, red, video, línea de tiempo, cubo y eventos | Arranque de toda la página | `js/main.js` |

@@ -426,9 +426,6 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
 .cita-destacada blockquote { margin: 0; }
 .cita-destacada blockquote p { margin: 0 0 10px; font: italic 600 clamp(1.6rem, 1.1rem + 2.2vw, 2.6rem)/1.18 var(--serif); }
 .cita-destacada figcaption { color: var(--tinta-suave); }
-.sabias-que { margin: 0 0 36px; padding: 18px 22px; background: color-mix(in srgb, var(--color) 11%, var(--superficie)); }
-.sabias-que h3 { font-size: 1.05rem; color: var(--tinta-cap); margin-bottom: 6px; }
-.sabias-que p { margin: 0; }
 .clip { margin: 0 0 36px; }
 .clip h3 { font-size: 1.1rem; }
 .video-pendiente { position: relative; aspect-ratio: 16 / 9; background: var(--matte); overflow: hidden; }
@@ -436,7 +433,7 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
 .video-pendiente p { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 16px 18px; color: #F4F1EA; background: linear-gradient(180deg, transparent, rgba(10, 9, 7, 0.88) 40%); }
 .video-pendiente strong { display: block; font: 600 1.2rem var(--serif); }
 .video-pendiente span { font-size: 0.9rem; }
-.clip iframe, .clip video, .video-marco iframe, .video-marco video { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #000; }
+.clip iframe, .clip video { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #000; }
 .transcripcion { margin-top: 10px; }
 .transcripcion summary { cursor: pointer; font-weight: 700; }
 .transcripcion p { margin: 10px 0 0; color: var(--tinta-suave); }
@@ -638,16 +635,6 @@ legend { float: left; margin-right: 8px; font-weight: 700; }
 .lista-nodos strong { color: var(--tinta-cap); }
 .lista-meta { color: var(--tinta-suave); }
 
-/* ---------- 11. Video del equipo ---------- */
-.video-bloque { max-width: 900px; margin: 0 auto; padding-inline: 20px; }
-.video-capitulos { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; }
-.video-capitulos button { width: 100%; height: 100%; padding: 8px 12px; text-align: left; background: var(--superficie); border: 1px solid var(--linea); border-left: 5px solid var(--color); cursor: pointer; font-size: 0.9rem; }
-.video-capitulos button:hover { border-color: var(--color); }
-.video-minuto { display: block; font-weight: 700; font-variant-numeric: tabular-nums; }
-.video-estado { min-height: 1.5em; margin: 8px 0; font-size: 0.9rem; color: var(--tinta-suave); }
-.creditos { padding-left: 1.2em; }
-.creditos b { color: var(--tinta-cap); }
-
 /* ---------- 12. Línea de tiempo ---------- */
 .lt-escenario { display: flex; flex-direction: column; gap: 10px; padding: 12px clamp(10px, 2vw, 22px) 60px; background: var(--fondo); --color: var(--tinta); }
 .lt-cabecera { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; }
@@ -797,31 +784,10 @@ legend { float: left; margin-right: 8px; font-weight: 700; }
   .reloj-anio.cambia { animation: none; }
 }
 
-/* ---------- 16. Videos del equipo (uno por capítulo) ---------- */
-.clip-narra { margin: -4px 0 8px; font-size: 0.9rem; color: var(--tinta-suave); }
+/* ---------- 16. Videos del documental (introducción, capítulos y conclusión) ---------- */
 .video-pendiente code { padding: 0 5px; border-radius: 3px; background: rgba(255, 255, 255, 0.16); font-size: 0.85em; }
-.video-barra { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 18px; margin-top: 10px; }
-.video-ahora { margin: 0; font-weight: 700; }
-.video-seguir { display: flex; align-items: center; gap: 6px; font-size: 0.88rem; color: var(--tinta-suave); cursor: pointer; }
-/* Botones para saltar a un minuto del video y duración total de las partes */
-.video-marcas { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 10px; font-size: 0.85rem; }
-.video-marcas[hidden] { display: none; }
-.video-marcas small { opacity: 0.7; font-variant-numeric: tabular-nums; }
-.video-total { margin: 8px 0 0; font-size: 0.85rem; font-weight: 700; color: var(--tinta-suave); }
-.video-lista { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
-.video-tarjeta {
-  display: grid; grid-template-columns: 104px 1fr; gap: 12px; align-items: start; width: 100%; height: 100%; padding: 8px;
-  text-align: left; background: var(--superficie); border: 1px solid var(--linea); border-left: 5px solid var(--color);
-  font-size: 0.88rem; line-height: 1.3; cursor: pointer;
-}
-.video-tarjeta:hover { border-color: var(--color); }
-.video-tarjeta[aria-pressed="true"] { background: color-mix(in srgb, var(--color) 12%, var(--superficie)); box-shadow: inset 0 0 0 1px var(--color); }
-.video-tarjeta img { width: 104px; aspect-ratio: 16 / 9; object-fit: cover; background: var(--matte); }
-.video-tarjeta-texto { display: flex; flex-direction: column; gap: 2px; }
-.video-num { font-size: 0.78rem; font-weight: 700; color: var(--tinta-cap); }
-.video-tarjeta b { font-family: var(--serif); font-size: 1rem; }
-.video-narra, .video-estado-tarjeta { font-size: 0.8rem; color: var(--tinta-suave); }
-.video-estado-tarjeta.listo, .video-estado-tarjeta.enlace { font-weight: 700; color: var(--t6); }
+#clip-introduccion .clip { margin: 28px 0 8px; }
+#clip-conclusion .clip { margin: 28px 0 0; }
 
 /* ---------- 17. El guía: Karl Marx como muñeco de papel ---------- */
 .solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
