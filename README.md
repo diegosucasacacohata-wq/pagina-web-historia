@@ -79,7 +79,7 @@ Las transcripciones salen del guion (la de la conclusión, de lo que se grabó).
 1. **Integrantes**: `config.integrantes`, una lista de nombres (salen en el Inicio y en el pie). Los videos no dicen quién narra.
 2. **Transcripción** de cada video: campo `transcripcion` del arreglo `videos`.
 3. **Fuentes**: quedan solo las que sustentan los textos (la lectura base, 4 obras de la época y 6 artículos académicos), en el arreglo `fuentes`; cada una tiene una `nota` con lo que sustenta. Para agregar una, se copia una línea con este formato: `{ apa: "Apellido, N. (Año). <em>Título</em>. Editorial.", enlace: "https://..." }` (y `nota` si se quiere aclarar algo). Donde dice `[Completar…]` falta un dato.
-4. **Cifras del Domingo Sangriento**: completar la fuente de cada cifra en `concepto.cifras` del capítulo 4.
+4. **Cifras del Domingo Sangriento**: completar la fuente de 96 y de +1000 en `concepto.cifras` del capítulo 4 (la de +200 ya es Adamovsky, 2005). Las fichas de la red y de la línea de tiempo ya citan fuentes de la lista; solo Lvov y Kérenski dicen «verificar».
 5. **Crédito de los paneles**: decir de dónde salieron; si se generaron con IA, nombrar la herramienta.
 6. **Respuesta del grupo** e **ideas clave**: `conclusiones.respuesta` y `conclusiones.ideasClave` (el texto actual es un borrador hecho con el texto base).
 7. **Datos del guía (Marx)**: arreglo `curiosidades`. Casi todos salen del texto base; en la guía de sustentación figuran los que se agregaron sobre la vida de Marx.

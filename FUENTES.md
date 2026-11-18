@@ -20,8 +20,8 @@ Bibliografía del webdoc «Del no-lugar al Estado: el socialismo de 1516 a 1924�
 
 ## Artículos y capítulos académicos
 
-- Adamovsky, E. (2005). La revolución rusa de 1905: el año en que nacieron los soviets. *Encrucijadas*. Universidad de Buenos Aires. https://repositoriouba.sisbi.uba.ar/gsdl/collect/encruci/index/assoc/HWA_511.dir/511.PDF
-  Capítulo 4: 1905, el Domingo Sangriento y el nacimiento de los soviets.
+- Adamovsky, E. (2005, agosto). La revolución rusa de 1905: el año en que nacieron los soviets. *Encrucijadas*, (34). Universidad de Buenos Aires. https://repositoriouba.sisbi.uba.ar/gsdl/collect/encruci/index/assoc/HWA_511.dir/511.PDF
+  Capítulo 4: 1905, el Domingo Sangriento (la marcha de Gapón, «cerca de doscientos» muertos), Japón, el Potemkin y el nacimiento de los soviets.
 - González Quesada. (2021). *Análisis iconográfico de las medallas de la Revolución rusa de febrero*. Universidad de Murcia. https://digitum.um.es/digitum/bitstream/10201/114885/1/Gonzalez-Quesada2021.pdf
   Capítulo 5: la Revolución de Febrero y el calendario juliano.
 - Kreibohm, P. (2017). A 100 años de la doble Revolución Rusa. *Revista IRI*. Departamento de Historia, Instituto de Relaciones Internacionales, Universidad Nacional de La Plata. https://www.iri.edu.ar/wp-content/uploads/2018/03/dep-historia-articulo-rev.rusa_.pdf
