@@ -31,7 +31,8 @@ const config = {
     "Flores Mango, Esteban",
     "Flores, Gabriel",
     "Puma Pacori, Miguel",
-    "Gómez Macedo, Sebastián"
+    "Gómez Macedo, Sebastián",
+    "Zevallos Castillo, Pablo"
   ],
 
   // Pie de cada ilustración (crédito editable)
