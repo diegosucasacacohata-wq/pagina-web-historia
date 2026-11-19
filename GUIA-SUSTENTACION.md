@@ -16,20 +16,32 @@ Esta guía sigue la rúbrica: 12 puntos grupales (página, finalidad, contenido,
 - **La respuesta en 6 pasos:** una idea (Moro), una herida (Revolución Industrial), una teoría (Marx y Engels), una organización (las Internacionales), una oportunidad (la Rusia del zar en guerra) y una toma del poder (1917), que termina en un Estado (la URSS, 1922).
 - **La paradoja final:** Marx soñaba con una sociedad sin Estado, y lo que nació fue un Estado gobernado con mano de hierro.
 
-## 2. Cómo repartir los 15 minutos (sugerencia)
+## 2. El orden de la exposición (15 minutos)
 
-| Minuto | Qué mostrar | Punto de la rúbrica |
-|---|---|---|
-| 0:00–1:30 | Inicio: título, eslogan, pregunta, finalidad y público (ficha del Inicio) | I.1, I.2 |
-| 1:30–4:00 | Contexto y un capítulo completo: apertura, pasos con zoom al detalle, datos clave, «Comprueba» | I.3 |
-| 4:00–6:30 | Red de relaciones: el recorrido guiado de 10 pasos y un filtro por capítulo | I.4 |
-| 6:30–8:00 | Recurso interactivo adicional: línea de tiempo (las fechas dobles de 1917) y el guía Marx | I.4 |
-| 8:00–10:30 | Videos: la lista de partes (introducción, capítulos y conclusión), los créditos y un fragmento de 1 minuto | I.5 |
-| 10:30–12:00 | Conclusiones: la respuesta, el comparador y «Cómo trabajamos las fuentes» | I.3 |
-| 12:00–13:30 | Fuentes, código y uso de IA (final de la página) y el README | I.6 |
-| 13:30–15:00 | Cierre: la paradoja y la respuesta en 6 pasos | — |
+Se sigue el mismo orden de la página. El guion completo, con el texto para decir en cada parte, está en el PDF `Guion_Exposicion_Grupo2.pdf`, que se comparte aparte (no está en este repositorio).
 
-El documental no entra en los 15 minutos: muestren solo un fragmento y digan que está completo en la página. **Ojo:** hoy las 7 partes editadas suman 9:34 y falta el capítulo 3; la rúbrica pide de 12 a 15 minutos.
+| Minutos | Parte | Qué mostrar | Expone | Rúbrica |
+|---|---|---|---|---|
+| 0:00–2:00 | 1. Inicio y Contexto | Primera pantalla (título, eslogan, pregunta central e integrantes), la ficha con finalidad y público, 10 s del video de la introducción y las oraciones del Contexto | | I.1, I.2, I.5 |
+| 2:00–3:15 | 2. Capítulo 1 | Apertura, los 4 pasos, la palabra «falansterio» y el «Comprueba» | | I.3, II.1 |
+| 3:15–4:30 | 3. Capítulo 2 | Foco de luz, la cita del *Manifiesto* y «La semana del obrero» | | I.3, II.1 |
+| 4:30–5:45 | 4. Capítulo 3 | Los contadores 1864–1871–1889 y «De Londres a París» | | I.3, II.1 |
+| 5:45–7:00 | 5. Capítulo 4 | «El choque»: las tres cifras del Domingo Sangriento | | I.3, II.2 |
+| 7:00–8:15 | 6. Capítulo 5 | La cita de las *Tesis de Abril* y «Dos calendarios» | | I.3, II.2 |
+| 8:15–9:30 | 7. Capítulo 6 | Los contadores de Brest-Litovsk y «El precio de la paz» | | I.3, II.1 |
+| 9:30–10:45 | 8. Red de relaciones | El recorrido guiado, un filtro y el nodo «Revolución de Octubre» con su fuente | | I.4, II.4 |
+| 10:45–11:45 | 9. Línea de tiempo y Marx | Las fechas dobles de 1905 y 1917, «Ver en la red» y un dato de Marx | | I.4 |
+| 11:45–13:15 | 10. Conclusiones | La respuesta en 6 pasos, las ideas clave, el comparador y dos casos de «Cómo trabajamos las fuentes» | | I.3, II.5 |
+| 13:15–14:15 | 11. Fuentes, código y uso de IA | Las 3 categorías con su nota, el enlace a GitHub y el README | | I.6, II.2, II.4 |
+| 14:15–15:00 | 12. Cierre | La primera pantalla: una frase cada uno | Todo el grupo | — |
+
+Sugerencia de reparto: cada integrante expone su capítulo y una de las partes 1, 8, 9, 10 u 11, así los seis hablan dos veces.
+
+**Antes de empezar:** pantalla completa, zoom al 100 %, comprobar el audio y, después de que Marx salude, tocar «Silenciar» en su globo (se vuelve a activar en la parte 9).
+
+**Si algo falla:** sin internet, abrir `index.html` de la carpeta (los videos están dentro); si las animaciones van lentas, «Modo lectura»; si falta tiempo, «Saltar animación» y pasar a Conclusiones.
+
+El documental no entra en los 15 minutos: muestren solo fragmentos cortos y digan que está completo en la página. **Ojo:** hoy las 7 partes editadas suman 9:34 y falta el capítulo 3; la rúbrica pide de 12 a 15 minutos. No reproduzcan los videos de los capítulos 5 y 6 en los minutos que tienen errores (sección 3).
 
 ---
 
@@ -63,21 +75,21 @@ Cada integrante defiende el capítulo que narró. Para cada uno: lo esencial, ca
 
 - **Lo esencial:** Rusia es una monarquía autocrática («autocracia, ortodoxia y patriotismo»); con Nicolás II el zar pierde prestigio. La intelligentsia mezcla el marxismo con el populismo ruso. En 1903, en el II Congreso del Partido Obrero Socialdemócrata, el partido se divide en bolcheviques («mayoritarios», con Lenin) y mencheviques. El 9 de enero de 1905 (22 en nuestro calendario), una marcha pacífica guiada por el sacerdote Gapón lleva una petición al zar; los soldados disparan: el Domingo Sangriento. Ese año nacen los soviets. La derrota ante Japón y el acorazado Potemkin sacuden al régimen; en 1914 Rusia entra en la Primera Guerra Mundial.
 - **Fuentes:** Hubeñák (2020, pp. 321–322 y 363–375); Adamovsky (2005); Kreibohm (2017), para la división de 1903.
-- **Ojo:** el libro dice que «bolchevique» viene de los grupos de la Duma: es un error, la Duma se creó después de 1905; viene del congreso de 1903 (Kreibohm, 2017). Las cifras del Domingo Sangriento no coinciden (96 oficial; más de 200 o más de mil según otras fuentes): la página las muestra con su fuente.
+- **Ojo:** el libro dice que «bolchevique» viene de los grupos de la Duma: es un error, la Duma se creó después de 1905; viene del congreso de 1903 (Kreibohm, 2017). Las cifras del Domingo Sangriento no coinciden: 96 la oficial, «cerca de doscientos» según Adamovsky (2005) y más de mil según otras fuentes. En la animación «El choque» todavía falta la fuente de 96 y de más de mil.
 - **Pregunta probable:** «¿Por qué Rusia, si Marx pensaba en países industrializados?». Por la combinación de autocracia, campesinado empobrecido, pérdida de prestigio del zar y, sobre todo, la guerra de 1914, que hundió al régimen.
 
 ### Capítulo 5. 1917: las dos revoluciones
 
 - **Lo esencial:** Rusia usaba el calendario juliano, 13 días atrasado: febrero fue marzo y octubre fue noviembre. En febrero de 1917, en Petrogrado, huelgas y protestas por falta de pan, a las que se suman los soldados, llevan a la abdicación de Nicolás II. Gobiernan a la vez un Gobierno Provisional (Lvov; desde julio, Kérenski), que sigue en la guerra, y los soviets: el «doble poder». En abril Lenin presenta sus *Tesis de Abril* (ningún apoyo al Gobierno Provisional; poder a obreros y campesinos pobres; tierras nacionalizadas). El 25 de octubre (7 de noviembre) los bolcheviques, con Lenin y Trotski, toman el poder y el Palacio de Invierno.
 - **Fuentes:** Hubeñák (2020, pp. 363–375); Lenin, *Tesis de Abril* (1917); Kreibohm (2017), para el Gobierno Provisional, el regreso de Lenin el 3 de abril y el lema «paz, pan y tierras»; González Quesada (2021), para el calendario. Lvov y Kérenski no figuran en ninguna de estas fuentes.
-- **Ojo:** Hubeñák llama a febrero «golpe de estado»: es su interpretación (den el hecho y digan que él lo interpreta así). «Paz, pan y tierra» fue el lema popular bolchevique, no una frase literal de las *Tesis*.
+- **Ojo:** Hubeñák llama a febrero «golpe de estado»: es su interpretación (den el hecho y digan que él lo interpreta así). «Paz, pan y tierra» fue el lema de Lenin (Kreibohm, 2017), no una frase literal de las *Tesis*. **El video del capítulo 5** dice, cerca del minuto 0:40, que Lenin llegó «el 13 de abril»: fue el **3 de abril** (16 en nuestro calendario).
 - **Pregunta probable:** «¿Por qué se llama Revolución de Octubre si fue en noviembre?». Por el calendario juliano (13 días de diferencia).
 
 ### Capítulo 6. Consecuencias: nace la URSS
 
 - **Lo esencial:** el 3 de marzo de 1918, el Tratado de Brest-Litovsk saca a Rusia de la guerra a un costo enorme (780 000 km², 56 millones de habitantes, el 73 % del hierro y el 89 % del carbón). Sigue la guerra civil (rojos contra blancos, 1918–1921) y el comunismo de guerra (el Estado controla la economía). En 1921 la NEP permite una vuelta parcial al mercado. En 1922 nace la URSS. En 1924 muere Lenin; tras luchas internas y purgas, Stalin toma el control y gobierna hasta 1953.
 - **Fuentes:** Hubeñák (2020, pp. 363–375); Kreibohm (2017), *Revista IRI*: Brest-Litovsk (780 000 km², 56 millones de habitantes), comunismo de guerra, NEP y URSS (1922).
-- **Ojo:** Hubeñák dice que la URSS nació con «siete repúblicas»; el tratado del 30 de diciembre de 1922 lo firmaron cuatro (Rusia, Ucrania, Bielorrusia y Transcaucasia). Está en «Cómo trabajamos las fuentes»; verifíquenlo en F12 o F13. **Revisen también el video del capítulo 6:** al transcribirlo, el reconocimiento de voz entendió «280 000 km²»; el dato del guion es **780 000 km²**.
+- **Ojo:** Hubeñák dice que la URSS nació con «siete repúblicas»; el tratado del 30 de diciembre de 1922 lo firmaron cuatro (Rusia, Ucrania, Bielorrusia y Transcaucasia). Está en «Cómo trabajamos las fuentes», pero ninguna de las 11 fuentes da el número: mejor no detenerse en ese punto. **El video del capítulo 6 tiene errores** (se confirmaron con dos transcripciones): dice «280 000 km²» (es **780 000**), que la guerra civil terminó y la NEP llegó en 1922 (fue **1921**) y que la URSS nació en 1923 (fue **1922**).
 - **Pregunta probable:** «¿Se cumplió lo que proponía Marx?». No: Marx proponía la desaparición del Estado; lo que surgió fue un Estado centralizado, con purgas (el comparador de Conclusiones lo muestra).
 
 ---
@@ -133,5 +145,6 @@ Casi todos los datos curiosos salen del texto base. Estos se agregaron sobre la 
 - [ ] Editar el capítulo 3 (IMG_1227.MOV) y exportarlo como `video/capitulo-3.mp4`; volver a exportar el capítulo 6 si quieren que tenga música y gráficos 3D como los demás.
 - [ ] Llegar a 12–15 minutos de video (hoy son 9:34 sin el capítulo 3) y subir el documental completo a YouTube o Drive como respaldo.
 - [ ] Copia de respaldo del proyecto en un USB y en la nube (la página con los videos pesa unos 140 MB).
-- [ ] Imprimir la rúbrica grupal y cada uno su rúbrica individual (llegan el martes 17 de noviembre).
+- [ ] Completar el reparto de la sección 2 (quién expone cada parte) y ensayar con cronómetro.
+- [ ] Imprimir la rúbrica grupal y cada uno su rúbrica individual.
 - [ ] Llevar lista la declaración de uso de IA.
