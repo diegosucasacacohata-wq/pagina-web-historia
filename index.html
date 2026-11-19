@@ -63,17 +63,20 @@
             <h1 class="titulo-principal" id="titulo-principal"><span>Del «no‑lugar» al Estado:</span> <span class="titulo-sub">el socialismo de 1516 a 1924</span></h1>
             <!-- Eslogan (texto en config.eslogan de datos.js) -->
             <p class="eslogan" id="eslogan"></p>
-            <!-- Pregunta central: se ve desde la primera pantalla -->
+            <!-- Gancho y, a continuación, la pregunta central (se ve desde la primera pantalla) -->
+            <p class="gancho" id="gancho"></p>
             <div class="inicio-pregunta">
-              <p class="etiqueta-pregunta">Pregunta central</p>
+              <p class="etiqueta-inicio">Pregunta central</p>
               <p class="pregunta-central" id="pregunta-inicio"></p>
             </div>
-            <p class="gancho" id="gancho"></p>
-            <p class="inicio-acciones"><a class="boton-continuar" href="#contexto">Empezar a leer</a> <span class="indicacion-bajar solo-animacion" aria-hidden="true">o baja para empezar</span></p>
-            <!-- Integrantes: también se ven desde la primera pantalla (config.integrantes) -->
-            <p class="inicio-integrantes" id="integrantes-inicio"></p>
+            <p class="inicio-acciones"><a class="boton-continuar" href="#contexto">Empezar a leer</a> <span class="indicacion-bajar solo-animacion" aria-hidden="true">o baja para empezar ↓</span></p>
           </div>
           <div class="mosaico-inicio solo-animacion" id="mosaico-inicio" aria-hidden="true"></div>
+          <!-- Integrantes: franja de créditos al pie de la primera pantalla (config.integrantes) -->
+          <div class="inicio-integrantes">
+            <p class="etiqueta-inicio">Integrantes</p>
+            <ul class="lista-inicio-integrantes" id="integrantes-inicio"></ul>
+          </div>
           <div class="control-secuencia"><span class="control-fase">Fase 1 de 3</span><span class="control-barra" aria-hidden="true"><i></i></span><button type="button" class="boton-saltar">Saltar animación</button></div>
         </div>
       </div>

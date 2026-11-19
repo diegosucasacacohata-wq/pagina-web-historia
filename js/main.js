@@ -60,7 +60,7 @@ function construirInicio() {
   document.getElementById("dato-curso").textContent = config.curso + ". " + config.universidad + ", " + config.anio + ".";
   document.getElementById("dato-proyecto").textContent = config.proyecto + ". " + config.grupo + ".";
   document.getElementById("lista-integrantes").innerHTML = config.integrantes.map(nombre => "<li>" + nombre + "</li>").join("");
-  document.getElementById("integrantes-inicio").innerHTML = "<b>Integrantes:</b> " + config.integrantes.join(" · ");
+  document.getElementById("integrantes-inicio").innerHTML = config.integrantes.map(nombre => "<li>" + nombre + "</li>").join("");
   document.getElementById("credito-portada").textContent = config.creditoImagenes + ": los 6 paneles, uno por capítulo.";
 
   // Mosaico en 2D para pantallas sin 3D: los 6 paneles llegan uno por uno
