@@ -258,7 +258,7 @@ Como pide el documento de los 5 niveles (página 5), en cada paso la imagen **so
 | `textoPlano(html)` | Quita las etiquetas HTML de un texto (para ordenar las fuentes alfabéticamente) | Varias partes (ver la función) | `js/main.js` |
 | `irACapitulo(numero)` | Lleva al inicio de un capítulo (lo usan el cubo y el mini-mapa) | Varias partes (ver la función) | `js/main.js` |
 | `construirInicio()` | Llena los textos del Inicio y registra su secuencia (el cubo se arma en cubo.js) | Varias partes (ver la función) | `js/main.js` |
-| `dibujarInicio(avance, el)` | Dibuja el Inicio: llegan los paneles (en 2D) y al final aparece la pregunta central sobre un degradado | Varias partes (ver la función) | `js/main.js` |
+| `dibujarInicio(avance, el)` | Dibuja el Inicio: llegan los paneles (en 2D); la pregunta central y los integrantes ya se ven desde la primera pantalla | Varias partes (ver la función) | `js/main.js` |
 | `construirIndice()` | Arma el índice lateral y el mini-mapa a partir de los títulos reales de la página | Varias partes (ver la función) | `js/main.js` |
 | `actualizarIndice()` | Marca en el índice la sección donde está el lector y actualiza migas y mini-mapa | Índice, migas y mini-mapa | `js/main.js` |
 | `actualizarBarraProgreso()` | Barra fina de progreso de lectura y botón «Volver arriba» | Varias partes (ver la función) | `js/main.js` |

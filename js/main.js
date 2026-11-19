@@ -60,6 +60,7 @@ function construirInicio() {
   document.getElementById("dato-curso").textContent = config.curso + ". " + config.universidad + ", " + config.anio + ".";
   document.getElementById("dato-proyecto").textContent = config.proyecto + ". " + config.grupo + ".";
   document.getElementById("lista-integrantes").innerHTML = config.integrantes.map(nombre => "<li>" + nombre + "</li>").join("");
+  document.getElementById("integrantes-inicio").innerHTML = "<b>Integrantes:</b> " + config.integrantes.join(" · ");
   document.getElementById("credito-portada").textContent = config.creditoImagenes + ": los 6 paneles, uno por capítulo.";
 
   // Mosaico en 2D para pantallas sin 3D: los 6 paneles llegan uno por uno
@@ -70,13 +71,9 @@ function construirInicio() {
   registrarSecuencia(document.getElementById("inicio-secuencia"), dibujarInicio);
 }
 
-// Dibuja el Inicio: llegan los paneles (en 2D) y al final aparece la pregunta central sobre un degradado
+// Dibuja el Inicio: llegan los paneles (en 2D). La pregunta central y los integrantes
+// ya están desde el principio; solo se apaga la indicación «o baja para empezar».
 function dibujarInicio(avance, el) {
-  const comienzoPregunta = motor.sin3D ? 0.6 : 0.78;
-  const e = suavizar(tramo(avance, comienzoPregunta, comienzoPregunta + 0.14));
-  const pregunta = el.querySelector(".inicio-pregunta");
-  pregunta.style.opacity = e.toFixed(3);
-  pregunta.style.transform = "translateY(" + (24 * (1 - e)).toFixed(1) + "px)";
   el.querySelector(".indicacion-bajar").style.opacity = (1 - tramo(avance, 0.02, 0.08)).toFixed(3);
   const desde = [[-1, 0], [1, 0], [-1, 0.4], [1, -0.4], [0, 1], [0, 1]];
   el.querySelectorAll(".tesela").forEach((t, i) => {
