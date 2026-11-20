@@ -41,7 +41,7 @@ Sugerencia de reparto: cada integrante expone su capítulo y una de las partes 1
 
 **Si algo falla:** sin internet, abrir `index.html` de la carpeta (los videos están dentro); si las animaciones van lentas, «Modo lectura»; si falta tiempo, «Saltar animación» y pasar a Conclusiones.
 
-El documental no entra en los 15 minutos: muestren solo fragmentos cortos y digan que está completo en la página. **Ojo:** hoy las 7 partes editadas suman 9:34 y falta el capítulo 3; la rúbrica pide de 12 a 15 minutos. No reproduzcan los videos de los capítulos 5 y 6 en los minutos que tienen errores (sección 3).
+El documental no entra en los 15 minutos: muestren solo fragmentos cortos y digan que está completo en la página. Las 9 partes del documental suman **12:18**: la rúbrica pide de 12 a 15 minutos. No reproduzcan los videos de los capítulos 5 y 6 en los minutos que tienen errores (sección 3).
 
 ---
 
@@ -140,8 +140,8 @@ Casi todos los datos curiosos salen del texto base. Estos se agregaron sobre la 
 - [ ] Abrir `index.html` con doble clic **en la computadora de la clase** y probar: scroll, un capítulo completo, red, línea de tiempo, videos y enlaces de Fuentes.
 - [ ] Completar la inicial o el año de González Quesada (2021) y Pro (s. f.) en las fuentes.
 - [ ] Verificar la fecha de la Primera Internacional (28 o 29 de septiembre) y corregir el video del capítulo 6 (dice 280 000 km², guerra civil y NEP en 1922, y URSS en 1923) y el del capítulo 5 (dice «13 de abril»).
-- [ ] Editar el capítulo 3 (IMG_1227.MOV) y exportarlo como `video/capitulo-3.mp4`; volver a exportar el capítulo 6 si quieren que tenga música y gráficos 3D como los demás.
-- [ ] Llegar a 12–15 minutos de video (hoy son 9:34 sin el capítulo 3) y subir el documental completo a YouTube o Drive como respaldo.
+- [x] El capítulo 3 está editado y en la página.
+- [x] El documental suma 12:18 (9 partes).
 - [ ] Copia de respaldo del proyecto en un USB y en la nube (la página con los videos pesa unos 140 MB).
 - [ ] Completar el reparto de la sección 2 (quién expone cada parte) y ensayar con cronómetro.
 - [ ] Imprimir la rúbrica grupal y cada uno su rúbrica individual.

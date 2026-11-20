@@ -45,7 +45,7 @@ La declaración de uso de IA y la bibliografía se entregan aparte, en PDF.
 | `img/` | Los 6 paneles (`panel-1.jpg` … `panel-6.jpg`) y la imagen completa |
 | `img/hd/` | Copia de los 6 paneles al doble de tamaño, sin retoques, para que el zoom de los pasos no se vea borroso |
 | `img/marx/` | Las 4 piezas del muñeco de Marx, la foto original de 1875 y los dos programas con que se recortó |
-| `video/` | Los videos editados del documental: `introduccion.mp4`, `capitulo-1.mp4` … `capitulo-6.mp4` (falta el 3), `conclusion.mp4` y `conclusion-2.mp4` (falta: la conclusión extendida) |
+| `video/` | Los videos editados del documental: `introduccion.mp4`, `capitulo-1.mp4` … `capitulo-6.mp4`, `conclusion.mp4` y `conclusion-2.mp4` |
 | `GUIA-SUSTENTACION.md` | Guía para la sustentación: qué decir de cada capítulo, de las fuentes y del código |
 | `FUENTES.md` | La bibliografía en APA 7 (la misma de la sección Fuentes) |
 
@@ -60,16 +60,16 @@ Son los videos **editados** del documental (con cortes, tarjetas con fechas, ret
 | Introducción | `introduccion.mp4` | `Inicio.mp4` | IMG_0154.MOV | 0:29 |
 | Capítulo 1 | `capitulo-1.mp4` | `Cap1.mp4` | IMG_0175.MOV | 1:35 |
 | Capítulo 2 | `capitulo-2.mp4` | `Cap2.mp4` | IMG_0150.MOV | 1:45 |
-| Capítulo 3 | — | **falta** (la grabación IMG_1227.MOV, del 13/11, todavía no se editó) | — | — |
+| Capítulo 3 | `capitulo-3.mp4` | editado por el grupo (19/11) | IMG_1227.MOV | 1:26 |
 | Capítulo 4 | `capitulo-4.mp4` | `Cap4.mp4` | IMG_0161.MOV | 1:40 |
 | Capítulo 5 | `capitulo-5.mp4` | `Cap5.mp4` | IMG_0169.MOV | 1:29 |
 | Capítulo 6 | `capitulo-6.mp4` | `gabriel-preview.mp4` (3/11) | Gabriel_videos.MOV | 1:34 |
 | Conclusión | `conclusion.mp4` | `Conclusiones.mp4` | IMG_0147.MOV | 1:04 |
 | Conclusión complementaria | `conclusion-2.mp4` | editado con FFmpeg (cortes, audio limpio, 16:9 y carteles) | Video del 19-11-26, 10.46 p. m. (n.º 2) | 1:18 |
 
-**Ojo con la duración:** las 7 partes suman **9:34**. La rúbrica pide un video de **12 a 15 minutos**; con el capítulo 3 (unos 1:30) llegarían a unos 11 minutos, así que todavía falta material. Además, el capítulo 6 es la versión del 3 de noviembre: no se volvió a exportar después de los cambios del 9 (no tiene música ni gráficos 3D, como los otros).
+**Duración:** las 9 partes suman **12:18**, dentro de los 12 a 15 minutos que pide la rúbrica.
 
-Cuando estén el capítulo 3 o la conclusión extendida, basta copiarlos a `video/` con el nombre `capitulo-3.mp4` o `conclusion-2.mp4`: la página los encuentra sola (mientras tanto muestra «próximamente»). La introducción se ve en el Inicio, cada capítulo dentro de su sección y la conclusión en Conclusiones (ya no hay una sección «Videos del equipo» al final). Para usar un enlace en vez de un archivo, se pega el link de YouTube o Drive en `enlace` (arreglo `videos` de `js/datos.js`).
+Para cambiar un video, basta copiar el archivo nuevo a `video/` con el mismo nombre: la página lo encuentra sola (mientras tanto muestra «próximamente»). La introducción se ve en el Inicio, cada capítulo dentro de su sección y la conclusión en Conclusiones (ya no hay una sección «Videos del equipo» al final). Para usar un enlace en vez de un archivo, se pega el link de YouTube o Drive en `enlace` (arreglo `videos` de `js/datos.js`).
 
 Subtítulos (opcional): si los hacen, guarden `capitulo-1.vtt`, etc. en `video/` y escriban la ruta en `subtitulos`; mientras esté vacío, no se buscan.
 
