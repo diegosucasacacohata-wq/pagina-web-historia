@@ -247,7 +247,7 @@ function crearReproductor(contenedor, video) {
 function construirVideos() {
   [["introduccion", "clip-introduccion", "El video de la introducción"],
    ["conclusion", "clip-conclusion", "El video de la conclusión"],
-   ["conclusion-2", "clip-conclusion-2", "El video de la conclusión extendida"]].forEach(([id, caja, titulo]) => {
+   ["conclusion-2", "clip-conclusion-2", "El video de la conclusión complementaria"]].forEach(([id, caja, titulo]) => {
     const video = videoPorId(id);
     const contenedor = document.getElementById(caja);
     if (video && video.activo !== false && contenedor) contenedor.innerHTML = htmlClip(video, titulo);
