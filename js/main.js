@@ -39,10 +39,6 @@ function construirInicio() {
   document.getElementById("pregunta-inicio").textContent = config.pregunta;
   document.getElementById("gancho").textContent = config.gancho;
   document.getElementById("eslogan").textContent = config.eslogan;
-  document.getElementById("dato-finalidad").textContent = config.finalidad;
-  document.getElementById("dato-publico").textContent = config.publico;
-  document.getElementById("dato-curso").textContent = config.curso + ". " + config.universidad + ", " + config.anio + ".";
-  document.getElementById("dato-proyecto").textContent = config.proyecto + ". " + config.grupo + ".";
   document.getElementById("lista-integrantes").innerHTML = config.integrantes.map(nombre => "<li>" + nombre + "</li>").join("");
   document.getElementById("integrantes-inicio").innerHTML = config.integrantes.map(nombre => "<li>" + nombre + "</li>").join("");
   document.getElementById("credito-portada").textContent = config.creditoImagenes + ": los 6 paneles, uno por capítulo.";

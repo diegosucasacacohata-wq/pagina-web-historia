@@ -22,7 +22,7 @@ Se sigue el mismo orden de la página. El guion completo, con el texto para deci
 
 | Minutos | Parte | Qué mostrar | Expone | Rúbrica |
 |---|---|---|---|---|
-| 0:00–2:00 | 1. Inicio y Contexto | Primera pantalla (título, eslogan, pregunta central e integrantes), la ficha con finalidad y público, 10 s del video de la introducción y las oraciones del Contexto | | I.1, I.2, I.5 |
+| 0:00–2:00 | 1. Inicio y Contexto | Primera pantalla (título, eslogan, pregunta central e integrantes), 10 s del video de la introducción y las oraciones del Contexto; la finalidad y el público se dicen en voz alta | | I.1, I.2, I.5 |
 | 2:00–3:15 | 2. Capítulo 1 | Apertura, los 4 pasos, la palabra «falansterio» y el «Comprueba» | | I.3, II.1 |
 | 3:15–4:30 | 3. Capítulo 2 | Foco de luz, la cita del *Manifiesto* y «La semana del obrero» | | I.3, II.1 |
 | 4:30–5:45 | 4. Capítulo 3 | Los contadores 1864–1871–1889 y «De Londres a París» | | I.3, II.1 |

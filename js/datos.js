@@ -8,8 +8,6 @@ const config = {
   pregunta: "¿Cómo pasó el socialismo de ser una utopía a convertirse en el primer Estado comunista del mundo?",
   gancho: "En 1516 alguien imaginó una isla sin propiedad privada. En 1922 nació un Estado que decía hacerlo realidad.",
   eslogan: "Una isla imaginaria, cuatro siglos y una revolución.",
-  finalidad: "Educativa y divulgativa: explicar, con fuentes académicas y documentos de época, cómo el socialismo pasó de ser una idea a convertirse en un Estado (1516–1924).",
-  publico: "Estudiantes universitarios de los primeros ciclos y de los últimos años de secundaria, y cualquier lector curioso sin conocimientos previos de historia.",
 
   integrantes: [
     "Sucasaca Cohata, Diego",
