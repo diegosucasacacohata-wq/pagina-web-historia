@@ -26,7 +26,7 @@ Se sigue el mismo orden de la página. El guion completo, con el texto para deci
 | 2:00–3:15 | 2. Capítulo 1 | Apertura, los 4 pasos, la palabra «falansterio» y el «Comprueba» | | I.3, II.1 |
 | 3:15–4:30 | 3. Capítulo 2 | Foco de luz, la cita del *Manifiesto* y «La semana del obrero» | | I.3, II.1 |
 | 4:30–5:45 | 4. Capítulo 3 | Los contadores 1864–1871–1889 y «De Londres a París» | | I.3, II.1 |
-| 5:45–7:00 | 5. Capítulo 4 | «El choque»: las tres cifras del Domingo Sangriento | | I.3, II.2 |
+| 5:45–7:00 | 5. Capítulo 4 | «El choque»: la cifra del Domingo Sangriento (Adamovsky, 2005) | | I.3, II.2 |
 | 7:00–8:15 | 6. Capítulo 5 | La cita de las *Tesis de Abril* y «Dos calendarios» | | I.3, II.2 |
 | 8:15–9:30 | 7. Capítulo 6 | Los contadores de Brest-Litovsk y «El precio de la paz» | | I.3, II.1 |
 | 9:30–10:45 | 8. Red de relaciones | El recorrido guiado, un filtro y el nodo «Revolución de Octubre» con su fuente | | I.4, II.4 |
@@ -68,20 +68,20 @@ Cada integrante defiende el capítulo que narró. Para cada uno: lo esencial, ca
 
 - **Lo esencial:** en 1864, en el Saint Martin's Hall de Londres, nace la Asociación Internacional de Trabajadores (Primera Internacional); Marx redacta los estatutos. Marx se enfrenta primero con Proudhon y luego con Bakunin (anarquismo). Los obreros se organizan en sindicatos y usan la huelga. En 1871, tras la derrota de Francia ante Prusia, la Comuna de París toma la capital y es aplastada. Muchos socialistas eligen reformas dentro de la democracia; en julio de 1889 nace la Segunda Internacional, socialdemócrata. La ola revolucionaria se frena en los países industrializados… pero no en Rusia.
 - **Fuentes:** Hubeñák (2020, pp. 299–303 y nota 168). Es el único capítulo que se apoya solo en la lectura base.
-- **Ojo:** el libro atribuye el *Catecismo revolucionario* a Bakunin; otras fuentes dicen que lo compuso Nechayev en 1869 (la fuente que lo decía ya no está en la lista). **Revisen la fecha:** el guion y el video dicen «29 de septiembre de 1864» (como la nota 168 de Hubeñák), pero la mayoría de las fuentes dan el **28 de septiembre**. Verifíquenlo antes de la sustentación; en la página solo figura el año.
+- **Ojo:** **revisen la fecha:** el guion y el video dicen «29 de septiembre de 1864» (como la nota 168 de Hubeñák), pero la mayoría de las fuentes dan el **28 de septiembre**. Verifíquenlo antes de la sustentación; en la página solo figura el año.
 - **Pregunta probable:** «¿Por qué fue importante la Comuna si fracasó?». Fue la primera gran derrota de la Internacional y llevó a muchos al reformismo, pero Lenin la tomó como referencia en 1917.
 
 ### Capítulo 4. Rusia antes de la revolución
 
 - **Lo esencial:** Rusia es una monarquía autocrática («autocracia, ortodoxia y patriotismo»); con Nicolás II el zar pierde prestigio. La intelligentsia mezcla el marxismo con el populismo ruso. En 1903, en el II Congreso del Partido Obrero Socialdemócrata, el partido se divide en bolcheviques («mayoritarios», con Lenin) y mencheviques. El 9 de enero de 1905 (22 en nuestro calendario), una marcha pacífica guiada por el sacerdote Gapón lleva una petición al zar; los soldados disparan: el Domingo Sangriento. Ese año nacen los soviets. La derrota ante Japón y el acorazado Potemkin sacuden al régimen; en 1914 Rusia entra en la Primera Guerra Mundial.
 - **Fuentes:** Hubeñák (2020, pp. 321–322 y 363–375); Adamovsky (2005); Kreibohm (2017), para la división de 1903.
-- **Ojo:** el libro dice que «bolchevique» viene de los grupos de la Duma: es un error, la Duma se creó después de 1905; viene del congreso de 1903 (Kreibohm, 2017). Las cifras del Domingo Sangriento no coinciden: 96 la oficial, «cerca de doscientos» según Adamovsky (2005) y más de mil según otras fuentes. En la animación «El choque» todavía falta la fuente de 96 y de más de mil.
+- **Ojo:** el libro dice que «bolchevique» viene de los grupos de la Duma: es un error, la Duma se creó después de 1905; viene del congreso de 1903 (Kreibohm, 2017). Del Domingo Sangriento, la página da solo la cifra que tiene fuente: «cerca de doscientos» muertos (Adamovsky, 2005, que al comienzo del artículo escribe «más de doscientos»). **El video del capítulo 4** dice además «96» (cifra oficial) y «más de mil», que no están en las fuentes: si se lo preguntan, digan que la cifra que sustentan es la de Adamovsky.
 - **Pregunta probable:** «¿Por qué Rusia, si Marx pensaba en países industrializados?». Por la combinación de autocracia, campesinado empobrecido, pérdida de prestigio del zar y, sobre todo, la guerra de 1914, que hundió al régimen.
 
 ### Capítulo 5. 1917: las dos revoluciones
 
-- **Lo esencial:** Rusia usaba el calendario juliano, 13 días atrasado: febrero fue marzo y octubre fue noviembre. En febrero de 1917, en Petrogrado, huelgas y protestas por falta de pan, a las que se suman los soldados, llevan a la abdicación de Nicolás II. Gobiernan a la vez un Gobierno Provisional (Lvov; desde julio, Kérenski), que sigue en la guerra, y los soviets: el «doble poder». En abril Lenin presenta sus *Tesis de Abril* (ningún apoyo al Gobierno Provisional; poder a obreros y campesinos pobres; tierras nacionalizadas). El 25 de octubre (7 de noviembre) los bolcheviques, con Lenin y Trotski, toman el poder y el Palacio de Invierno.
-- **Fuentes:** Hubeñák (2020, pp. 363–375); Lenin, *Tesis de Abril* (1917); Kreibohm (2017), para el Gobierno Provisional, el regreso de Lenin el 3 de abril y el lema «paz, pan y tierras»; González Quesada (2021), para el calendario. Lvov y Kérenski no figuran en ninguna de estas fuentes.
+- **Lo esencial:** Rusia usaba el calendario juliano, 13 días atrasado: febrero fue marzo y octubre fue noviembre. En febrero de 1917, en Petrogrado, huelgas y protestas por falta de pan, a las que se suman los soldados, llevan a la abdicación de Nicolás II. Gobiernan a la vez un Gobierno Provisional, que sigue en la guerra (entre marzo y octubre se suceden tres gobiernos), y los soviets: el «doble poder». En abril Lenin presenta sus *Tesis de Abril* (ningún apoyo al Gobierno Provisional; poder a obreros y campesinos pobres; tierras nacionalizadas). El 25 de octubre (7 de noviembre) los bolcheviques, con Lenin y Trotski, toman el poder y el Palacio de Invierno.
+- **Fuentes:** Hubeñák (2020, pp. 363–375); Lenin, *Tesis de Abril* (1917); Kreibohm (2017), para el Gobierno Provisional, el regreso de Lenin el 3 de abril y el lema «paz, pan y tierras»; González Quesada (2021), para el calendario. La página no nombra a Lvov ni a Kérenski porque ninguna de estas fuentes los menciona; el video sí los nombra.
 - **Ojo:** Hubeñák llama a febrero «golpe de estado»: es su interpretación (den el hecho y digan que él lo interpreta así). «Paz, pan y tierra» fue el lema de Lenin (Kreibohm, 2017), no una frase literal de las *Tesis*. **El video del capítulo 5** dice, cerca del minuto 0:40, que Lenin llegó «el 13 de abril»: fue el **3 de abril** (16 en nuestro calendario).
 - **Pregunta probable:** «¿Por qué se llama Revolución de Octubre si fue en noviembre?». Por el calendario juliano (13 días de diferencia).
 
@@ -89,7 +89,7 @@ Cada integrante defiende el capítulo que narró. Para cada uno: lo esencial, ca
 
 - **Lo esencial:** el 3 de marzo de 1918, el Tratado de Brest-Litovsk saca a Rusia de la guerra a un costo enorme (780 000 km², 56 millones de habitantes, el 73 % del hierro y el 89 % del carbón). Sigue la guerra civil (rojos contra blancos, 1918–1921) y el comunismo de guerra (el Estado controla la economía). En 1921 la NEP permite una vuelta parcial al mercado. En 1922 nace la URSS. En 1924 muere Lenin; tras luchas internas y purgas, Stalin toma el control y gobierna hasta 1953.
 - **Fuentes:** Hubeñák (2020, pp. 363–375); Kreibohm (2017), *Revista IRI*: Brest-Litovsk (780 000 km², 56 millones de habitantes), comunismo de guerra, NEP y URSS (1922).
-- **Ojo:** Hubeñák dice que la URSS nació con «siete repúblicas»; el tratado del 30 de diciembre de 1922 lo firmaron cuatro (Rusia, Ucrania, Bielorrusia y Transcaucasia). Está en «Cómo trabajamos las fuentes», pero ninguna de las 11 fuentes da el número: mejor no detenerse en ese punto. **El video del capítulo 6 tiene errores** (se confirmaron con dos transcripciones): dice «280 000 km²» (es **780 000**), que la guerra civil terminó y la NEP llegó en 1922 (fue **1921**) y que la URSS nació en 1923 (fue **1922**).
+- **Ojo:** **el video del capítulo 6 tiene errores** (se confirmaron con dos transcripciones): dice «280 000 km²» (es **780 000**), que la guerra civil terminó y la NEP llegó en 1922 (fue **1921**) y que la URSS nació en 1923 (fue **1922**).
 - **Pregunta probable:** «¿Se cumplió lo que proponía Marx?». No: Marx proponía la desaparición del Estado; lo que surgió fue un Estado centralizado, con purgas (el comparador de Conclusiones lo muestra).
 
 ---
@@ -100,7 +100,7 @@ Cada integrante defiende el capítulo que narró. Para cada uno: lo esencial, ca
 - **Obras de la época** (la página las cita): el *Manifiesto* (1848), la reseña de Engels sobre *El capital* (1868), las *Tesis de Abril* (1917) y *Utopía* (1516).
 - **Artículos académicos:** Adamovsky (2005, UBA), González Quesada (2021, Murcia), Kreibohm (2017, UNLP), Kumar (1992, Complutense), Pro (s. f., UNAM) y Rocha Valencia (2024, UNI). El que más sustenta es Kreibohm: cubre los capítulos 4 a 6.
 - **Lo que se quitó de la bibliografía:** la divulgación y la prensa, los recursos audiovisuales, los créditos de imágenes y dos artículos que repetían datos (Razón y Fe y el capítulo de la UNAM sobre el orden soviético). Los créditos del video están en `CREDITOS-IMAGENES.md` del proyecto de edición.
-- **Errores del libro que encontramos:** el origen de «bolchevique» (Duma), el autor del *Catecismo* (Nechayev), «publicado tardíamente» (el *Manifiesto*), las «siete repúblicas» y el nombre de Trotski (el libro dice «Leonid Bronstein»; era Lev Davídovich Bronstein). Mostrar estos errores es un buen ejemplo de trabajo crítico con fuentes.
+- **Errores del libro que encontramos:** el origen de «bolchevique» (Duma), «golpe de estado» como interpretación de febrero de 1917, «publicado tardíamente» (el *Manifiesto*) y el nombre de Trotski (el libro dice «Leonid Bronstein»; era Lev Davídovich Bronstein). Mostrar estos errores es un buen ejemplo de trabajo crítico con fuentes.
 
 ## 5. Datos que se agregaron al guía Marx
 

@@ -45,7 +45,7 @@ La declaración de uso de IA y la bibliografía se entregan aparte, en PDF.
 | `img/` | Los 6 paneles (`panel-1.jpg` … `panel-6.jpg`) y la imagen completa |
 | `img/hd/` | Copia de los 6 paneles al doble de tamaño, sin retoques, para que el zoom de los pasos no se vea borroso |
 | `img/marx/` | Las 4 piezas del muñeco de Marx, la foto original de 1875 y los dos programas con que se recortó |
-| `video/` | Los videos editados del documental: `introduccion.mp4`, `capitulo-1.mp4` … `capitulo-6.mp4` (falta el 3) y `conclusion.mp4` |
+| `video/` | Los videos editados del documental: `introduccion.mp4`, `capitulo-1.mp4` … `capitulo-6.mp4` (falta el 3), `conclusion.mp4` y `conclusion-2.mp4` (falta: la conclusión extendida) |
 | `GUIA-SUSTENTACION.md` | Guía para la sustentación: qué decir de cada capítulo, de las fuentes y del código |
 | `FUENTES.md` | La bibliografía en APA 7 (la misma de la sección Fuentes) |
 
@@ -65,10 +65,11 @@ Son los videos **editados** del documental (con cortes, tarjetas con fechas, ret
 | Capítulo 5 | `capitulo-5.mp4` | `Cap5.mp4` | IMG_0169.MOV | 1:29 |
 | Capítulo 6 | `capitulo-6.mp4` | `gabriel-preview.mp4` (3/11) | Gabriel_videos.MOV | 1:34 |
 | Conclusión | `conclusion.mp4` | `Conclusiones.mp4` | IMG_0147.MOV | 1:04 |
+| Conclusión extendida | `conclusion-2.mp4` | **falta** (se graba con el texto del PDF «Conclusión extendida») | — | ≈1:45 |
 
 **Ojo con la duración:** las 7 partes suman **9:34**. La rúbrica pide un video de **12 a 15 minutos**; con el capítulo 3 (unos 1:30) llegarían a unos 11 minutos, así que todavía falta material. Además, el capítulo 6 es la versión del 3 de noviembre: no se volvió a exportar después de los cambios del 9 (no tiene música ni gráficos 3D, como los otros).
 
-Cuando esté el capítulo 3, basta copiarlo a `video/` con el nombre `capitulo-3.mp4`: la página lo encuentra sola (mientras tanto muestra «próximamente»). La introducción se ve en el Inicio, cada capítulo dentro de su sección y la conclusión en Conclusiones (ya no hay una sección «Videos del equipo» al final). Para usar un enlace en vez de un archivo, se pega el link de YouTube o Drive en `enlace` (arreglo `videos` de `js/datos.js`).
+Cuando estén el capítulo 3 o la conclusión extendida, basta copiarlos a `video/` con el nombre `capitulo-3.mp4` o `conclusion-2.mp4`: la página los encuentra sola (mientras tanto muestra «próximamente»). La introducción se ve en el Inicio, cada capítulo dentro de su sección y la conclusión en Conclusiones (ya no hay una sección «Videos del equipo» al final). Para usar un enlace en vez de un archivo, se pega el link de YouTube o Drive en `enlace` (arreglo `videos` de `js/datos.js`).
 
 Subtítulos (opcional): si los hacen, guarden `capitulo-1.vtt`, etc. en `video/` y escriban la ruta en `subtitulos`; mientras esté vacío, no se buscan.
 
@@ -79,7 +80,7 @@ Las transcripciones salen del guion (la de la conclusión, de lo que se grabó).
 1. **Integrantes**: `config.integrantes`, una lista de nombres (salen en el Inicio y en el pie). Los videos no dicen quién narra.
 2. **Transcripción** de cada video: campo `transcripcion` del arreglo `videos`.
 3. **Fuentes**: quedan solo las que sustentan los textos (la lectura base, 4 obras de la época y 6 artículos académicos), en el arreglo `fuentes`; cada una tiene una `nota` con lo que sustenta. Para agregar una, se copia una línea con este formato: `{ apa: "Apellido, N. (Año). <em>Título</em>. Editorial.", enlace: "https://..." }` (y `nota` si se quiere aclarar algo). Donde dice `[Completar…]` falta un dato.
-4. **Cifras del Domingo Sangriento**: completar la fuente de 96 y de +1000 en `concepto.cifras` del capítulo 4 (la de +200 ya es Adamovsky, 2005). Las fichas de la red y de la línea de tiempo ya citan fuentes de la lista; solo Lvov y Kérenski dicen «verificar».
+4. **Sin afirmaciones sin fuente**: la página solo da la cifra del Domingo Sangriento que sustenta Adamovsky (2005), no nombra a Lvov ni a Kérenski y en «Cómo trabajamos las fuentes» quedan solo casos con fuente. Las fichas de la red y de la línea de tiempo citan fuentes de la lista.
 5. **Crédito de los paneles**: `config.creditoImagenes` (hoy dice «Ilustración hecha con IA»).
 6. **Respuesta del grupo** e **ideas clave**: `conclusiones.respuesta` y `conclusiones.ideasClave` (el texto actual es un borrador hecho con el texto base).
 7. **Datos del guía (Marx)**: arreglo `curiosidades`. Casi todos salen del texto base; en la guía de sustentación figuran los que se agregaron sobre la vida de Marx.
@@ -198,7 +199,7 @@ Como pide el documento de los 5 niveles (página 5), en cada paso la imagen **so
 | `htmlMapa()` | Cap. 3 · «De Londres a París»: mapa esquemático | Contexto histórico y los 6 capítulos | `js/capitulos.js` |
 | `dibujarMapa(avance, el)` | Dibuja el mapa: se enciende Londres, luego París (que se apaga), 1889 y al final solo Rusia | Contexto histórico y los 6 capítulos | `js/capitulos.js` |
 | `htmlChoque(cap)` | Cap. 4 · «El choque»: el panel 4 dividido en dos mitades que se juntan | Contexto histórico y los 6 capítulos | `js/capitulos.js` |
-| `dibujarChoque(avance, el)` | Dibuja el choque: las mitades parten de los bordes y se juntan; luego aparecen las tres cifras | Contexto histórico y los 6 capítulos | `js/capitulos.js` |
+| `dibujarChoque(avance, el)` | Dibuja el choque: las mitades parten de los bordes y se juntan; luego aparece la cifra | Contexto histórico y los 6 capítulos | `js/capitulos.js` |
 | `htmlCalendarios(cap)` | Cap. 5 · «Dos calendarios»: dos hojas lado a lado | Contexto histórico y los 6 capítulos | `js/capitulos.js` |
 | `dibujarCalendarios(avance, el)` | Dibuja los calendarios: primero febrero = marzo; la hoja pasa y muestra octubre = noviembre | Contexto histórico y los 6 capítulos | `js/capitulos.js` |
 | `dibujarBrest(avance, el)` | Dibuja la silueta: pierde territorio (con contadores) y luego se completa con las repúblicas | Contexto histórico y los 6 capítulos | `js/capitulos.js` |

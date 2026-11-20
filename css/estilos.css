@@ -761,7 +761,7 @@ legend { float: left; margin-right: 8px; font-weight: 700; }
 
 .video-pendiente code { padding: 0 5px; border-radius: 3px; background: rgba(255, 255, 255, 0.16); font-size: 0.85em; }
 #clip-introduccion .clip { margin: 28px 0 8px; }
-#clip-conclusion .clip { margin: 28px 0 0; }
+#clip-conclusion .clip, #clip-conclusion-2 .clip { margin: 28px 0 0; }
 
 .solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .chispa { position: fixed; z-index: 44; right: 14px; bottom: calc(58px + env(safe-area-inset-bottom, 0px)); }

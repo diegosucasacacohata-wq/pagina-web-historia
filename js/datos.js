@@ -41,7 +41,10 @@ const videos = [
     transcripcion: "Para cumplir su promesa de paz, los bolcheviques firman el Tratado de Brest-Litovsk el 3 de marzo de 1918. Rusia sale de la guerra, pero a un costo enorme: pierde 780 000 km², 56 millones de habitantes, el 73 % de su producción de hierro y el 89 % de la de carbón. Estalla la guerra civil: el Ejército Rojo contra los blancos, sus opositores. Para ganarla, el gobierno aplica el comunismo de guerra: el Estado toma el control de la economía, y la dictadura se endurece en lo económico y en lo político. En 1921, con el país devastado, Lenin anuncia en el X Congreso del partido la Nueva Política Económica, la NEP: una vuelta parcial al mercado para reconstruir el país. En 1922 nace la Unión de Repúblicas Socialistas Soviéticas, la URSS, con Rusia como eje. En 1924 muere Lenin. Tras luchas internas y purgas, José Stalin se convierte en el amo de la Unión Soviética, que gobernará con mano de hierro hasta 1953." },
   { id: "conclusion", capitulo: 0, etiqueta: "Conclusión", titulo: "Conclusión: la respuesta en seis pasos", activo: true,
     archivo: "video/conclusion.mp4", subtitulos: "", enlace: "",
-    transcripcion: "¿Cómo pasó el comunismo de ser tan solo una idea utópica a instituir el primer gobierno comunista del mundo, la URSS? Lo podemos resumir en seis pasos. Primero, una idea: la isla de Moro sin propiedad privada. Segundo, una profunda herida: la miseria que dejó la Revolución Industrial en la mayoría de la población. Tercero, una teoría: la lucha de clases planteada por Marx y Engels. Cuarto, una organización: la de cada una de las Internacionales. Quinto, una oportunidad: la Rusia del zar, hundida en la Primera Guerra Mundial. Y sexto, una toma del poder: la que sucedió en 1917. Aquí nos planteamos una nueva pregunta, la paradoja: Marx soñaba con una sociedad sin Estado; sin embargo, sus ideas desembocaron en un Estado gobernado con mano de hierro hasta 1953. Muchas gracias." }
+    transcripcion: "¿Cómo pasó el comunismo de ser tan solo una idea utópica a instituir el primer gobierno comunista del mundo, la URSS? Lo podemos resumir en seis pasos. Primero, una idea: la isla de Moro sin propiedad privada. Segundo, una profunda herida: la miseria que dejó la Revolución Industrial en la mayoría de la población. Tercero, una teoría: la lucha de clases planteada por Marx y Engels. Cuarto, una organización: la de cada una de las Internacionales. Quinto, una oportunidad: la Rusia del zar, hundida en la Primera Guerra Mundial. Y sexto, una toma del poder: la que sucedió en 1917. Aquí nos planteamos una nueva pregunta, la paradoja: Marx soñaba con una sociedad sin Estado; sin embargo, sus ideas desembocaron en un Estado gobernado con mano de hierro hasta 1953. Muchas gracias." },
+  { id: "conclusion-2", capitulo: 0, etiqueta: "Conclusión extendida", titulo: "Conclusión extendida: dos lecciones más", activo: true,
+    archivo: "video/conclusion-2.mp4", subtitulos: "", enlace: "",
+    transcripcion: "Esta respuesta deja dos lecciones más. La primera: la revolución no estalló donde más había avanzado la industria. Allí, la Segunda Internacional eligió el camino de las reformas: mejores salarios y menos horas de trabajo. Estalló en Rusia, un país mucho menos industrializado, gobernado por un zar y agotado por la guerra. Y tomar el poder no fue el final. Para salir de la guerra, en 1918 Rusia firmó el Tratado de Brest-Litovsk y perdió 780 000 km². Luego vinieron la guerra civil y el comunismo de guerra, y en 1921 Lenin anunció la NEP: una vuelta parcial al mercado. Así se explica la paradoja: la dictadura del proletariado, que para Marx era solo una etapa intermedia, se institucionalizó con la URSS. Y tras la muerte de Lenin, en 1924, las luchas internas y las purgas llevaron a Stalin al poder absoluto. La segunda lección es sobre cómo se hace historia: las fuentes no siempre coinciden. Hubeñák llama «golpe de estado» a la Revolución de Febrero; Kreibohm la describe como huelgas, protestas y motines. Y el libro dice que «bolchevique» viene de la Duma, pero el nombre nació en el congreso del partido de 1903. Por eso dimos el hecho y dijimos quién lo interpreta. Utopía, en griego, quiere decir «no-lugar». En cuatro siglos, ese no-lugar encontró un sitio en el mapa, la Unión Soviética, pero no fue la isla que soñó Moro. Muchas gracias." }
 ];
 
 const glosario = {
@@ -64,7 +67,7 @@ const glosario = {
   "Domingo Sangriento": "9 de enero de 1905 (22 en nuestro calendario): los soldados disparan contra una marcha pacífica que llevaba una petición al zar.",
   "soviets": "Consejos de obreros y soldados. Nacen en 1905.",
   "Tesis de Abril": "Programa de Lenin (abril de 1917): ningún apoyo al Gobierno Provisional, poder para el proletariado y los campesinos pobres, tierras nacionalizadas.",
-  "Gobierno Provisional": "Gobierno que reemplaza al zar en 1917 (primero Lvov, desde julio Kérenski) y sigue en la guerra.",
+  "Gobierno Provisional": "Gobierno que reemplaza al zar en 1917 y sigue en la guerra. Entre marzo y octubre se suceden tres equipos de gobierno.",
   "calendario juliano": "Calendario que usaba Rusia en 1917, 13 días atrasado respecto al nuestro (gregoriano).",
   "Brest-Litovsk": "Tratado de marzo de 1918 que saca a Rusia de la Primera Guerra Mundial.",
   "comunismo de guerra": "Política de la guerra civil (1918–1921): el Estado controla la economía.",
@@ -267,7 +270,7 @@ const capitulos = [
       { titulo: "Una petición al zar", anio: 1905,
         texto: "El 9 de enero de 1905 (22 en nuestro calendario), una marcha pacífica encabezada por Gapón lleva una petición al zar." },
       { titulo: "El Domingo Sangriento", anio: 1905,
-        texto: "Los soldados disparan contra la marcha: es el [[Domingo Sangriento]]. Las cifras de muertos varían según la fuente." },
+        texto: "Los soldados disparan contra la marcha: es el [[Domingo Sangriento]]. Caen muertos cerca de doscientos manifestantes." },
       { titulo: "Nacen los soviets", anio: 1914,
         texto: "Ese mismo año nacen los [[soviets]]. En 1914, Rusia entra en la Primera Guerra Mundial." }
     ],
@@ -293,16 +296,14 @@ const capitulos = [
       tipo: "choque",
       anio: 1905,
       titulo: "El choque",
-      pie: "Las cifras varían según la fuente. Completar cada fuente con el guion del grupo.",
+      pie: "Cifra según Adamovsky (2005).",
       cifras: [
-        { valor: "96", fuente: "Cifra oficial del gobierno zarista (verificar en el guion)" },
-        { valor: "+200", fuente: "Adamovsky (2005): «cerca de doscientos manifestantes»" },
-        { valor: "+1000", fuente: "[Completar con la fuente del guion]" }
+        { valor: "≈200", fuente: "muertos: «cerca de doscientos manifestantes» (Adamovsky, 2005)" }
       ],
       subtitulos: [
         "A la izquierda, una marcha pacífica con una petición al zar.",
         "A la derecha, los soldados. Se encuentran: el Domingo Sangriento.",
-        "¿Cuántos murieron? Las cifras varían según la fuente."
+        "¿Cuántos murieron? Cerca de doscientos manifestantes."
       ]
     }
   },
@@ -326,7 +327,7 @@ const capitulos = [
       { titulo: "Cae el zar; habla Lenin", anio: 1917,
         texto: "En febrero (marzo) de 1917, huelgas y protestas por falta de pan, a las que se suman los soldados, llevan a la abdicación del zar. En abril, Lenin presenta sus [[Tesis de Abril]]." },
       { titulo: "Dos poderes", anio: 1917,
-        texto: "Gobierna un [[Gobierno Provisional]] (primero Lvov, desde julio Kérenski) que sigue en la guerra, junto a los [[soviets]] de obreros y soldados. Las Tesis piden: ningún apoyo a ese gobierno, poder para el proletariado y los campesinos pobres, tierras nacionalizadas." },
+        texto: "Gobierna un [[Gobierno Provisional]] que sigue en la guerra (entre marzo y octubre se suceden tres gobiernos), junto a los [[soviets]] de obreros y soldados. Las Tesis piden: ningún apoyo a ese gobierno, poder para el proletariado y los campesinos pobres, tierras nacionalizadas." },
       { titulo: "Octubre: los bolcheviques toman el poder", anio: 1917,
         texto: "El 25 de octubre (7 de noviembre) los bolcheviques, con Lenin y Trotski, toman el poder." },
       { titulo: "¿Octubre o noviembre?", anio: 1917,
@@ -338,7 +339,7 @@ const capitulos = [
       fechas: [
         { fecha: "23 feb 1917 (8 mar)", hecho: "Revolución de Febrero: abdica el zar." },
         { fecha: "Abril 1917 (en ambos calendarios)", hecho: "Lenin presenta las Tesis de Abril." },
-        { fecha: "Julio 1917 (en ambos calendarios)", hecho: "Kérenski encabeza el Gobierno Provisional." },
+        { fecha: "Marzo a octubre de 1917", hecho: "Se suceden tres gobiernos provisionales; Rusia sigue en la guerra." },
         { fecha: "25 oct 1917 (7 nov)", hecho: "Revolución de Octubre: los bolcheviques toman el poder." }
       ]
     },
@@ -520,12 +521,8 @@ const nodos = [
     descripcion: "Ala «minoritaria» del partido socialdemócrata ruso.", fuente: "Kreibohm (2017)" },
   { id: "gapon", nombre: "Gapón", iniciales: "Ga", tipo: "actor", capitulo: 4, anio: 1907, fechaTexto: "1905",
     descripcion: "Encabeza la marcha pacífica del Domingo Sangriento (1905).", fuente: "Adamovsky (2005)" },
-  { id: "lvov", nombre: "Lvov", iniciales: "Lv", tipo: "actor", capitulo: 5, anio: 1916.9, fechaTexto: "1917",
-    descripcion: "Encabeza primero el Gobierno Provisional (1917).", fuente: "Guion del grupo: ninguna fuente de la lista lo nombra (verificar)" },
   { id: "soviets", nombre: "Soviets", iniciales: "So", tipo: "actor", capitulo: 5, anio: 1917.2, fechaTexto: "desde 1905",
     descripcion: "Consejos de obreros y soldados. Nacen en 1905 y en 1917 gobiernan junto al Gobierno Provisional.", fuente: "Adamovsky (2005); Kreibohm (2017)" },
-  { id: "kerenski", nombre: "Kérenski", iniciales: "Ké", tipo: "actor", capitulo: 5, anio: 1917.55, fechaTexto: "desde julio de 1917",
-    descripcion: "Encabeza el Gobierno Provisional desde julio de 1917.", fuente: "Guion del grupo: ninguna fuente de la lista lo nombra (verificar)" },
   { id: "trotski", nombre: "Trotski", iniciales: "Tr", tipo: "actor", capitulo: 5, anio: 1917.9, fechaTexto: "1917",
     descripcion: "Junto a Lenin, dirige la toma del poder en octubre de 1917.", fuente: "Hubeñák (2020, cap. 12); Kreibohm (2017)" },
   { id: "stalin", nombre: "Stalin", iniciales: "St", tipo: "actor", capitulo: 6, anio: 1924, fechaTexto: "desde 1924",
@@ -549,7 +546,7 @@ const nodos = [
     descripcion: "Los bolcheviques, con Lenin y Trotski, toman el poder.", fuente: "Hubeñák (2020, cap. 12); Kreibohm (2017)" },
 
   { id: "gobierno-provisional", nombre: "Gobierno Provisional", corto: "Gob. Provisional", tipo: "consecuencia", capitulo: 5, anio: 1917.15, fechaTexto: "1917",
-    descripcion: "Gobierna tras la caída del zar (primero Lvov, desde julio Kérenski) y sigue en la guerra.", fuente: "Kreibohm (2017)" },
+    descripcion: "Gobierna tras la caída del zar y sigue en la guerra; entre marzo y octubre se suceden tres gobiernos.", fuente: "Kreibohm (2017)" },
   { id: "brest-litovsk", nombre: "Brest-Litovsk", corto: "Brest-Litovsk", tipo: "consecuencia", capitulo: 6, anio: 1918.2, fechaTexto: "marzo de 1918",
     descripcion: "Saca a Rusia de la guerra con grandes pérdidas de territorio y población.", fuente: "Kreibohm (2017)" },
   { id: "guerra-civil", nombre: "Guerra civil", corto: "Guerra civil", tipo: "consecuencia", capitulo: 6, anio: 1918.9, fechaTexto: "1918–1921",
@@ -603,8 +600,6 @@ const conexiones = [
   { desde: "primera-guerra", hacia: "febrero-1917", relacion: "detona" },
   { desde: "febrero-1917", hacia: "nicolas", relacion: "derriba a" },
   { desde: "febrero-1917", hacia: "gobierno-provisional", relacion: "lleva a" },
-  { desde: "lvov", hacia: "gobierno-provisional", relacion: "encabeza primero" },
-  { desde: "kerenski", hacia: "gobierno-provisional", relacion: "encabeza desde julio" },
   { desde: "lenin", hacia: "tesis-abril", relacion: "presenta" },
   { desde: "comuna", hacia: "tesis-abril", relacion: "es tomada como referencia en" },
   { desde: "tesis-abril", hacia: "gobierno-provisional", relacion: "niega apoyo a" },
@@ -675,7 +670,7 @@ const eventos = [
     que: "Rusia combate contra Japón.",
     porQue: "Debilita a Nicolás II.", fuente: "Hubeñák (2020, cap. 12); Adamovsky (2005)" },
   { id: "domingo-1905", anio: 1905, posicion: 1905.05, fecha: "9 ene 1905", fechaJuliana: "9 ene 1905", fechaGregoriana: "22 ene 1905", titulo: "Domingo Sangriento", capitulo: 4, tipo: "acontecimiento", nodo: "domingo-sangriento",
-    que: "Los soldados disparan contra una marcha pacífica que llevaba una petición al zar. Las cifras de muertos varían según la fuente.",
+    que: "Los soldados disparan contra una marcha pacífica que llevaba una petición al zar. Caen muertos cerca de doscientos manifestantes.",
     porQue: "El zar pierde apoyo y la autocracia muestra su cara más dura.", fuente: "Adamovsky (2005)" },
   { id: "soviets-1905", anio: 1905, posicion: 1905.6, fecha: "1905", titulo: "Nacen los soviets", capitulo: 4, tipo: "acontecimiento", nodo: "soviets",
     que: "Aparecen los consejos de obreros y soldados.",
@@ -687,14 +682,11 @@ const eventos = [
     que: "Huelgas y protestas por falta de pan, a las que se suman los soldados, llevan a la abdicación del zar.",
     porQue: "Cae el zar: termina la autocracia.", fuente: "Hubeñák (2020, cap. 12); Kreibohm (2017); González Quesada (2021)" },
   { id: "gobierno-provisional", anio: 1917, posicion: 1917.18, fecha: "1917", fechaJuliana: "feb 1917", fechaGregoriana: "mar 1917", titulo: "Gobierno Provisional", capitulo: 5, tipo: "consecuencia", nodo: "gobierno-provisional",
-    que: "Gobierna tras la caída del zar, primero con Lvov, y sigue en la guerra.",
+    que: "Gobierna tras la caída del zar y sigue en la guerra; entre marzo y octubre se suceden tres gobiernos.",
     porQue: "Comparte el poder con los soviets: un equilibrio que no durará.", fuente: "Kreibohm (2017)" },
   { id: "tesis-abril", anio: 1917, posicion: 1917.32, fecha: "abr 1917", fechaJuliana: "abr 1917", fechaGregoriana: "abr 1917", titulo: "Tesis de Abril", capitulo: 5, tipo: "idea", nodo: "tesis-abril",
     que: "Lenin: ningún apoyo al Gobierno Provisional, poder para el proletariado y los campesinos pobres, tierras nacionalizadas.",
     porQue: "Marca el plan bolchevique para tomar el poder.", fuente: "Lenin (1917); Kreibohm (2017)" },
-  { id: "kerenski", anio: 1917, posicion: 1917.55, fecha: "jul 1917", fechaJuliana: "jul 1917", fechaGregoriana: "jul 1917", titulo: "Kérenski al frente", capitulo: 5, tipo: "acontecimiento", nodo: "kerenski",
-    que: "Kérenski encabeza el Gobierno Provisional.",
-    porQue: "Cambia el líder, pero el gobierno sigue en la guerra.", fuente: "Guion del grupo: ninguna fuente de la lista lo nombra (verificar)" },
   { id: "octubre-1917", anio: 1917, posicion: 1917.85, fecha: "25 oct 1917", fechaJuliana: "25 oct 1917", fechaGregoriana: "7 nov 1917", titulo: "Revolución de Octubre", capitulo: 5, tipo: "acontecimiento", nodo: "octubre-1917",
     que: "Los bolcheviques, con Lenin y Trotski, toman el poder.",
     porQue: "Un partido marxista llega al poder: la idea entra al gobierno.", fuente: "Hubeñák (2020, cap. 12); Kreibohm (2017)" },
@@ -783,23 +775,17 @@ const conclusiones = {
   },
   fuentesQueNoCoinciden: [
     { tema: "Cifras del Domingo Sangriento",
-      problema: "Las fuentes dan cifras de muertos distintas: la oficial habló de 96; otras, de más de 200 o de más de mil.",
-      solucion: "Mostramos las tres cifras con su fuente y decimos que varían según la fuente, en la página y en el video del capítulo 4." },
+      problema: "No hay un número exacto, ni siquiera dentro de una misma fuente: Adamovsky (2005) escribe «más de doscientos muertos» al comenzar su artículo y «cerca de doscientos» más adelante.",
+      solucion: "Damos la cifra aproximada, cerca de doscientos, y citamos a Adamovsky (2005)." },
     { tema: "La Revolución de Febrero: ¿«golpe de estado» o levantamiento?",
-      problema: "Hubeñák (2020, p. 363) la llama «golpe de estado»; otras fuentes la describen como huelgas y protestas por falta de pan a las que se sumaron los soldados.",
+      problema: "Hubeñák (2020, p. 363) la llama «golpe de estado»; Kreibohm (2017) la describe como huelgas, protestas y motines, con agitación dentro del ejército.",
       solucion: "Damos el hecho en el que coinciden todas (huelgas, protestas, soldados que se suman y abdicación del zar) y aclaramos que «golpe» es la interpretación de Hubeñák." },
     { tema: "¿De dónde viene «bolchevique»?",
       problema: "La lectura dice que así se llamaban los grupos en la Duma, pero la Duma recién se creó después de 1905.",
-      solucion: "Los nombres salen del II Congreso del Partido Obrero Socialdemócrata ruso (1903), cuando los seguidores de Lenin ganaron algunas votaciones." },
+      solucion: "Los nombres salen del II Congreso del Partido Obrero Socialdemócrata ruso (1903), cuando los seguidores de Lenin ganaron algunas votaciones (Kreibohm, 2017)." },
     { tema: "¿El Manifiesto se publicó «tardíamente»?",
       problema: "Hubeñák (2020, pp. 299–303) dice que se publicó tarde.",
-      solucion: "La edición del Marxists Internet Archive indica que salió de imprenta a fines de febrero de 1848: por eso en la página va con fecha 1848." },
-    { tema: "¿Quién escribió el Catecismo revolucionario?",
-      problema: "La lectura lo firma como de Bakunin.",
-      solucion: "Otras fuentes indican que lo compuso Nechayev en 1869; si se cita, decimos «atribuido a Bakunin / Nechayev»." },
-    { tema: "¿Con cuántas repúblicas nació la URSS?",
-      problema: "Hubeñák (2020, pp. 363–375) dice que en 1922 «incorporaba a siete repúblicas».",
-      solucion: "El tratado de creación del 30 de diciembre de 1922 lo firmaron cuatro: Rusia, Ucrania, Bielorrusia y Transcaucasia; las demás se sumaron después. [Verificar en las fuentes F12 o F13 del guion.]" }
+      solucion: "La edición del Marxists Internet Archive indica que salió de imprenta a fines de febrero de 1848: por eso en la página va con fecha 1848." }
   ]
 };
 
@@ -873,7 +859,7 @@ const curiosidades = {
   "capitulo-4": [
     "«Bolchevique» quiere decir «mayoritario». El nombre salió de una votación del partido en 1903.",
     "El Domingo Sangriento fue el 9 de enero de 1905 en Rusia… ¡y el 22 en nuestro calendario!",
-    "¿Cuántos murieron el Domingo Sangriento? Las fuentes no se ponen de acuerdo: las cifras varían.",
+    "El Domingo Sangriento cayeron muertos cerca de doscientos manifestantes, según Adamovsky (2005).",
     "Los soviets nacieron en 1905: doce años antes de la revolución de 1917.",
     "Yo no llegué a ver nada de esto: morí en 1883, veinte años antes de que el partido se dividiera en 1903."
   ],
