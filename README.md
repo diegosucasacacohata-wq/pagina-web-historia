@@ -65,7 +65,7 @@ Son los videos **editados** del documental (con cortes, tarjetas con fechas, ret
 | Capítulo 5 | `capitulo-5.mp4` | `Cap5.mp4` | IMG_0169.MOV | 1:29 |
 | Capítulo 6 | `capitulo-6.mp4` | `gabriel-preview.mp4` (3/11) | Gabriel_videos.MOV | 1:34 |
 | Conclusión | `conclusion.mp4` | `Conclusiones.mp4` | IMG_0147.MOV | 1:04 |
-| Conclusión complementaria | `conclusion-2.mp4` | **falta** (se graba con el PDF «Video para grabar: conclusión complementaria») | — | ≈1:20 |
+| Conclusión complementaria | `conclusion-2.mp4` | editado con FFmpeg (cortes, audio limpio, 16:9 y carteles) | Video del 19-11-26, 10.46 p. m. (n.º 2) | 1:18 |
 
 **Ojo con la duración:** las 7 partes suman **9:34**. La rúbrica pide un video de **12 a 15 minutos**; con el capítulo 3 (unos 1:30) llegarían a unos 11 minutos, así que todavía falta material. Además, el capítulo 6 es la versión del 3 de noviembre: no se volvió a exportar después de los cambios del 9 (no tiene música ni gráficos 3D, como los otros).
 
