@@ -1,60 +1,44 @@
-// =====================================================================
-// linea-tiempo.js — Línea de tiempo interactiva (1516–1924)
-// Nivel 4/5: la sección queda fija y, al bajar, la línea avanza de 1516 a 1924.
-// Los botones ← → y las flechas del teclado siguen funcionando: llevan a la
-// fecha anterior o siguiente. En «Modo lectura» la línea se mueve sola con los botones.
-// =====================================================================
 const lt = {
   ventana: null,
   pista: null,
-  anchoContenido: 2700,   // largo de la línea en píxeles
+  anchoContenido: 2700,
   seleccionado: null,
   filtroCapitulo: null,
   filtroTipos: new Set(tiposEvento.map(t => t.id)),
   anioCentro: 1516,
-  activa: false           // true mientras el escenario está fijo en pantalla
+  activa: false
 };
 
-// Escala del tiempo de la línea: [año, posición en píxeles]. El tramo 1522–1775 va comprimido.
 const TRAMOS_LT = [[1510, 80], [1522, 200], [1775, 300], [1830, 620], [1875, 900], [1900, 1140], [1906, 1460], [1913, 1640], [1916, 1760], [1918.6, 2400], [1925, 2620]];
-const FILAS_LT = [-1, 1, -2, 2];   // filas de etiquetas: arriba 1, abajo 1, arriba 2, abajo 2
+const FILAS_LT = [-1, 1, -2, 2];
 
-// Busca un evento por su id
 function eventoPorId(id) {
   return eventos.find(e => e.id === id);
 }
 
-// Eventos que pasan los filtros, en orden de tiempo
 function eventosVisibles() {
   return eventos
     .filter(e => (lt.filtroCapitulo === null || e.capitulo === lt.filtroCapitulo) && lt.filtroTipos.has(e.tipo))
     .sort((a, b) => a.posicion - b.posicion);
 }
 
-// Fecha que se muestra en la etiqueta (en 1905 y 1917, con los dos calendarios)
 function fechaCorta(e) {
   if (e.fechaGregoriana && e.fechaJuliana !== e.fechaGregoriana) return e.fechaJuliana + " (" + e.fechaGregoriana + ")";
   return e.fecha;
 }
 
-// ---------- Dibujo ----------
-
-// Dibuja la línea: eje, corte comprimido, marcas de décadas y un botón por cada fecha
 function dibujarLineaTiempo() {
   lt.ventana = document.getElementById("lt-ventana");
   lt.pista = document.getElementById("lt-pista");
   let html = '<div class="lt-eje"></div>';
 
-  // Corte visible del tramo 1522–1775
   const xCorte = escalaDeTiempo(1650, TRAMOS_LT);
   html += '<div class="lt-corte" style="left:' + xCorte + 'px"><span>1522–1775</span></div>';
 
-  // Marcas de años
   [1516, 1780, 1800, 1820, 1840, 1860, 1880, 1900, 1905, 1910, 1915, 1920].forEach(a => {
     html += '<span class="lt-marca" style="left:' + escalaDeTiempo(a, TRAMOS_LT) + 'px">' + a + '</span>';
   });
 
-  // Fechas: se reparten en 4 filas para que las etiquetas no se tapen
   const ultimos = [-999, -999, -999, -999];
   eventos.slice().sort((a, b) => a.posicion - b.posicion).forEach(e => {
     const x = escalaDeTiempo(e.posicion, TRAMOS_LT);
@@ -70,7 +54,6 @@ function dibujarLineaTiempo() {
   lt.pista.innerHTML = html;
   lt.pista.style.setProperty("--ancho", lt.anchoContenido + "px");
 
-  // Eventos: clic en una fecha, botones ← → y flechas del teclado
   lt.pista.querySelectorAll(".lt-evento").forEach(b => b.addEventListener("click", () => {
     mostrarFichaEvento(b.dataset.id);
     centrarEvento(b.dataset.id);
@@ -87,7 +70,6 @@ function dibujarLineaTiempo() {
   registrarSecuencia(document.getElementById("lt-secuencia"), dibujarAvanceLinea);
 }
 
-// Secuencia: al bajar, la línea se desplaza de 1516 a 1924
 function dibujarAvanceLinea(avance) {
   if (motor.modoLectura) {
     lt.pista.style.transform = "";
@@ -97,7 +79,6 @@ function dibujarAvanceLinea(avance) {
   lt.pista.style.transform = "translateX(" + (-x).toFixed(1) + "px)";
   lt.anioCentro = Math.floor(anioDesdePosicion(x, TRAMOS_LT));
   document.getElementById("lt-anio-centro").textContent = lt.anioCentro > 1525 && lt.anioCentro < 1775 ? "…" : lt.anioCentro;
-  // La fecha que pasa por el centro se marca y abre su ficha
   let cercano = null, distancia = 70;
   eventosVisibles().forEach(e => {
     const d = Math.abs(escalaDeTiempo(e.posicion, TRAMOS_LT) - x);
@@ -107,9 +88,6 @@ function dibujarAvanceLinea(avance) {
   if (cercano && cercano.id !== lt.seleccionado) mostrarFichaEvento(cercano.id);
 }
 
-// ---------- Interacción ----------
-
-// Muestra la ficha de una fecha: qué pasó, por qué importa, fuente y botones
 function mostrarFichaEvento(id) {
   const e = eventoPorId(id);
   if (!e) return;
@@ -136,13 +114,12 @@ function mostrarFichaEvento(id) {
   ficha.querySelector("[data-nodo]").addEventListener("click", () => irANodoRed(e.nodo));
 }
 
-// Lleva la fecha al centro de la línea: en la secuencia, mueve la página; en modo lectura, la línea
 function centrarEvento(id) {
   const e = eventoPorId(id);
   const x = escalaDeTiempo(e.posicion, TRAMOS_LT);
   const seccion = document.getElementById("lt-secuencia");
   if (motor.modoLectura) {
-    lt.ventana.scrollTo({ left: x, behavior: "smooth" });   // con el margen de media ventana, x queda al centro
+    lt.ventana.scrollTo({ left: x, behavior: "smooth" });
     return;
   }
   seccion.dataset.saltada = "false";
@@ -152,7 +129,6 @@ function centrarEvento(id) {
   window.scrollTo({ top: arriba - motor.altoBarra + avance * recorridoSeccion + 1, behavior: "auto" });
 }
 
-// Pasa a la fecha anterior (-1) o siguiente (+1) entre las visibles
 function moverSeleccion(direccion) {
   const lista = eventosVisibles();
   if (lista.length === 0) return;
@@ -162,7 +138,6 @@ function moverSeleccion(direccion) {
   centrarEvento(lista[indice].id);
 }
 
-// Filtra las fechas por capítulo (null = todos) y por los tipos marcados
 function filtrarEventos(capitulo) {
   lt.filtroCapitulo = capitulo;
   document.querySelectorAll(".lt-capitulo").forEach(b => {
@@ -175,7 +150,6 @@ function filtrarEventos(capitulo) {
   aviso.textContent = visibles.size === 0 ? "Ninguna fecha cumple los filtros. Marca otro tipo o elige «Todos»." : visibles.size + " fechas visibles.";
 }
 
-// Arma los filtros de la línea: botones por capítulo y casillas por tipo de hecho
 function construirFiltrosLinea() {
   const caja = document.getElementById("lt-filtros");
   caja.innerHTML = '<summary>Filtros</summary><div class="lt-filtros-fila">' +
@@ -194,7 +168,6 @@ function construirFiltrosLinea() {
   }));
 }
 
-// Desde un capítulo: abre la línea en la primera fecha de ese capítulo
 function irALineaDelCapitulo(capitulo) {
   filtrarEventos(null);
   const primero = eventos.filter(e => e.capitulo === capitulo).sort((a, b) => a.posicion - b.posicion)[0];
@@ -206,7 +179,6 @@ function irALineaDelCapitulo(capitulo) {
   lt.ventana.focus({ preventScroll: true });
 }
 
-// Desde la línea de tiempo: abre la red ya armada con el nodo seleccionado
 function irANodoRed(id) {
   cerrarPanelRed();
   filtrarRedPorCapitulo(null);

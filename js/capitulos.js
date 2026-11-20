@@ -1,17 +1,7 @@
-// =====================================================================
-// capitulos.js — Contexto histórico y los 6 capítulos
-// Arma el HTML de cada capítulo a partir de datos.js y le da vida:
-// secuencia de apertura, scrollytelling, secuencia que explica un concepto,
-// transiciones entre capítulos, palabras clave y contadores.
-// =====================================================================
+let contadorDefiniciones = 0;
+const DIAS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+const PROPORCION_PANEL = 834 / 311;
 
-let contadorDefiniciones = 0;   // para dar un id único a cada definición
-const DIAS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];   // días de «La semana del obrero» (cap. 2)
-const PROPORCION_PANEL = 834 / 311;   // ancho ÷ alto de cada panel
-
-// ---------- Pequeños bloques de HTML ----------
-
-// Convierte [[texto|clave]] en una palabra clave con su definición (cursor, toque o teclado)
 function marcarPalabrasClave(texto) {
   return texto.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (todo, visible, clave) => {
     const nombre = clave || visible;
@@ -23,7 +13,6 @@ function marcarPalabrasClave(texto) {
   });
 }
 
-// Controles de una secuencia: «Fase 1 de 4», barra de avance y «Saltar animación»
 function htmlControl(fases) {
   return '<div class="control-secuencia' + (fases === 1 ? ' sin-fases' : '') + '">' +
     '<span class="control-fase">Fase 1 de ' + fases + '</span>' +
@@ -31,17 +20,11 @@ function htmlControl(fases) {
     '<button type="button" class="boton-saltar">Saltar animación</button></div>';
 }
 
-// Capas de parallax que van encima de un panel: partículas (70 %) y papel (85 %)
 function htmlCapasDecorativas(particula) {
   return '<div class="capa-parallax capa-particulas solo-animacion" data-velocidad="0.7" data-particula="' + particula + '" aria-hidden="true"></div>' +
     '<div class="capa-parallax capa-papel solo-animacion" data-velocidad="0.85" aria-hidden="true"></div>';
 }
 
-// =====================================================================
-// CONTEXTO HISTÓRICO
-// =====================================================================
-
-// Arma el bloque de contexto: oraciones con el mosaico fijo y las 6 tarjetas
 function construirContexto() {
   const mosaico = document.getElementById("contexto-mosaico");
   mosaico.innerHTML = capitulos.map(cap =>
@@ -61,7 +44,6 @@ function construirContexto() {
     '<p class="tarjeta-pregunta">' + cap.subpregunta + '</p>' +
     '<a class="tarjeta-enlace" href="#capitulo-' + cap.numero + '">Ir al capítulo ' + cap.numero + '</a></li>').join("");
 
-  // Cada oración que llega al centro resalta los paneles de su capítulo
   const observador = new IntersectionObserver(entradas => {
     entradas.forEach(e => { if (e.isIntersecting) resaltarPanelesContexto(e.target); });
   }, { rootMargin: "-45% 0px -45% 0px" });
@@ -69,7 +51,6 @@ function construirContexto() {
   resaltarPanelesContexto(oraciones.querySelector(".oracion"));
 }
 
-// Resalta los paneles de una oración del contexto y atenúa los demás
 function resaltarPanelesContexto(oracion) {
   const activos = oracion.dataset.paneles.split(",");
   document.querySelectorAll("#contexto-oraciones .oracion").forEach(o => o.classList.toggle("activa", o === oracion));
@@ -78,11 +59,6 @@ function resaltarPanelesContexto(oracion) {
   });
 }
 
-// =====================================================================
-// CAPÍTULOS
-// =====================================================================
-
-// Arma los 6 capítulos y las transiciones que van entre ellos
 function construirCapitulos() {
   const contenedor = document.getElementById("capitulos");
   let html = "";
@@ -92,7 +68,6 @@ function construirCapitulos() {
   });
   contenedor.innerHTML = html;
 
-  // Registro de cada secuencia en el motor de scroll
   capitulos.forEach(cap => {
     registrarSecuencia(document.getElementById("apertura-" + cap.numero), (avance, el) => dibujarApertura(cap, avance, el));
     if (cap.concepto) {
@@ -106,7 +81,6 @@ function construirCapitulos() {
   prepararContadores();
 }
 
-// HTML completo de un capítulo (plantilla igual para los 6)
 function htmlCapitulo(cap) {
   const n = cap.numero;
   return '<section class="capitulo" id="capitulo-' + n + '" data-capitulo="' + n + '" data-indice="capitulo" ' +
@@ -127,7 +101,6 @@ function htmlCapitulo(cap) {
     '</div></section>';
 }
 
-// a + b: secuencia de apertura de 3 pantallas en 4 fases; termina mostrando el título
 function htmlApertura(cap) {
   const n = cap.numero;
   const img = 'src="' + rutaImagen("panel-" + cap.panel + ".jpg") + '" alt=""';
@@ -156,9 +129,6 @@ function htmlApertura(cap) {
     '</div></div>';
 }
 
-// c: bloque de scrollytelling (panel fijo + 4 pasos de texto)
-// El marco tiene: el mismo panel difuminado de fondo (rellena las franjas vacías), el panel en
-// alta resolución (img/hd) que hace zoom y se desplaza, el sello con el año del paso y 4 rayitas de avance.
 function htmlScrolly(cap) {
   const panel = rutaImagen("hd/panel-" + cap.panel + ".jpg");
   return '<div class="scrolly" data-capitulo="' + cap.numero + '">' +
@@ -182,7 +152,6 @@ function htmlScrolly(cap) {
     '<p class="pie-imagen lectura">' + config.creditoImagenes + ' (panel ' + cap.panel + '). ' + cap.alt.replace("Ilustración: ", "") + '</p>';
 }
 
-// d: recuadro «Datos clave» con la cifra principal en grande
 function htmlDatosClave(cap) {
   const dc = cap.datosClave;
   let contadores = "";
@@ -199,14 +168,11 @@ function htmlDatosClave(cap) {
     '</section>';
 }
 
-// Cita destacada en grande con autor y año
 function htmlCita(cita) {
   return '<figure class="cita-destacada"><blockquote><p>«' + cita.texto + '»</p></blockquote>' +
     '<figcaption>' + cita.autor + ', <cite>' + cita.obra + '</cite> (' + cita.anio + ')</figcaption></figure>';
 }
 
-// f: un video del documental con su transcripción (el reproductor lo arma main.js).
-//    Sirve para cada capítulo y también para la introducción y la conclusión.
 function htmlClip(video, titulo) {
   return '<section class="clip" data-video="' + video.id + '" aria-label="' + titulo + '">' +
     '<h3>' + titulo + '</h3>' +
@@ -215,7 +181,6 @@ function htmlClip(video, titulo) {
     '</section>';
 }
 
-// i: frase puente y botón para seguir
 function htmlPuente(cap) {
   const siguiente = capitulos[cap.numero];
   const destino = siguiente ? "#capitulo-" + siguiente.numero : "#red";
@@ -223,7 +188,6 @@ function htmlPuente(cap) {
   return '<div class="puente"><p>' + cap.puente + '</p><a class="boton-continuar" href="' + destino + '">' + texto + '</a></div>';
 }
 
-// Transición entre capítulos: una cortina del color del capítulo siguiente cruza la pantalla
 function htmlTransicion(siguiente) {
   return '<div class="transicion" data-tipo="pasaje" data-fases="1" id="transicion-' + siguiente.numero + '" ' +
     'style="--color-siguiente: var(--c' + siguiente.numero + ')" aria-label="Paso al capítulo ' + siguiente.numero + '">' +
@@ -232,9 +196,6 @@ function htmlTransicion(siguiente) {
     htmlControl(1) + '</div>';
 }
 
-// ---------- Secuencia de apertura ----------
-
-// Calcula zoom y desplazamiento para que el punto (x, y) del panel quede al centro del marco
 function calcularEnfoque(anchoMarco, altoMarco, x, y, zoom) {
   let ancho = anchoMarco;
   let alto = anchoMarco / PROPORCION_PANEL;
@@ -249,7 +210,6 @@ function calcularEnfoque(anchoMarco, altoMarco, x, y, zoom) {
   };
 }
 
-// Dibuja la apertura según el avance: 1) panel completo, 2) y 3) dos detalles, 4) franjas y título
 function dibujarApertura(cap, avance, el) {
   const marco = el.querySelector(".apertura-marco");
   const lienzo = el.querySelector(".lienzo");
@@ -258,7 +218,6 @@ function dibujarApertura(cap, avance, el) {
   const titular = el.querySelector(".titulo-capitulo");
   const d = cap.apertura.detalles;
 
-  // Enfoque: completo → detalle 1 → detalle 2 → completo
   const completo = { x: 50, y: 50, zoom: 1 };
   let desde = completo, hacia = completo, t = 0;
   if (avance < 0.25) { desde = completo; hacia = completo; }
@@ -273,7 +232,6 @@ function dibujarApertura(cap, avance, el) {
   lienzo.style.height = enfoque.alto + "px";
   lienzo.style.transform = "translate(-50%, -50%) translate(" + enfoque.dx.toFixed(1) + "px," + enfoque.dy.toFixed(1) + "px) scale(" + enfoque.zoom.toFixed(3) + ")";
 
-  // Fase 1: aparece el panel (o el foco de luz sobre la vela, en el capítulo 2)
   const aparecer = suavizar(tramo(avance, 0, 0.18));
   if (cap.apertura.foco) {
     const radio = mezclar(5, 120, aparecer);
@@ -284,18 +242,15 @@ function dibujarApertura(cap, avance, el) {
     lienzo.style.opacity = (0.25 + 0.75 * aparecer).toFixed(3);
   }
 
-  // Fase 4: el panel se divide en tres franjas que se separan a distinta velocidad
   const profundidad = motor.sin3D ? 0 : 1;
   const desplazY = [-0.16, -0.02, 0.13], desplazZ = [70, 0, -60];
   franjas.forEach((f, i) => {
     f.style.transform = "translate3d(0," + (desplazY[i] * enfoque.alto * separar).toFixed(1) + "px," + (desplazZ[i] * separar * profundidad).toFixed(1) + "px)";
   });
 
-  // Subtítulos de una línea en las fases 2 y 3
   subtitulos[0].style.opacity = (tramo(avance, 0.32, 0.38) * (1 - tramo(avance, 0.47, 0.5))).toFixed(3);
   subtitulos[1].style.opacity = (tramo(avance, 0.58, 0.64) * (1 - tramo(avance, 0.72, 0.75))).toFixed(3);
 
-  // a) «Capítulo N de 6» y la subpregunta se ven desde el inicio; b) el título entra desde el fondo, en profundidad
   const titulo = suavizar(tramo(avance, 0.82, 0.97));
   titular.style.opacity = titulo.toFixed(3);
   titular.style.transform = motor.sin3D
@@ -303,9 +258,6 @@ function dibujarApertura(cap, avance, el) {
     : "perspective(900px) translateZ(" + (-420 * (1 - titulo)).toFixed(1) + "px)";
 }
 
-// ---------- Scrollytelling (sección 5c) ----------
-
-// Observa los pasos de cada capítulo: cuando un paso llega al centro, se enfoca su detalle
 function prepararScrollytelling() {
   const observador = new IntersectionObserver(entradas => {
     entradas.forEach(e => {
@@ -313,14 +265,12 @@ function prepararScrollytelling() {
       const capitulo = Number(e.target.closest(".scrolly").dataset.capitulo);
       activarPaso(capitulo, Number(e.target.dataset.paso));
     });
-  }, { rootMargin: motor.celular ? "-64% 0px -26% 0px" : "-45% 0px -45% 0px" });   // en celular, la franja va debajo de la imagen fija
+  }, { rootMargin: motor.celular ? "-64% 0px -26% 0px" : "-45% 0px -45% 0px" });
   document.querySelectorAll(".scrolly .paso").forEach(p => observador.observe(p));
   capitulos.forEach(cap => activarPaso(cap.numero, 1));
   motor.alActualizar.push(derivarScrollytelling);
 }
 
-// En cada cuadro: mientras se baja por los 4 pasos, el panel se acerca y sube apenas
-// (solo zoom y desplazamiento, con transform). Sin efecto en modo lectura ni en celulares chicos.
 function derivarScrollytelling() {
   const alto = window.innerHeight;
   document.querySelectorAll(".scrolly").forEach(bloque => {
@@ -328,13 +278,11 @@ function derivarScrollytelling() {
     if (motor.modoLectura || motor.sin3D) { deriva.style.transform = ""; return; }
     const caja = bloque.getBoundingClientRect();
     if (caja.bottom < -alto || caja.top > alto * 2) return;
-    const avance = limitar((alto * 0.5 - caja.top) / Math.max(1, caja.height), 0, 1);   // 0 al entrar, 1 al salir
+    const avance = limitar((alto * 0.5 - caja.top) / Math.max(1, caja.height), 0, 1);
     deriva.style.transform = "translate3d(0," + ((0.5 - avance) * 14).toFixed(1) + "px,0) scale(" + (1.02 + 0.05 * avance).toFixed(4) + ")";
   });
 }
 
-// Cambia el zoom y la posición del panel según el paso (datos en el arreglo «pasos» de datos.js),
-// marca el paso activo, el indicador «Paso N de 4» con sus rayitas y el sello con el año
 function activarPaso(capitulo, paso) {
   const bloque = document.querySelector('.scrolly[data-capitulo="' + capitulo + '"]');
   if (!bloque) return;
@@ -346,22 +294,19 @@ function activarPaso(capitulo, paso) {
   bloque.querySelector(".indicador-texto").textContent = "Paso " + paso + " de 4";
   bloque.querySelectorAll(".indicador-puntos i").forEach((punto, i) => punto.classList.toggle("lleno", i < paso));
 
-  // Sello con el año y el título del paso (la clase «cambia» lo hace entrar de nuevo)
   const datosPaso = capitulos[capitulo - 1].pasos[paso - 1];
   const sello = bloque.querySelector(".scrolly-sello");
   sello.querySelector(".sello-anio").textContent = datosPaso.anio;
   sello.querySelector(".sello-titulo").textContent = datosPaso.titulo;
   sello.classList.remove("cambia");
-  void sello.offsetWidth;   // obliga al navegador a reiniciar la animación
+  void sello.offsetWidth;
   sello.classList.add("cambia");
 
-  // Si el paso usa otro panel, se cruza con la segunda imagen
   const imagenes = bloque.querySelectorAll(".scrolly-img");
   let activa = bloque.querySelector(".scrolly-img.activa");
   if (activa.dataset.panel !== String(enfoque.panel)) {
     const otra = activa === imagenes[0] ? imagenes[1] : imagenes[0];
     otra.setAttribute("src", rutaImagen("hd/panel-" + enfoque.panel + ".jpg"));
-    // el fondo difuminado cambia junto con el panel
     bloque.querySelector(".scrolly-ambiente").setAttribute("src", rutaImagen("hd/panel-" + enfoque.panel + ".jpg"));
     otra.dataset.panel = enfoque.panel;
     otra.setAttribute("alt", capitulos[enfoque.panel - 1].alt);
@@ -379,14 +324,10 @@ function activarPaso(capitulo, paso) {
   });
 }
 
-// Recalcula los enfoques (al cambiar el tamaño de la ventana o el modo lectura)
 function reenfocarScrollytelling() {
   document.querySelectorAll(".scrolly").forEach(b => activarPaso(Number(b.dataset.capitulo), Number(b.dataset.paso || 1)));
 }
 
-// ---------- Secuencias que explican un concepto (2 pantallas) ----------
-
-// Envoltorio común: título, dibujo, subtítulos de una línea y controles
 function htmlConcepto(cap) {
   const c = cap.concepto;
   const visuales = { semana: htmlSemana, mapa: htmlMapa, choque: htmlChoque, calendarios: htmlCalendarios, brest: htmlBrest };
@@ -400,12 +341,10 @@ function htmlConcepto(cap) {
     '</div>' + htmlControl(c.subtitulos.length) + '</div></div>';
 }
 
-// Muestra solo el subtítulo que corresponde (en modo lectura se ven todos)
 function mostrarSubtitulo(el, indice) {
   el.querySelectorAll(".subtitulos .subtitulo").forEach((s, i) => s.classList.toggle("visible", i === indice));
 }
 
-// Cap. 2 · «La semana del obrero»
 function htmlSemana() {
   return '<div class="semana" role="img" aria-label="Semana de lunes a sábado: de lunes a miércoles el obrero produce el valor de su salario; de jueves a sábado produce plusvalía.">' +
     '<div class="semana-llaves"><span class="llave llave-salario">salario cubierto</span><span class="llave llave-plusvalia">plusvalía</span></div>' +
@@ -414,7 +353,6 @@ function htmlSemana() {
     '</div><p class="semana-cierre">Lo que el obrero produce y no se le paga</p></div>';
 }
 
-// Dibuja la semana: la barra se llena; desde el jueves, en rojo (plusvalía)
 function dibujarSemana(avance, el) {
   const lleno = tramo(avance, 0.06, 0.82) * 6;
   el.querySelectorAll(".dia-relleno").forEach((r, i) => {
@@ -426,7 +364,6 @@ function dibujarSemana(avance, el) {
   mostrarSubtitulo(el, avance < 0.3 ? 0 : avance < 0.5 ? 1 : avance < 0.84 ? 2 : 3);
 }
 
-// Cap. 3 · «De Londres a París»: mapa esquemático
 function htmlMapa() {
   return '<svg class="mapa" viewBox="0 0 600 340" role="img" aria-label="Mapa esquemático de Europa: Londres (1864), París (1871), los países industrializados (1889) y Rusia.">' +
     '<path class="tierra" d="M118 70 L142 78 L148 118 L158 160 L134 178 L112 170 L120 140 L106 116 Z"/>' +
@@ -442,7 +379,6 @@ function htmlMapa() {
     '</svg>';
 }
 
-// Dibuja el mapa: se enciende Londres, luego París (que se apaga), 1889 y al final solo Rusia
 function dibujarMapa(avance, el) {
   const apagarOccidente = tramo(avance, 0.78, 0.88);
   const londres = tramo(avance, 0.04, 0.14) * (1 - 0.8 * apagarOccidente);
@@ -459,7 +395,6 @@ function dibujarMapa(avance, el) {
   mostrarSubtitulo(el, avance < 0.22 ? 0 : avance < 0.42 ? 1 : avance < 0.55 ? 2 : avance < 0.78 ? 3 : 4);
 }
 
-// Cap. 4 · «El choque»: el panel 4 dividido en dos mitades que se juntan
 function htmlChoque(cap) {
   return '<div class="choque">' +
     '<div class="choque-mitades" role="img" aria-label="Panel 4 dividido: a la izquierda la procesión, a la derecha los soldados; se juntan en el centro.">' +
@@ -471,7 +406,6 @@ function htmlChoque(cap) {
     '</div></div>';
 }
 
-// Dibuja el choque: las mitades parten de los bordes y se juntan; luego aparecen las tres cifras
 function dibujarChoque(avance, el) {
   const lejos = 1 - suavizar(tramo(avance, 0.04, 0.5));
   el.querySelector(".mitad-izq").style.transform = "translateX(" + (-62 * lejos).toFixed(2) + "%)";
@@ -484,7 +418,6 @@ function dibujarChoque(avance, el) {
   mostrarSubtitulo(el, avance < 0.28 ? 0 : avance < 0.55 ? 1 : 2);
 }
 
-// Cap. 5 · «Dos calendarios»: dos hojas lado a lado
 function htmlCalendarios(cap) {
   const hojas = cap.concepto.hojas;
   const hoja = (tipo, nombre, lugar) =>
@@ -501,7 +434,6 @@ function htmlCalendarios(cap) {
     '</div>';
 }
 
-// Dibuja los calendarios: primero febrero = marzo; la hoja pasa y muestra octubre = noviembre
 function dibujarCalendarios(avance, el) {
   const pasar = suavizar(tramo(avance, 0.52, 0.66));
   el.querySelectorAll('.calendario-pagina[data-i="0"]').forEach(p => {
@@ -516,8 +448,6 @@ function dibujarCalendarios(avance, el) {
   mostrarSubtitulo(el, avance < 0.2 ? 0 : avance < 0.55 ? 1 : 2);
 }
 
-// Cap. 6 · «El precio de la paz»: silueta esquemática hecha de celdas
-// r = territorio que se mantiene · p = se pierde · q = se pierde y luego forma repúblicas · u = repúblicas del sur
 const SILUETA_RUSIA = [
   "......rrrrrrrrrr..",
   "..pprrrrrrrrrrrrr.",
@@ -529,7 +459,6 @@ const SILUETA_RUSIA = [
   ".....uu..........."
 ];
 
-// Cap. 6 · «El precio de la paz»: la silueta de Rusia dibujada con cuadraditos (cada letra de SILUETA_RUSIA es una zona)
 function htmlBrest(cap) {
   let celdas = "";
   SILUETA_RUSIA.forEach((fila, f) => {
@@ -546,7 +475,6 @@ function htmlBrest(cap) {
     '</div></div>';
 }
 
-// Dibuja la silueta: pierde territorio (con contadores) y luego se completa con las repúblicas
 function dibujarBrest(avance, el) {
   const perder = suavizar(tramo(avance, 0.18, 0.45));
   const formar = suavizar(tramo(avance, 0.6, 0.88));
@@ -572,22 +500,17 @@ function dibujarBrest(avance, el) {
   mostrarSubtitulo(el, avance < 0.2 ? 0 : avance < 0.58 ? 1 : 2);
 }
 
-// Transición: la cortina cruza la pantalla y aparece el nombre del capítulo siguiente
 function dibujarTransicion(avance, el) {
   el.querySelector(".cortina").style.transform = "translateX(" + mezclar(-105, 105, suavizar(tramo(avance, 0.18, 0.82))).toFixed(2) + "%)";
   const texto = Math.min(tramo(avance, 0.34, 0.44), 1 - tramo(avance, 0.62, 0.72));
   el.querySelector(".transicion-texto").style.opacity = texto.toFixed(3);
 }
 
-// ---------- Contadores (nivel 2) ----------
-
-// Escribe una cifra con espacio de miles cuando hace falta (780 000)
 function formatearCifra(valor, formato) {
   if (formato === "miles") return String(valor).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   return String(valor);
 }
 
-// Cuando un contador entra en pantalla, sube desde 0 (o desde el año anterior) hasta su cifra, una sola vez
 function prepararContadores() {
   const observador = new IntersectionObserver(entradas => {
     entradas.forEach(e => {
@@ -599,7 +522,6 @@ function prepararContadores() {
   document.querySelectorAll(".contador-valor").forEach(c => observador.observe(c));
 }
 
-// Anima un contador durante 1,2 segundos (solo cambia el número escrito)
 function animarContador(elemento) {
   const final = Number(elemento.dataset.valor);
   const formato = elemento.dataset.formato;
@@ -607,7 +529,6 @@ function animarContador(elemento) {
   const inicio = formato === "anio" ? final - 60 : 0;
   if (motor.modoLectura) return;
   const t0 = performance.now();
-  // Un cuadro de la animación: escribe el número que corresponde al tiempo transcurrido
   function paso(ahora) {
     const t = suavizar(limitar((ahora - t0) / 1200, 0, 1));
     elemento.textContent = formatearCifra(Math.round(mezclar(inicio, final, t)), formato) + sufijo;

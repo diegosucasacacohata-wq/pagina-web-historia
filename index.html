@@ -10,21 +10,17 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&display=swap">
   <link rel="stylesheet" href="css/estilos.css">
   <script>
-    // Antes de dibujar la página: aplica el «Modo lectura» guardado,
-    // o lo activa si el sistema pide «reducir movimiento».
     (function () {
       var guardado = null;
       try { guardado = localStorage.getItem("webdoc-g2-modo-lectura"); } catch (e) { guardado = null; }
       var reducir = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (guardado === "1" || (guardado === null && reducir)) document.documentElement.classList.add("modo-lectura");
     })();
-
   </script>
 </head>
 <body>
   <a class="saltar-al-contenido" href="#contexto">Saltar al contenido</a>
 
-  <!-- Barra superior: pregunta central, «Capítulo N de 6», mini-mapa, Modo lectura y progreso -->
   <header class="barra-superior">
     <div class="barra-fila">
       <button type="button" class="boton-indice" id="boton-indice" aria-expanded="false" aria-controls="indice">Índice</button>
@@ -40,18 +36,14 @@
     <div class="barra-progreso" aria-hidden="true"><i id="barra-progreso"></i></div>
   </header>
 
-  <!-- Índice lateral fijo (en celular, desplegable arriba) -->
   <nav class="indice" id="indice" aria-label="Índice de la página"><ol id="indice-lista"></ol></nav>
 
-  <!-- El cubo de los seis pasos (atajo visual; el índice cumple la misma función con teclado) -->
   <div class="capa-cubo" id="capa-cubo" aria-hidden="true"><div class="cubo-posicion"><div class="cubo"></div></div></div>
 
-  <!-- Reloj del recorrido: el año del relato -->
   <div class="reloj" id="reloj" aria-hidden="true"><span class="reloj-etiqueta">Año del relato</span><span class="reloj-anio" id="reloj-anio">1516</span></div>
 
   <main id="contenido">
 
-    <!-- ① INICIO ======================================================= -->
     <section id="inicio" data-indice="bloque" data-titulo-indice="Inicio" aria-labelledby="titulo-principal">
       <div class="secuencia inicio-secuencia" id="inicio-secuencia" data-tipo="fijada" data-pantallas="3" data-fases="3" data-parallax data-anio="1516" data-migas="Inicio">
         <div class="escenario inicio-escenario">
@@ -61,9 +53,7 @@
           <div class="inicio-texto">
             <p class="inicio-proyecto">Historia Conectada, Grupo 2</p>
             <h1 class="titulo-principal" id="titulo-principal"><span>Del «no‑lugar» al Estado:</span> <span class="titulo-sub">el socialismo de 1516 a 1924</span></h1>
-            <!-- Eslogan (texto en config.eslogan de datos.js) -->
             <p class="eslogan" id="eslogan"></p>
-            <!-- Gancho y, a continuación, la pregunta central (se ve desde la primera pantalla) -->
             <p class="gancho" id="gancho"></p>
             <div class="inicio-pregunta">
               <p class="etiqueta-inicio">Pregunta central</p>
@@ -72,7 +62,6 @@
             <p class="inicio-acciones"><a class="boton-continuar" href="#contexto">Empezar a leer</a> <span class="indicacion-bajar solo-animacion" aria-hidden="true">o baja para empezar ↓</span></p>
           </div>
           <div class="mosaico-inicio solo-animacion" id="mosaico-inicio" aria-hidden="true"></div>
-          <!-- Integrantes: franja de créditos al pie de la primera pantalla (config.integrantes) -->
           <div class="inicio-integrantes">
             <p class="etiqueta-inicio">Integrantes</p>
             <ul class="lista-inicio-integrantes" id="integrantes-inicio"></ul>
@@ -88,18 +77,15 @@
         <dl class="ficha-curso">
           <div><dt>Curso</dt><dd id="dato-curso"></dd></div>
           <div><dt>Proyecto</dt><dd id="dato-proyecto"></dd></div>
-          <!-- Finalidad y público objetivo (los pide la rúbrica) -->
           <div><dt>Finalidad</dt><dd id="dato-finalidad"></dd></div>
           <div><dt>Público</dt><dd id="dato-publico"></dd></div>
           <div><dt>Integrantes</dt><dd><ul id="lista-integrantes"></ul></dd></div>
         </dl>
-        <!-- Video de la introducción (lo arma construirVideos en main.js) -->
         <div id="clip-introduccion"></div>
         <p class="continuar"><a href="#contexto">Continuar con el Contexto histórico</a></p>
       </div>
     </section>
 
-    <!-- ② CONTEXTO HISTÓRICO =========================================== -->
     <section id="contexto" class="bloque contexto" data-indice="bloque" data-parallax aria-labelledby="titulo-contexto">
       <div class="capa-parallax capa-mosaico-fondo solo-animacion" data-velocidad="0.5" aria-hidden="true"></div>
       <div class="capa-parallax capa-particulas solo-animacion" data-velocidad="0.7" data-particula="polvo" aria-hidden="true"></div>
@@ -122,7 +108,6 @@
       <p class="continuar lectura"><a href="#proceso">Continuar con El proceso en 6 capítulos</a></p>
     </section>
 
-    <!-- ③ EL PROCESO EN 6 CAPÍTULOS ===================================== -->
     <section id="proceso" class="proceso" data-indice="bloque" aria-labelledby="titulo-proceso">
       <div class="lectura bloque-cabecera">
         <h2 id="titulo-proceso">El proceso en 6 capítulos</h2>
@@ -131,7 +116,6 @@
       <div id="capitulos"></div>
     </section>
 
-    <!-- ④ RED DE RELACIONES HISTÓRICAS ================================== -->
     <section id="red" class="bloque" data-indice="bloque" data-anio="1516–1924" aria-labelledby="titulo-red">
       <div class="lectura">
         <h2 id="titulo-red">Red de relaciones históricas</h2>
@@ -155,7 +139,6 @@
       <p class="continuar lectura"><a href="#linea-tiempo">Continuar con la Línea de tiempo interactiva</a></p>
     </section>
 
-    <!-- ⑤ LÍNEA DE TIEMPO =============================================== -->
     <section id="linea-tiempo" class="bloque" data-indice="bloque" aria-labelledby="titulo-lt">
       <div class="lectura">
         <h2 id="titulo-lt">Línea de tiempo interactiva</h2>
@@ -182,7 +165,6 @@
       <p class="continuar lectura"><a href="#conclusiones">Continuar con las Conclusiones</a></p>
     </section>
 
-    <!-- ⑥ CONCLUSIONES ================================================== -->
     <section id="conclusiones" class="bloque conclusiones" data-indice="bloque" data-parallax data-anio="1516–1924" aria-labelledby="titulo-conclusiones">
       <div class="capa-parallax capa-mosaico-fondo solo-animacion" data-velocidad="0.5" aria-hidden="true"></div>
       <div class="capa-parallax capa-particulas solo-animacion" data-velocidad="0.7" data-particula="volantes" aria-hidden="true"></div>
@@ -191,10 +173,8 @@
         <h2 id="titulo-conclusiones">Conclusiones</h2>
         <p class="pregunta-grande" id="pregunta-conclusiones"></p>
         <p class="respuesta-grupo" id="respuesta-grupo"></p>
-        <!-- Video de la conclusión (lo arma construirVideos en main.js) -->
         <div id="clip-conclusion"></div>
       </div>
-      <!-- Vista explotada del cubo (nivel 5): solo con 3D -->
       <div class="secuencia explosion" id="explosion" data-tipo="fijada" data-pantallas="3" data-fases="3" data-migas="La respuesta en 6 pasos">
         <div class="escenario explosion-escenario">
           <p class="explosion-titulo">La respuesta en 6 pasos</p>
@@ -217,15 +197,11 @@
       <p class="continuar lectura"><a href="#fuentes">Continuar con las Fuentes</a></p>
     </section>
 
-    <!-- ⑦ FUENTES ====================================================== -->
     <section id="fuentes" class="bloque" data-indice="bloque" data-anio="1516–1924" aria-labelledby="titulo-fuentes">
       <div class="lectura">
         <h2 id="titulo-fuentes">Fuentes</h2>
         <p>Formato APA 7, en orden alfabético dentro de cada categoría.</p>
         <div id="lista-fuentes"></div>
-        <!-- Código fuente, recursos usados y declaración de uso de IA (los arma construirRecursos) -->
-        <h3>Código, recursos y uso de IA</h3>
-        <div id="recursos"></div>
         <p class="continuar"><a href="#inicio">Volver al Inicio</a></p>
       </div>
     </section>

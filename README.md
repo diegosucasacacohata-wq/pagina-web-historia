@@ -23,9 +23,9 @@ Ya está publicado (enlaces arriba). Para actualizarlo después de un cambio, de
 1. En github.com: **New repository**, nombre por ejemplo `pagina-web-historia`, **Public** (GitHub Pages gratis necesita un repositorio público) y sin README (este ya lo trae).
 2. En el repositorio vacío: **uploading an existing file**. Arrastra el **contenido** de esta carpeta (`index.html`, `README.md`, `FUENTES.md`, `GUIA-SUSTENTACION.md`, `.gitignore` y las carpetas `css`, `js`, `img`, `video`), no la carpeta entera. Cada archivo pesa menos de 25 MB, el límite de la subida por la web. Escribe un mensaje y pulsa **Commit changes**.
 3. Para tener un enlace público: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, rama `main`, carpeta `/ (root)`, **Save**. En uno o dos minutos la página queda en `https://TU-USUARIO.github.io/pagina-web-historia/`.
-4. Pega ese enlace en `config.repositorio` (`js/datos.js`) y arriba en «Ver en línea», y sube de nuevo `js/datos.js` y `README.md`.
+4. Pega ese enlace arriba en «Ver en línea» y sube de nuevo `README.md`.
 
-Antes de publicar: completen la declaración de uso de IA (ver «Qué editar antes de entregar»).
+La declaración de uso de IA y la bibliografía se entregan aparte, en PDF.
 
 ## Archivos
 
@@ -80,16 +80,14 @@ Las transcripciones salen del guion (la de la conclusión, de lo que se grabó).
 2. **Transcripción** de cada video: campo `transcripcion` del arreglo `videos`.
 3. **Fuentes**: quedan solo las que sustentan los textos (la lectura base, 4 obras de la época y 6 artículos académicos), en el arreglo `fuentes`; cada una tiene una `nota` con lo que sustenta. Para agregar una, se copia una línea con este formato: `{ apa: "Apellido, N. (Año). <em>Título</em>. Editorial.", enlace: "https://..." }` (y `nota` si se quiere aclarar algo). Donde dice `[Completar…]` falta un dato.
 4. **Cifras del Domingo Sangriento**: completar la fuente de 96 y de +1000 en `concepto.cifras` del capítulo 4 (la de +200 ya es Adamovsky, 2005). Las fichas de la red y de la línea de tiempo ya citan fuentes de la lista; solo Lvov y Kérenski dicen «verificar».
-5. **Crédito de los paneles**: decir de dónde salieron; si se generaron con IA, nombrar la herramienta.
+5. **Crédito de los paneles**: `config.creditoImagenes` (hoy dice «Ilustración hecha con IA»).
 6. **Respuesta del grupo** e **ideas clave**: `conclusiones.respuesta` y `conclusiones.ideasClave` (el texto actual es un borrador hecho con el texto base).
 7. **Datos del guía (Marx)**: arreglo `curiosidades`. Casi todos salen del texto base; en la guía de sustentación figuran los que se agregaron sobre la vida de Marx.
-8. **Código fuente**: pegar el enlace al repositorio en `config.repositorio`.
-9. **Uso de IA**: revisar `config.usoIA` y completarlo con el formato de la docente.
-10. **González Quesada (2021) y Pro (s. f.)**: completar la inicial del nombre y el año desde el PDF.
+8. **González Quesada (2021) y Pro (s. f.)**: completar la inicial del nombre y el año desde el PDF.
 
 Para cambiar el enfoque de un paso del scrollytelling, editar `x`, `y` (en %) y `zoom` en el arreglo `pasos` (sigue la tabla 5.1 del documento de los 5 niveles).
 
-Cada función tiene arriba un comentario en español que dice qué hace; la tabla de abajo lo resume.
+El código no lleva comentarios; la tabla de abajo resume qué hace cada función.
 
 ## El guía: Karl Marx como muñeco de papel
 
@@ -277,7 +275,6 @@ Como pide el documento de los 5 niveles (página 5), en cada paso la imagen **so
 | `dibujarExplosion(avance, el)` | La vista explotada la mueve cubo.js; aquí solo aparecen los textos del escenario | Varias partes (ver la función) | `js/main.js` |
 | `construirComparador()` | Comparador con deslizador: «Lo que proponía Marx» frente a «Lo que ocurrió» | ⑥ Comparador con deslizador | `js/main.js` |
 | `construirFuentes()` | Lista de fuentes en APA 7, por categoría y en orden alfabético | ⑦ Fuentes | `js/main.js` |
-| `construirRecursos()` | Código fuente, recursos usados y declaración de uso de IA | ⑦ Fuentes | `js/main.js` |
 | `construirPie()` | Pie de página: integrantes, curso, universidad, año y nota sobre las imágenes | Varias partes (ver la función) | `js/main.js` |
 | `prepararEventosGenerales()` | Interruptor de modo lectura, índice en celular, enlaces de los capítulos, «Volver arriba» y tamaño de ventana | Varias partes (ver la función) | `js/main.js` |
 | `iniciar()` | Pone todo en marcha, en orden: textos, capítulos, red, video, línea de tiempo, cubo y eventos | Arranque de toda la página | `js/main.js` |

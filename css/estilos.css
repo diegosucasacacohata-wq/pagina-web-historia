@@ -1,22 +1,12 @@
-/* =====================================================================
-   estilos.css — Webdoc «Del no-lugar al Estado» · Grupo 2 · Nivel 5
-   Orden: 1 variables · 2 base · 3 barra e índice · 4 cubo y reloj
-          5 secuencias · 6 inicio · 7 contexto · 8 capítulos
-          9 secuencias de concepto · 10 red · 11 video · 12 línea de tiempo
-          13 conclusiones y fuentes · 14 partículas y papel · 15 modo lectura
-   ===================================================================== */
-
-/* ---------- 1. Variables (colores, letras, medidas) ---------- */
 :root {
-  --fondo: #F6F5F1;          /* blanco roto para leer */
+  --fondo: #F6F5F1;
   --fondo-hondo: #EDEBE4;
   --superficie: #FFFFFF;
-  --tinta: #1D1C1A;          /* texto casi negro */
+  --tinta: #1D1C1A;
   --tinta-suave: #57534B;
   --linea: #D9D5CB;
-  --matte: #171613;          /* fondo oscuro detrás de los paneles */
+  --matte: #171613;
   --foco: #1D5FD1;
-  /* Color de cada capítulo (relleno) y su versión para texto (contraste suficiente) */
   --c1: #C9962B; --c2: #B3261E; --c3: #D9731A; --c4: #2F6DB5; --c5: #7B4FB0; --c6: #2E8B57;
   --t1: #8A6212; --t2: #B3261E; --t3: #A3500B; --t4: #2F6DB5; --t5: #7B4FB0; --t6: #226B42;
   --serif: "Source Serif 4", "Source Serif Pro", "Libre Baskerville", Georgia, "Times New Roman", serif;
@@ -38,7 +28,6 @@
 @media (min-width: 1100px) { :root { --ancho-indice: 256px; --margen-cubo: 132px; } }
 :root.modo-lectura, :root.sin-3d { --margen-cubo: 0px; }
 
-/* Modo oscuro opcional, según el sistema */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --fondo: #191814; --fondo-hondo: #211F1A; --superficie: #24221D; --tinta: #EEEBE3; --tinta-suave: #B8B2A6;
@@ -54,7 +43,6 @@
   color-scheme: dark;
 }
 
-/* ---------- 2. Base ---------- */
 *, *::before, *::after { box-sizing: inherit; }
 html { scroll-padding-top: calc(var(--barra-total) + 8px); overflow-x: clip; }
 body {
@@ -68,7 +56,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-body::before {   /* tapa la zona de la muesca del celular con el color de la barra */
+body::before {
   content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60;
   background: var(--fondo);
 }
@@ -105,7 +93,6 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
 .boton-borde { background: transparent; color: var(--tinta); }
 .boton-pequeno:disabled { opacity: 0.4; cursor: default; }
 
-/* ---------- 3. Barra superior e índice ---------- */
 .barra-superior {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   padding-top: env(safe-area-inset-top, 0px);
@@ -169,7 +156,6 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
   .indice.abierto { display: block; }
 }
 
-/* ---------- 4. Cubo, reloj y «Volver arriba» ---------- */
 .capa-cubo { position: fixed; inset: 0; z-index: 30; pointer-events: none; }
 .capa-cubo[hidden] { display: none; }
 .cubo-posicion { position: absolute; left: 0; top: 0; width: 0; height: 0; }
@@ -219,7 +205,6 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
 .volver-arriba.visible { opacity: 1; pointer-events: auto; }
 @media (max-width: 599px) { .volver-texto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } .volver-arriba { padding: 10px 14px; } }
 
-/* ---------- 5. Secuencias fijadas (scrolljacking con sticky) ---------- */
 [data-pantallas="1"] { --pantallas: 1; }
 [data-pantallas="2"] { --pantallas: 2; }
 [data-pantallas="3"] { --pantallas: 3; }
@@ -228,7 +213,7 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
   position: sticky; top: var(--barra-total); overflow: clip;
   height: calc(100vh - var(--barra-total)); height: calc(100svh - var(--barra-total));
 }
-@media (max-width: 767px) {   /* en celular, las secuencias miden la mitad */
+@media (max-width: 767px) {
   .secuencia[data-tipo="fijada"] { height: calc(100vh + (var(--pantallas) - 1) * 50vh); height: calc(100svh + (var(--pantallas) - 1) * 50svh); }
 }
 .control-secuencia {
@@ -243,7 +228,6 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
 .sin-fases .control-fase { display: none; }
 @media (max-width: 599px) { .control-fase { display: none; } }
 
-/* Transición entre capítulos: sección normal de 1 pantalla */
 .transicion { position: relative; height: 100vh; height: 100svh; overflow: clip; display: grid; place-items: end center; padding-bottom: 16vh; }
 .cortina { position: absolute; inset: 0; background: var(--color-siguiente); transform: translateX(-105%); }
 .transicion-texto {
@@ -254,7 +238,6 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
 .transicion .control-secuencia { --color: var(--color-siguiente); }
 @media (max-width: 767px) { .transicion { height: 50vh; height: 50svh; padding-bottom: 8vh; } }
 
-/* ---------- 6. Inicio ---------- */
 .inicio-escenario {
   display: flex; flex-direction: column; justify-content: space-between;
   padding: clamp(18px, 3.5vw, 44px) clamp(20px, 4vw, 48px) 64px; background: var(--fondo);
@@ -265,26 +248,17 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
 .titulo-principal span { display: block; }
 .titulo-sub { margin-top: 0.3em; font-weight: 400; font-style: italic; font-size: 0.5em; letter-spacing: 0; color: var(--tinta-suave); }
 .gancho { max-width: 54ch; margin: 0.7em 0 0; font-size: clamp(0.95rem, 0.8rem + 0.6vh, 1.12rem); line-height: 1.5; }
-/* Eslogan debajo del título (lo pide la rúbrica) */
 .eslogan { margin: 0.5em 0 0; font: italic 600 clamp(1rem, min(0.9rem + 0.8vw, 0.7rem + 1.4vh), 1.45rem)/1.3 var(--serif); color: var(--t2); }
-.lista-recursos { padding-left: 1.2em; }
-.lista-recursos li { margin-bottom: 6px; }
-.uso-ia { padding: 12px 16px; border-left: 4px solid var(--c2); background: var(--superficie); }
 .inicio-acciones { margin: 0.85em 0 0; }
 .indicacion-bajar { display: inline-block; margin-left: 14px; vertical-align: middle; font-size: 0.82rem; font-weight: 600; color: var(--tinta-suave); }
-/* Pregunta central e integrantes: visibles desde la primera pantalla del Inicio.
-   Los dos llevan la misma etiqueta pequeña en mayúsculas, para que se lean como bloques. */
 .etiqueta-inicio { margin: 0 0 3px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tinta-suave); }
 .inicio-pregunta { margin: 0.8em 0 0; padding: 8px 14px 9px; border-left: 4px solid var(--t2); background: color-mix(in srgb, var(--superficie) 82%, transparent); }
 .pregunta-central { margin: 0; max-width: 34ch; font: 600 clamp(1.05rem, min(0.95rem + 0.8vw, 0.7rem + 1.5vh), 1.6rem)/1.24 var(--serif); }
-/* Integrantes: franja de créditos al pie de la primera pantalla */
 .inicio-integrantes { position: relative; z-index: 4; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 14px; margin: 14px 0 0; padding: 8px 0 0; border-top: 1px solid var(--linea); }
 .inicio-integrantes .etiqueta-inicio { margin: 0; }
-/* Los nombres van en columnas (se leen de arriba abajo): 3 columnas de 2 en pantallas anchas y 2 de 3 en celular */
 .lista-inicio-integrantes { display: grid; grid-auto-flow: column; grid-template-rows: repeat(2, auto); justify-content: start; gap: 1px 28px; margin: 0; padding: 0; list-style: none; font-size: 0.82rem; line-height: 1.5; }
 .lista-inicio-integrantes li { white-space: nowrap; }
 @media (max-width: 767px) { .lista-inicio-integrantes { grid-template-rows: repeat(3, auto); gap: 1px 14px; font-size: 0.78rem; } }
-/* En pantallas anchas, la franja deja libre la esquina donde está el muñeco de Marx */
 @media (min-width: 768px) { .inicio-integrantes { padding-right: 120px; } }
 .mosaico-inicio { display: none; position: relative; z-index: 3; grid-template-columns: 1fr 1fr; gap: 4px; margin: 10px 0; }
 .sin-3d .mosaico-inicio { display: grid; }
@@ -292,9 +266,7 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
 .tesela img { width: 100%; aspect-ratio: 834 / 311; object-fit: cover; }
 .tesela-numero { position: absolute; left: 4px; top: 4px; padding: 0 6px; background: var(--fondo); border-left: 3px solid var(--color); font: 700 0.8rem/1.4 var(--serif); }
 @media (min-width: 1100px) { .inicio-texto { max-width: 57%; margin-top: 0; } }
-/* En celular, los 6 paneles del Inicio van en una sola fila, debajo de los integrantes, para que la primera pantalla entre completa */
 @media (max-width: 767px) { .mosaico-inicio { order: 2; grid-template-columns: repeat(6, 1fr); gap: 3px; margin: 8px 0 0; } .mosaico-inicio .tesela-numero { display: none; } .inicio-integrantes { margin-bottom: auto; } }
-/* Celulares bajos: sin el mosaico de paneles (es decorativo) y textos más juntos, para que no se corte nada */
 @media (max-width: 767px) and (max-height: 740px) {
   .sin-3d .mosaico-inicio { display: none; }
   .inicio-proyecto { margin-bottom: 0.4em; }
@@ -317,7 +289,6 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
 .ficha-curso ul { margin: 0; padding: 0; list-style: none; }
 .ficha-curso li span { color: var(--tinta-suave); }
 
-/* ---------- 7. Contexto histórico ---------- */
 .contexto, .conclusiones { overflow: clip; }
 .contexto > :not(.capa-parallax), .conclusiones > :not(.capa-parallax) { position: relative; z-index: 4; }
 .contexto-scrolly { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); max-width: 1120px; margin: 24px auto 0; padding-inline: 20px; }
@@ -349,8 +320,6 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
   .oracion { margin-bottom: 26vh; }
 }
 
-/* ---------- 8. Capítulos ---------- */
-/* a + b: secuencia de apertura */
 .apertura .escenario { display: flex; flex-direction: column; background: var(--fondo); }
 .oscuridad { position: absolute; inset: 0; z-index: 6; background: #0B0A08; pointer-events: none; }
 .apertura-marco { position: relative; z-index: 7; flex: 1 1 auto; min-height: 0; overflow: hidden; background: var(--matte); }
@@ -375,7 +344,6 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
 .parte-respuesta span { font-weight: 700; color: var(--tinta-cap); }
 .apertura .control-secuencia { bottom: 12px; }
 
-/* c: scrollytelling */
 .scrolly { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 44px); max-width: 1180px; margin: 0 auto; padding: 0 20px; }
 .scrolly-figura {
   position: sticky; top: calc(var(--barra-total) + 16px); align-self: start; margin: 0;
@@ -394,20 +362,16 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
 .paso p { margin: 0; }
 .pie-imagen { margin-top: 18px; }
 
-/* Marco del scrollytelling: el mismo panel difuminado de fondo (rellena las franjas vacías),
-   el panel que hace zoom y se desplaza (dentro de .scrolly-deriva) y una viñeta suave en los bordes */
 .scrolly-marco { isolation: isolate; border-radius: 6px; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3); }
 .scrolly-marco::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit; box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.45); }
 .scrolly-ambiente { position: absolute; z-index: 0; left: -8%; top: -8%; width: 116%; height: 116%; max-width: none; object-fit: cover; filter: blur(22px) saturate(1.15) brightness(0.5); }
-.scrolly-deriva { position: absolute; inset: 0; z-index: 1; will-change: transform; }   /* la mueve derivarScrollytelling() */
-/* Sello con el año y el título del paso, arriba a la izquierda del panel */
+.scrolly-deriva { position: absolute; inset: 0; z-index: 1; will-change: transform; }
 .scrolly-sello { position: absolute; z-index: 4; left: 14px; top: 14px; margin: 0; display: flex; align-items: baseline; gap: 10px; max-width: calc(100% - 28px);
   padding: 6px 14px 7px; border-radius: 999px; background: rgba(14, 12, 10, 0.74); color: #F4F1EA; font-size: 0.82rem; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 .sello-anio { flex: none; font: 700 1.05rem/1 var(--serif); color: var(--color); filter: brightness(1.35); }
 .sello-titulo { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .scrolly-sello.cambia { animation: sello-cambia 0.5s cubic-bezier(0.3, 1.5, 0.5, 1); }
 @keyframes sello-cambia { from { opacity: 0.2; transform: translateY(-8px) scale(0.94); } to { opacity: 1; transform: none; } }
-/* «Paso N de 4» con 4 rayitas que se llenan del color del capítulo */
 .indicador-paso { display: flex; align-items: center; gap: 12px; }
 .indicador-puntos { display: inline-flex; gap: 6px; }
 .indicador-puntos i { width: 22px; height: 4px; border-radius: 2px; background: var(--linea); transition: background 0.4s; }
@@ -427,7 +391,6 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
   .paso { margin-bottom: 34vh; }
 }
 
-/* d a i: cuerpo del capítulo */
 .cuerpo-capitulo { padding-top: 48px; padding-bottom: 24px; }
 .datos-clave { margin: 0 0 36px; padding: 20px 22px; background: var(--superficie); border: 1px solid var(--linea); border-top: 4px solid var(--color); }
 .datos-clave h3 { font-size: 1.1rem; margin-bottom: 10px; }
@@ -479,7 +442,6 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
 .puente { margin-bottom: 56px; padding-top: 22px; border-top: 1px solid var(--linea); }
 .puente p { font: italic 400 1.18rem/1.5 var(--serif); }
 
-/* e: palabras clave con definición */
 .palabra-clave { position: relative; cursor: help; text-decoration: underline dotted 2px; text-decoration-color: var(--color); text-underline-offset: 4px; }
 .definicion {
   position: absolute; left: 50%; bottom: calc(100% + 8px); z-index: 20;
@@ -492,7 +454,6 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
 .palabra-clave.definicion-abajo .definicion { bottom: auto; top: calc(100% + 8px); }
 .palabra-clave:hover .definicion, .palabra-clave:focus .definicion, .palabra-clave.abierta .definicion { opacity: 1; visibility: visible; }
 
-/* ---------- 9. Secuencias que explican un concepto ---------- */
 .concepto .escenario { display: flex; align-items: center; justify-content: center; padding: 20px 20px 66px; background: var(--fondo-hondo); }
 .concepto-contenido { width: 100%; max-width: 920px; display: flex; flex-direction: column; gap: 16px; }
 .concepto-titulo { margin: 0; font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2.1rem); }
@@ -579,7 +540,6 @@ main { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); paddi
   .dia-nombre { font-size: 0.75rem; padding: 0 3px; }
 }
 
-/* ---------- 10. Red de relaciones ---------- */
 .red-escenario { display: flex; flex-direction: column; gap: 8px; padding: 10px clamp(10px, 2vw, 20px) 60px; background: var(--fondo); }
 .red-herramientas { flex: none; opacity: 0.35; transition: opacity 0.3s; }
 .montada .red-herramientas { opacity: 1; }
@@ -619,7 +579,7 @@ legend { float: left; margin-right: 8px; font-weight: 700; }
 .nodo { cursor: pointer; outline: none; --sobre: #fff; }
 .nodo[data-capitulo="1"], .nodo[data-capitulo="3"] { --sobre: #1D1C1A; }
 .nodo-cuerpo { transform-box: fill-box; transform-origin: center; transition: transform 0.18s; }
-.nodo:hover .nodo-cuerpo, .nodo:focus-visible .nodo-cuerpo { transform: scale(1.28); }   /* microinteracción */
+.nodo:hover .nodo-cuerpo, .nodo:focus-visible .nodo-cuerpo { transform: scale(1.28); }
 .forma { fill: var(--color); stroke: var(--fondo); stroke-width: 2.5; }
 .nodo:focus-visible .forma { stroke: var(--foco); stroke-width: 4; }
 .iniciales { font: 700 12px var(--sans); fill: var(--sobre); text-anchor: middle; pointer-events: none; }
@@ -655,7 +615,6 @@ legend { float: left; margin-right: 8px; font-weight: 700; }
 .lista-nodos strong { color: var(--tinta-cap); }
 .lista-meta { color: var(--tinta-suave); }
 
-/* ---------- 12. Línea de tiempo ---------- */
 .lt-escenario { display: flex; flex-direction: column; gap: 10px; padding: 12px clamp(10px, 2vw, 22px) 60px; background: var(--fondo); --color: var(--tinta); }
 .lt-cabecera { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; }
 .lt-anio-centro { min-width: 4ch; margin: 0; font: 700 clamp(2rem, 1.4rem + 2.4vw, 3.2rem)/1 var(--serif); font-variant-numeric: tabular-nums lining-nums; }
@@ -682,7 +641,7 @@ legend { float: left; margin-right: 8px; font-weight: 700; }
 .lt-evento[data-fila="2"] .lt-etiqueta::after { bottom: 100%; height: 62px; }
 .lt-fecha { display: block; font-weight: 700; color: var(--tinta-cap); }
 .lt-titulo { display: block; }
-.lt-evento:hover .lt-punto, .lt-evento:focus-visible .lt-punto, .lt-evento.en-centro .lt-punto, .lt-evento[aria-pressed="true"] .lt-punto { transform: scale(1.4); }   /* microinteracción */
+.lt-evento:hover .lt-punto, .lt-evento:focus-visible .lt-punto, .lt-evento.en-centro .lt-punto, .lt-evento[aria-pressed="true"] .lt-punto { transform: scale(1.4); }
 .lt-evento:hover .lt-etiqueta, .lt-evento:focus-visible .lt-etiqueta { transform: scale(1.06); }
 .lt-evento[aria-pressed="true"] .lt-titulo { font-weight: 700; }
 .lt-evento:focus-visible { outline: none; }
@@ -696,7 +655,6 @@ legend { float: left; margin-right: 8px; font-weight: 700; }
 .ficha-botones { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
 @media (max-width: 599px) { .lt-ficha p { margin-bottom: 0.6em; } .lt-ventana { flex-basis: 250px; } }
 
-/* ---------- 13. Conclusiones, fuentes y pie ---------- */
 .pregunta-grande { font: 600 clamp(1.6rem, 1.1rem + 2vw, 2.5rem)/1.2 var(--serif); }
 .respuesta-grupo { font-size: 1.12rem; }
 .explosion .escenario { display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 26px 20px 74px; text-align: center; }
@@ -729,14 +687,12 @@ legend { float: left; margin-right: 8px; font-weight: 700; }
 .lista-fuentes { margin: 0 0 24px; padding: 0; list-style: none; }
 .lista-fuentes li { margin-bottom: 10px; padding-left: 2em; text-indent: -2em; }
 .lista-fuentes .vacia { color: var(--tinta-suave); font-style: italic; }
-/* Nota gris debajo de una fuente (por ejemplo, los capítulos usados de Hubeñák) */
 .fuente-nota { display: block; margin-top: 4px; text-indent: 0; font-size: 0.88rem; color: var(--tinta-suave); }
 .lista-fuentes a { word-break: break-all; }
 .pie { margin-left: var(--ancho-indice); margin-right: var(--margen-cubo); padding: 40px 20px 110px; border-top: 1px solid var(--linea); font-size: 0.9rem; color: var(--tinta-suave); }
 .pie > * { max-width: var(--ancho-lectura); margin-inline: auto; }
 .pie-titulo { font: 600 1.1rem var(--serif); color: var(--tinta); }
 
-/* ---------- 14. Capas de parallax: panel, partículas y papel ---------- */
 .capa-parallax { position: absolute; left: 0; right: 0; top: 0; height: 100%; pointer-events: none; will-change: transform; }
 [data-parallax]:not(.secuencia) > .capa-parallax { height: 150%; }
 .capa-mosaico-fondo { z-index: 0; background: url("../img/paneles-completos.jpg") center top / cover no-repeat; opacity: 0.05; }
@@ -768,7 +724,6 @@ legend { float: left; margin-right: 8px; font-weight: 700; }
 @keyframes polvo { 0%, 100% { transform: translate3d(0, 0, 0); opacity: 0; } 30% { opacity: 0.8; } 50% { transform: translate3d(var(--d), calc(var(--d) * -0.6), 0); } 70% { opacity: 0.6; } }
 .sin-3d .capa-particulas { display: none; }
 
-/* ---------- 15. Modo lectura: sin secuencias ni parallax, como texto normal ---------- */
 .modo-lectura .secuencia[data-tipo="fijada"] { height: auto; }
 .modo-lectura .escenario { position: relative; top: auto; height: auto; overflow: visible; }
 .modo-lectura .solo-animacion, .modo-lectura .control-secuencia, .modo-lectura .transicion,
@@ -804,34 +759,27 @@ legend { float: left; margin-right: 8px; font-weight: 700; }
   .reloj-anio.cambia { animation: none; }
 }
 
-/* ---------- 16. Videos del documental (introducción, capítulos y conclusión) ---------- */
 .video-pendiente code { padding: 0 5px; border-radius: 3px; background: rgba(255, 255, 255, 0.16); font-size: 0.85em; }
 #clip-introduccion .clip { margin: 28px 0 8px; }
 #clip-conclusion .clip { margin: 28px 0 0; }
 
-/* ---------- 17. El guía: Karl Marx como muñeco de papel ---------- */
 .solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .chispa { position: fixed; z-index: 44; right: 14px; bottom: calc(58px + env(safe-area-inset-bottom, 0px)); }
 .chispa-muneco { display: block; width: 104px; padding: 0; border: 0; background: none; cursor: pointer; filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.32)); transition: transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1); }
 .chispa-muneco:hover { transform: scale(1.05) rotate(-2deg); }
 .chispa-muneco:focus-visible { outline: 3px solid var(--foco); outline-offset: 4px; border-radius: 12px; }
 
-/* Las 4 piezas recortadas se apilan en el mismo lienzo (508 × 680 px) */
 .marx { position: relative; display: block; aspect-ratio: 508 / 680; }
 .marx img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; user-select: none; -webkit-user-drag: none; pointer-events: none; }
 .marx-torso, .marx-cabeza, .marx-cabeza-giro { position: absolute; inset: 0; }
 .marx-sombra { position: absolute; left: 14%; right: 6%; bottom: -3%; height: 7%; border-radius: 50%; background: rgba(0, 0, 0, 0.28); filter: blur(4px); }
-/* Cuerpo: respira (se estira apenas desde abajo) */
 .marx-torso { transform-origin: 55% 100%; animation: marx-respirar 3.6s ease-in-out infinite; }
-/* Cabeza: 26 % más grande que en la foto («cabezón») y se balancea sobre el cuello (60,2 % / 48,2 % del lienzo) */
 .marx-cabeza { transform-origin: 60.2% 48.2%; transform: scale(1.26); }
 .marx-cabeza-giro { transform-origin: 60.2% 48.2%; animation: marx-balanceo 5.2s ease-in-out infinite; }
-/* Mandíbula: al hablar baja y deja ver la boca pintada en la capa de fondo */
 .marx-mandibula { transform-origin: 60% 36%; }
 .hablando .marx-mandibula { animation: marx-hablar 0.17s ease-in-out infinite alternate; }
 .hablando .marx-cabeza-giro { animation: marx-asentir 0.55s ease-in-out infinite alternate; }
 .hablando .marx-torso { animation: marx-rebote 0.55s ease-in-out infinite alternate; }
-/* Respingo al tocarlo y gestos cuando está quieto (las clases las pone chispa.js) */
 .tocado .marx-cabeza-giro { animation: marx-resorte 0.7s cubic-bezier(0.3, 1.8, 0.5, 1); }
 .gesto-mirar .marx-cabeza-giro { animation: marx-mirar 1.4s ease-in-out; }
 .gesto-asentir .marx-cabeza-giro { animation: marx-asentir 0.35s ease-in-out 4 alternate; }
@@ -844,11 +792,9 @@ legend { float: left; margin-right: 8px; font-weight: 700; }
 @keyframes marx-resorte { 0% { transform: rotate(0) scale(1); } 30% { transform: rotate(-9deg) scale(1.06); } 60% { transform: rotate(6deg) scale(0.98); } 100% { transform: rotate(0) scale(1); } }
 @keyframes marx-mirar { 0%, 100% { transform: rotate(0); } 25%, 70% { transform: rotate(-8deg) translateX(-1.5%); } }
 @keyframes marx-saltito { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-10px) rotate(-2deg); } }
-/* Silenciado: más transparente y se mueve más lento */
 .silenciada .chispa-muneco { opacity: 0.8; }
 .silenciada .marx-cabeza-giro { animation-duration: 9s; }
 
-/* Globo de diálogo, a la izquierda del muñeco */
 .chispa-globo {
   position: absolute; right: calc(100% + 6px); bottom: 64px; width: min(320px, 70vw);
   padding: 12px 34px 12px 16px; border-radius: 16px; background: var(--superficie); color: var(--tinta);
@@ -864,7 +810,6 @@ legend { float: left; margin-right: 8px; font-weight: 700; }
 .chispa-nombre span { font: 600 0.75rem var(--sans); color: var(--tinta-suave); }
 .chispa-texto { margin: 0; min-height: 2.9em; }
 .chispa-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0 0; }
-/* «Dato 2 de 5» */
 .chispa-cuenta { margin-left: auto; font-size: 0.75rem; color: var(--tinta-suave); font-variant-numeric: tabular-nums; }
 .chispa-acciones button { padding: 4px 11px; border-radius: 999px; border: 1px solid var(--tinta); background: transparent; font-size: 0.78rem; font-weight: 700; cursor: pointer; }
 .chispa-acciones .chispa-otro { background: var(--tinta); color: var(--fondo); }
@@ -872,7 +817,6 @@ legend { float: left; margin-right: 8px; font-weight: 700; }
 .chispa-globo.automatico { animation: chispa-aparecer 0.25s ease-out; }
 @keyframes chispa-aparecer { from { opacity: 0; transform: translateY(8px) scale(0.96); } to { opacity: 1; transform: none; } }
 
-/* Tabletas y celulares: el muñeco más chico y el globo arriba */
 @media (min-width: 600px) and (max-width: 1099px) { .chispa-muneco { width: 86px; } .chispa { right: 8px; } }
 @media (max-width: 599px) {
   .chispa { right: 6px; bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }
@@ -880,7 +824,6 @@ legend { float: left; margin-right: 8px; font-weight: 700; }
   .chispa-globo { right: 0; bottom: calc(100% + 10px); width: min(320px, calc(100vw - 20px)); font-size: 0.9rem; }
   .chispa-globo::after { right: 20px; bottom: -11px; transform: rotate(135deg); }
 }
-/* Modo lectura y «reducir movimiento»: el muñeco queda quieto */
 .modo-lectura .marx-torso, .modo-lectura .marx-cabeza-giro { animation: none; }
 @media (prefers-reduced-motion: reduce) {
   .marx-torso, .marx-cabeza-giro, .hablando .marx-mandibula, .chispa-muneco, .chispa-globo.automatico { animation: none !important; }

@@ -1,10 +1,3 @@
-// =====================================================================
-// comprueba.js — Pregunta «Comprueba» de cada capítulo
-// Opción múltiple con retroalimentación inmediata: al elegir, se explica
-// por qué esa opción es correcta o no, y luego se muestran las demás razones.
-// =====================================================================
-
-// Arma la pregunta de cada capítulo dentro de su recuadro .comprueba
 function prepararComprueba() {
   document.querySelectorAll(".comprueba").forEach(caja => {
     const capitulo = Number(caja.dataset.capitulo);
@@ -26,7 +19,6 @@ function prepararComprueba() {
   });
 }
 
-// Revisa la opción elegida y explica cada opción con el texto base
 function comprobarRespuesta(capitulo, opcion) {
   const p = preguntas.find(q => q.capitulo === capitulo);
   const caja = document.querySelector('.comprueba[data-capitulo="' + capitulo + '"]');

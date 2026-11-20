@@ -1,14 +1,3 @@
-// =====================================================================
-// datos.js — TODAS las estructuras de datos del webdoc
-// Proyecto «Historia Conectada» · Grupo 2 · Nivel 5 (máximo)
-// Aquí no hay funciones: solo arreglos y objetos que leen los demás archivos.
-// Para cambiar un texto, una fecha o un video, se edita SOLO este archivo.
-// =====================================================================
-
-
-// ---------------------------------------------------------------------
-// 1. Configuración general (EDITABLE por el equipo)
-// ---------------------------------------------------------------------
 const config = {
   titulo: "Del «no-lugar» al Estado: el socialismo de 1516 a 1924",
   proyecto: "Historia Conectada",
@@ -17,15 +6,11 @@ const config = {
   universidad: "Universidad Católica San Pablo (UCSP)",
   anio: 2026,
   pregunta: "¿Cómo pasó el socialismo de ser una utopía a convertirse en el primer Estado comunista del mundo?",
-  // Gancho inicial (nivel 1): dato sorprendente para enganchar en los primeros segundos
   gancho: "En 1516 alguien imaginó una isla sin propiedad privada. En 1922 nació un Estado que decía hacerlo realidad.",
-  // Eslogan (la rúbrica pide título y eslogan originales)
   eslogan: "Una isla imaginaria, cuatro siglos y una revolución.",
-  // Finalidad y público objetivo (también los pide la rúbrica; salen en la ficha del Inicio)
   finalidad: "Educativa y divulgativa: explicar, con fuentes académicas y documentos de época, cómo el socialismo pasó de ser una idea a convertirse en un Estado (1516–1924).",
   publico: "Estudiantes universitarios de los primeros ciclos y de los últimos años de secundaria, y cualquier lector curioso sin conocimientos previos de historia.",
 
-  // Integrantes del grupo (salen en la ficha del Inicio y en el pie de página)
   integrantes: [
     "Sucasaca Cohata, Diego",
     "Flores Mango, Esteban",
@@ -35,37 +20,9 @@ const config = {
     "Zevallos Castillo, Pablo"
   ],
 
-  // Pie de cada ilustración (crédito editable)
-  creditoImagenes: "Ilustración del equipo",
-
-  // Código y recursos (la rúbrica pide que estén disponibles); salen al final de Fuentes
-  repositorio: "https://github.com/diegosucasacacohata-wq/pagina-web-historia",   // pegar aquí el enlace al código fuente (GitHub, Drive…)
-  recursos: [
-    "Código propio en HTML, CSS y JavaScript, sin librerías: motor de scroll, cubo 3D con matrices, red en SVG, línea de tiempo y preguntas.",
-    "Tipografías Source Serif 4 y Source Sans 3 (Google Fonts, licencia libre).",
-    "Documental grabado por el grupo con celular y editado con Remotion (cortes, tarjetas con fechas, retratos de dominio público y música); convertido a MP4 (H.264) para la web con FFmpeg.",
-    "Guía «Karl Marx»: fotografía de J. J. E. Mayall (1875, dominio público), recortada con Vision (macOS) y armada en piezas con Python (Pillow).",
-    "Paneles 1 a 6: ilustraciones del equipo, sin retoques; en el scrollytelling se usa una copia al doble de tamaño (img/hd) para que el zoom no se vea borroso."
-  ],
-  // Declaración de uso de IA (completar con el formato que entrega la docente)
-  usoIA: "En esta versión se usó IA (Claude, de Anthropic) para: recortar la foto de Marx y convertirla en muñeco, mejorar la presentación del scrollytelling, integrar y convertir los videos y ordenar las fuentes del guion. La investigación, el guion, la narración y la grabación son del grupo. [Revisar y completar con el formato de la docente.]"
+  creditoImagenes: "Ilustración hecha con IA"
 };
 
-// ---------------------------------------------------------------------
-// 2. Videos del documental: introducción, UNO POR CAPÍTULO y conclusión
-//    Son los videos editados del documental. La introducción va en el Inicio,
-//    cada capítulo dentro de su sección y la conclusión en Conclusiones.
-//    Para poner un video hay dos formas (con una basta):
-//    a) ARCHIVO: copiar el video a la carpeta video/ con el nombre EXACTO
-//       introduccion.mp4, capitulo-1.mp4 … capitulo-6.mp4 y conclusion.mp4.
-//       No hay que tocar nada más (el capítulo 3 todavía falta: sale «próximamente»).
-//    b) ENLACE: pegar en «enlace» el link de YouTube o de Google Drive
-//       (en Drive: Compartir → «Cualquier persona con el enlace»).
-//       Si «enlace» tiene algo, se usa el enlace en vez del archivo.
-//    Subtítulos (opcional): guardar capitulo-1.vtt… en video/ y escribir la ruta en «subtitulos».
-//    Mientras no haya video, se ve «próximamente» y el diseño no se rompe.
-//    ¿No habrá conclusión? Cambiar activo: true por activo: false.
-// ---------------------------------------------------------------------
 const videos = [
   { id: "introduccion", capitulo: 0, etiqueta: "Introducción", titulo: "Introducción: la pregunta central",
     archivo: "video/introduccion.mp4", subtitulos: "", enlace: "",
@@ -87,11 +44,6 @@ const videos = [
     transcripcion: "¿Cómo pasó el comunismo de ser tan solo una idea utópica a instituir el primer gobierno comunista del mundo, la URSS? Lo podemos resumir en seis pasos. Primero, una idea: la isla de Moro sin propiedad privada. Segundo, una profunda herida: la miseria que dejó la Revolución Industrial en la mayoría de la población. Tercero, una teoría: la lucha de clases planteada por Marx y Engels. Cuarto, una organización: la de cada una de las Internacionales. Quinto, una oportunidad: la Rusia del zar, hundida en la Primera Guerra Mundial. Y sexto, una toma del poder: la que sucedió en 1917. Aquí nos planteamos una nueva pregunta, la paradoja: Marx soñaba con una sociedad sin Estado; sin embargo, sus ideas desembocaron en un Estado gobernado con mano de hierro hasta 1953. Muchas gracias." }
 ];
 
-// ---------------------------------------------------------------------
-// 3. Glosario: definiciones de las palabras clave (subrayado punteado)
-//    En los textos, una palabra clave se escribe así: [[texto visible|clave]]
-//    o simplemente [[clave]] si el texto y la clave son iguales.
-// ---------------------------------------------------------------------
 const glosario = {
   "utopía": "Sociedad perfecta imaginada. El nombre viene de la isla que describió Tomás Moro en 1516.",
   "propiedad privada": "Bienes que pertenecen a una persona y no a la comunidad. Para Moro, la fuente de todos los males.",
@@ -121,10 +73,6 @@ const glosario = {
   "purgas": "Eliminación de rivales dentro del partido."
 };
 
-// ---------------------------------------------------------------------
-// 4. Contexto histórico (sección 6.0): cada oración resalta los paneles
-//    de los capítulos a los que se refiere.
-// ---------------------------------------------------------------------
 const contexto = [
   { texto: "Entre 1516 y 1924, Europa pasó de imaginar sociedades perfectas a intentar construirlas.", paneles: [1, 2, 3, 4, 5, 6], anio: 1516 },
   { texto: "La Revolución Industrial creó fábricas, ciudades y una nueva clase, el proletariado, y con ella la «cuestión social».", paneles: [1, 2], anio: "s. XVIII–XIX" },
@@ -135,12 +83,6 @@ const contexto = [
   { texto: "Esta página estudia cómo ocurrió ese paso de la idea al Estado.", paneles: [1, 2, 3, 4, 5, 6], anio: 1924 }
 ];
 
-// ---------------------------------------------------------------------
-// 5. Los 6 capítulos
-//    panel: número de panel (1 a 6) · particula: tipo de partículas del parallax
-//    apertura: los dos detalles de la secuencia de entrada (zoom en %)
-//    pasos: los 4 pasos del scrollytelling (texto a partir de la sección 6)
-// ---------------------------------------------------------------------
 const capitulos = [
   {
     numero: 1,
@@ -197,7 +139,6 @@ const capitulos = [
     particula: "humo",
     anio: 1848,
     apertura: {
-      // Nivel 5: «foco de luz». La pantalla empieza oscura y un círculo de luz centrado en la vela revela el panel.
       foco: { x: 41, y: 58 },
       detalles: [
         { x: 28, y: 36, zoom: 2.0, subtitulo: "Karl Marx: la historia como lucha de clases." },
@@ -232,7 +173,7 @@ const capitulos = [
     puente: "Una teoría no basta: para cambiar la sociedad hace falta organizar a los obreros.",
     concepto: {
       tipo: "semana",
-      anio: 1867,   // año que muestra el reloj durante esta secuencia
+      anio: 1867,
       titulo: "La semana del obrero",
       pie: "Esquema didáctico de la plusvalía (ejemplo de Engels, 1868).",
       subtitulos: [
@@ -278,7 +219,6 @@ const capitulos = [
         { fecha: "1889", hecho: "Nace la Segunda Internacional." }
       ]
     },
-    // Nivel 2: contadores que suben hasta la cifra cuando entran en pantalla
     contadores: [
       { valor: 1864, texto: "I Internacional", formato: "anio" },
       { valor: 1871, texto: "Comuna de París", formato: "anio" },
@@ -293,7 +233,7 @@ const capitulos = [
     puente: "La ola revolucionaria se frena en los países industrializados, pero no en Rusia.",
     concepto: {
       tipo: "mapa",
-      anio: 1871,   // año que muestra el reloj durante esta secuencia
+      anio: 1871,
       titulo: "De Londres a París",
       pie: "Mapa esquemático (no está a escala).",
       subtitulos: [
@@ -351,10 +291,9 @@ const capitulos = [
     puente: "La guerra de 1914 abre la oportunidad: en 1917 Rusia vive dos revoluciones.",
     concepto: {
       tipo: "choque",
-      anio: 1905,   // año que muestra el reloj durante esta secuencia
+      anio: 1905,
       titulo: "El choque",
       pie: "Las cifras varían según la fuente. Completar cada fuente con el guion del grupo.",
-      // Cifras de muertos que no coinciden (nivel 3). Fuentes EDITABLES.
       cifras: [
         { valor: "96", fuente: "Cifra oficial del gobierno zarista (verificar en el guion)" },
         { valor: "+200", fuente: "Adamovsky (2005): «cerca de doscientos manifestantes»" },
@@ -413,7 +352,7 @@ const capitulos = [
     puente: "Tomar el poder era el primer paso; ahora había que construir un Estado.",
     concepto: {
       tipo: "calendarios",
-      anio: 1917,   // año que muestra el reloj durante esta secuencia
+      anio: 1917,
       titulo: "Dos calendarios",
       pie: "Rusia usaba el calendario juliano, 13 días atrasado respecto al gregoriano.",
       hojas: [
@@ -477,7 +416,7 @@ const capitulos = [
     puente: "Ya tienes los seis pasos. La red muestra cómo se conectan entre sí.",
     concepto: {
       tipo: "brest",
-      anio: 1918,   // año que muestra el reloj durante esta secuencia
+      anio: 1918,
       titulo: "El precio de la paz",
       pie: "Mapa esquemático (no está a escala).",
       subtitulos: [
@@ -489,44 +428,33 @@ const capitulos = [
   }
 ];
 
-// ---------------------------------------------------------------------
-// 6. Enfoques de la imagen en cada paso del scrollytelling (tabla 5.1)
-//    x, y: punto del panel que queda al centro (en %) · zoom: aumento
-// ---------------------------------------------------------------------
 const pasos = [
-  { capitulo: 1, paso: 1, panel: 1, x: 50, y: 50, zoom: 1 },     // Panel 1 completo
-  { capitulo: 1, paso: 2, panel: 1, x: 56, y: 84, zoom: 2.2 },   // Plano de Utopía sobre la mesa
-  { capitulo: 1, paso: 3, panel: 2, x: 78, y: 55, zoom: 2.0 },   // Panel 2, mitad derecha: fábricas y obreros
-  { capitulo: 1, paso: 4, panel: 1, x: 80, y: 45, zoom: 2.0 },   // El mar y la ciudad al fondo
-  { capitulo: 2, paso: 1, panel: 2, x: 32, y: 42, zoom: 1.7 },   // Marx junto a la vela
-  { capitulo: 2, paso: 2, panel: 2, x: 40, y: 72, zoom: 2.4 },   // La vela roja y los papeles
-  { capitulo: 2, paso: 3, panel: 2, x: 78, y: 62, zoom: 2.0 },   // Mitad derecha: los obreros
-  { capitulo: 2, paso: 4, panel: 2, x: 50, y: 50, zoom: 1 },     // Panel 2 completo
-  { capitulo: 3, paso: 1, panel: 3, x: 50, y: 50, zoom: 1 },     // Panel 3 completo
-  { capitulo: 3, paso: 2, panel: 3, x: 40, y: 15, zoom: 2.2 },   // La bandera roja
-  { capitulo: 3, paso: 3, panel: 3, x: 33, y: 65, zoom: 1.8 },   // La barricada y la gente
-  { capitulo: 3, paso: 4, panel: 3, x: 85, y: 78, zoom: 2.2 },   // Las tropas que avanzan
-  { capitulo: 4, paso: 1, panel: 4, x: 68, y: 28, zoom: 1.9 },   // El Palacio de Invierno
-  { capitulo: 4, paso: 2, panel: 4, x: 20, y: 50, zoom: 2.0 },   // La procesión con íconos
-  { capitulo: 4, paso: 3, panel: 4, x: 86, y: 58, zoom: 2.0 },   // Los soldados disparando
-  { capitulo: 4, paso: 4, panel: 4, x: 50, y: 50, zoom: 1 },     // Panel 4 completo
-  { capitulo: 5, paso: 1, panel: 5, x: 22, y: 28, zoom: 2.2 },   // Lenin hablando
-  { capitulo: 5, paso: 2, panel: 5, x: 48, y: 75, zoom: 1.9 },   // La multitud con banderas
-  { capitulo: 5, paso: 3, panel: 5, x: 70, y: 45, zoom: 1.9 },   // El crucero y el palacio
-  { capitulo: 5, paso: 4, panel: 5, x: 50, y: 50, zoom: 1 },     // Panel 5 completo
-  { capitulo: 6, paso: 1, panel: 6, x: 32, y: 50, zoom: 1.6 },   // El cartel rasgado
-  { capitulo: 6, paso: 2, panel: 6, x: 28, y: 62, zoom: 2.2 },   // Los trabajadores del cartel
-  { capitulo: 6, paso: 3, panel: 6, x: 38, y: 22, zoom: 2.4 },   // El retrato de Lenin
-  { capitulo: 6, paso: 4, panel: 6, x: 80, y: 42, zoom: 2.0 }    // La sombra
+  { capitulo: 1, paso: 1, panel: 1, x: 50, y: 50, zoom: 1 },
+  { capitulo: 1, paso: 2, panel: 1, x: 56, y: 84, zoom: 2.2 },
+  { capitulo: 1, paso: 3, panel: 2, x: 78, y: 55, zoom: 2.0 },
+  { capitulo: 1, paso: 4, panel: 1, x: 80, y: 45, zoom: 2.0 },
+  { capitulo: 2, paso: 1, panel: 2, x: 32, y: 42, zoom: 1.7 },
+  { capitulo: 2, paso: 2, panel: 2, x: 40, y: 72, zoom: 2.4 },
+  { capitulo: 2, paso: 3, panel: 2, x: 78, y: 62, zoom: 2.0 },
+  { capitulo: 2, paso: 4, panel: 2, x: 50, y: 50, zoom: 1 },
+  { capitulo: 3, paso: 1, panel: 3, x: 50, y: 50, zoom: 1 },
+  { capitulo: 3, paso: 2, panel: 3, x: 40, y: 15, zoom: 2.2 },
+  { capitulo: 3, paso: 3, panel: 3, x: 33, y: 65, zoom: 1.8 },
+  { capitulo: 3, paso: 4, panel: 3, x: 85, y: 78, zoom: 2.2 },
+  { capitulo: 4, paso: 1, panel: 4, x: 68, y: 28, zoom: 1.9 },
+  { capitulo: 4, paso: 2, panel: 4, x: 20, y: 50, zoom: 2.0 },
+  { capitulo: 4, paso: 3, panel: 4, x: 86, y: 58, zoom: 2.0 },
+  { capitulo: 4, paso: 4, panel: 4, x: 50, y: 50, zoom: 1 },
+  { capitulo: 5, paso: 1, panel: 5, x: 22, y: 28, zoom: 2.2 },
+  { capitulo: 5, paso: 2, panel: 5, x: 48, y: 75, zoom: 1.9 },
+  { capitulo: 5, paso: 3, panel: 5, x: 70, y: 45, zoom: 1.9 },
+  { capitulo: 5, paso: 4, panel: 5, x: 50, y: 50, zoom: 1 },
+  { capitulo: 6, paso: 1, panel: 6, x: 32, y: 50, zoom: 1.6 },
+  { capitulo: 6, paso: 2, panel: 6, x: 28, y: 62, zoom: 2.2 },
+  { capitulo: 6, paso: 3, panel: 6, x: 38, y: 22, zoom: 2.4 },
+  { capitulo: 6, paso: 4, panel: 6, x: 80, y: 42, zoom: 2.0 }
 ];
 
-// ---------------------------------------------------------------------
-// 7. Red de relaciones históricas: nodos
-//    tipo: causa | idea | actor | acontecimiento | consecuencia
-//    anio: posición en el eje del tiempo (si no hay una fecha exacta, solo sirve para ubicarlo)
-//    fechaTexto: lo que se muestra al usuario
-//    fuente: cita breve de una fuente de la lista «fuentes» (sección 13)
-// ---------------------------------------------------------------------
 const tiposNodo = [
   { id: "causa", nombre: "Causas", singular: "Causa", forma: "rombo" },
   { id: "idea", nombre: "Ideas y obras", singular: "Idea u obra", forma: "hexagono" },
@@ -536,7 +464,6 @@ const tiposNodo = [
 ];
 
 const nodos = [
-  // ----- Causas -----
   { id: "rev-industrial", nombre: "Revolución Industrial", corto: "Rev. Industrial", tipo: "causa", capitulo: 1, anio: 1780, fechaTexto: "siglos XVIII–XIX",
     descripcion: "Crea fábricas, ciudades y una nueva clase: el proletariado.", fuente: "Hubeñák (2020, cap. 11)" },
   { id: "miseria-obrera", nombre: "Miseria obrera y cuestión social", corto: "Miseria obrera", tipo: "causa", capitulo: 1, anio: 1812, fechaTexto: "siglo XIX",
@@ -550,7 +477,6 @@ const nodos = [
   { id: "primera-guerra", nombre: "Primera Guerra Mundial", corto: "I Guerra Mundial", tipo: "causa", capitulo: 4, anio: 1914, fechaTexto: "1914",
     descripcion: "Rusia entra en 1914. La guerra abre la oportunidad para la revolución.", fuente: "Hubeñák (2020, cap. 12); Kreibohm (2017)" },
 
-  // ----- Ideas y obras -----
   { id: "utopia", nombre: "Utopía", corto: "Utopía", tipo: "idea", capitulo: 1, anio: 1516, fechaTexto: "1516",
     descripcion: "Libro de Tomás Moro: una isla imaginaria sin propiedad privada, que él consideraba la fuente de todos los males.", fuente: "Moro (1516/2007); Pro (s. f.)" },
   { id: "socialismo-utopico", nombre: "Socialismo utópico", corto: "Socialismo utópico", tipo: "idea", capitulo: 1, anio: 1822, fechaTexto: "siglo XIX",
@@ -568,7 +494,6 @@ const nodos = [
   { id: "lema", nombre: "Lema «paz, pan y tierra»", corto: "Paz, pan y tierra", tipo: "idea", capitulo: 5, anio: 1917.6, fechaTexto: "1917",
     descripcion: "Lema que difunden los bolcheviques en 1917.", fuente: "Kreibohm (2017)" },
 
-  // ----- Actores (círculo con iniciales) -----
   { id: "moro", nombre: "Tomás Moro", iniciales: "TM", tipo: "actor", capitulo: 1, anio: 1516, fechaTexto: "1516",
     descripcion: "Autor de Utopía (1516).", fuente: "Hubeñák (2020, cap. 7); Moro (1516/2007)" },
   { id: "saint-simon", nombre: "Saint-Simon", iniciales: "SS", tipo: "actor", capitulo: 1, anio: 1814, fechaTexto: "siglo XIX",
@@ -606,7 +531,6 @@ const nodos = [
   { id: "stalin", nombre: "Stalin", iniciales: "St", tipo: "actor", capitulo: 6, anio: 1924, fechaTexto: "desde 1924",
     descripcion: "Tras luchas internas y purgas, toma el control después de la muerte de Lenin.", fuente: "Hubeñák (2020, cap. 12); Kreibohm (2017)" },
 
-  // ----- Acontecimientos -----
   { id: "new-harmony", nombre: "New Harmony", corto: "New Harmony", tipo: "acontecimiento", capitulo: 1, anio: 1825, fechaTexto: "1825",
     descripcion: "Comunidad fundada por Owen en Indiana. Como las demás comunidades utópicas, dura poco.", fuente: "Kumar (1992)" },
   { id: "i-internacional", nombre: "I Internacional", corto: "I Internacional", tipo: "acontecimiento", capitulo: 3, anio: 1864, fechaTexto: "1864",
@@ -624,7 +548,6 @@ const nodos = [
   { id: "octubre-1917", nombre: "Revolución de Octubre", corto: "Rev. de Octubre", tipo: "acontecimiento", capitulo: 5, anio: 1917.85, fechaTexto: "25 oct 1917 (7 nov)",
     descripcion: "Los bolcheviques, con Lenin y Trotski, toman el poder.", fuente: "Hubeñák (2020, cap. 12); Kreibohm (2017)" },
 
-  // ----- Consecuencias -----
   { id: "gobierno-provisional", nombre: "Gobierno Provisional", corto: "Gob. Provisional", tipo: "consecuencia", capitulo: 5, anio: 1917.15, fechaTexto: "1917",
     descripcion: "Gobierna tras la caída del zar (primero Lvov, desde julio Kérenski) y sigue en la guerra.", fuente: "Kreibohm (2017)" },
   { id: "brest-litovsk", nombre: "Brest-Litovsk", corto: "Brest-Litovsk", tipo: "consecuencia", capitulo: 6, anio: 1918.2, fechaTexto: "marzo de 1918",
@@ -641,10 +564,6 @@ const nodos = [
     descripcion: "Muere Lenin; tras luchas internas y purgas, Stalin toma el control.", fuente: "Hubeñák (2020, cap. 12); Kreibohm (2017)" }
 ];
 
-// ---------------------------------------------------------------------
-// 8. Red: conexiones (desde → relación → hacia)
-//    frase: opcional, cuando la frase automática «A relación B» no se lee bien
-// ---------------------------------------------------------------------
 const conexiones = [
   { desde: "rev-industrial", hacia: "miseria-obrera", relacion: "provoca" },
   { desde: "miseria-obrera", hacia: "socialismo-utopico", relacion: "motiva" },
@@ -704,9 +623,6 @@ const conexiones = [
     frase: "La muerte de Lenin abre paso al ascenso de Stalin" }
 ];
 
-// ---------------------------------------------------------------------
-// 9. Recorrido guiado «De la utopía al Estado» (10 pasos)
-// ---------------------------------------------------------------------
 const recorrido = [
   { nodos: ["utopia"], frase: "1516: Moro imagina una isla sin propiedad privada. La idea existe, pero solo en un libro." },
   { nodos: ["rev-industrial"], frase: "Siglos después, la Revolución Industrial crea fábricas, ciudades y el proletariado." },
@@ -720,12 +636,6 @@ const recorrido = [
   { nodos: ["urss"], frase: "Tras la guerra civil, en 1922 nace la URSS: el primer Estado comunista del mundo." }
 ];
 
-// ---------------------------------------------------------------------
-// 10. Línea de tiempo: eventos
-//     posicion: lugar en la línea (año con decimales para separar meses del mismo año)
-//     fechaJuliana / fechaGregoriana: solo en 1905 y 1917
-//     nodo: id del nodo de la red con el que se conecta («Ver en la red»)
-// ---------------------------------------------------------------------
 const tiposEvento = [
   { id: "causa", nombre: "Causa" },
   { id: "idea", nombre: "Idea u obra" },
@@ -805,9 +715,6 @@ const eventos = [
     porQue: "El Estado queda en manos de Stalin.", fuente: "Hubeñák (2020, cap. 12); Kreibohm (2017)" }
 ];
 
-// ---------------------------------------------------------------------
-// 11. Preguntas «Comprueba» (sección 6.7)
-// ---------------------------------------------------------------------
 const preguntas = [
   { capitulo: 1, enunciado: "¿Qué consideraba Moro la fuente de los males de su sociedad?",
     opciones: ["La propiedad privada", "La monarquía", "El comercio con América"], correcta: 0,
@@ -853,13 +760,8 @@ const preguntas = [
     ] }
 ];
 
-// ---------------------------------------------------------------------
-// 12. Conclusiones (EDITABLES)
-// ---------------------------------------------------------------------
 const conclusiones = {
-  // Borrador hecho con el texto base: reemplazar con el cierre del guion
   respuesta: "El socialismo pasó de utopía a Estado en una cadena de pasos. En 1516 Moro imaginó una sociedad sin propiedad privada. La Revolución Industrial abrió la herida de la «cuestión social». Marx y Engels la explicaron con una teoría que se presentaba como científica, y las Internacionales organizaron a los obreros. En Rusia, la autocracia y la guerra de 1914 dieron la oportunidad: en 1917 los bolcheviques tomaron el poder y en 1922 fundaron la URSS, el primer Estado comunista del mundo. Ese Estado, sin embargo, quedó lejos de la meta de Marx: una sociedad sin propiedad privada ni Estado.",
-  // Los 6 pasos de la respuesta, cada uno con el capítulo donde se explica
   pasos: [
     { palabra: "Una idea", capitulo: 1, texto: "Moro imagina una sociedad sin propiedad privada (1516)." },
     { palabra: "Una herida", capitulo: 1, texto: "La Revolución Industrial crea la «cuestión social»." },
@@ -869,7 +771,6 @@ const conclusiones = {
     { palabra: "Una toma del poder", capitulo: 5, texto: "Octubre de 1917: los bolcheviques toman el poder." }
   ],
   resultado: { palabra: "Un Estado", capitulo: 6, texto: "1922: nace la URSS." },
-  // Palabra de cada cara del cubo en la vista explotada (una por capítulo)
   palabrasCubo: ["una idea y una herida", "una teoría", "una organización", "una oportunidad", "una toma del poder", "un Estado"],
   ideasClave: [
     "Una idea necesitó una herida, una teoría y una organización para convertirse en un movimiento.",
@@ -902,13 +803,6 @@ const conclusiones = {
   ]
 };
 
-// ---------------------------------------------------------------------
-// 13. Fuentes en APA 7: solo las que sustentan los textos y los videos (NO inventar)
-//     Cada categoría se ordena sola alfabéticamente.
-//     «nota» (opcional) se muestra debajo de la referencia, en gris: dice qué parte sustenta.
-//     PLANTILLA para agregar una fuente:
-//     { apa: "Apellido, N. (Año). <em>Título</em>. Editorial.", enlace: "https://...", nota: "Capítulo N: ..." }
-// ---------------------------------------------------------------------
 const fuentes = [
   { categoria: "Lectura base del curso", lista: [
     { apa: "Hubeñák, F. (2020). <em>Historia integral de Occidente: Desde una perspectiva cristiana</em> (con la colaboración de G. Gómez de Aso y M. E. Santiago de Camusso). Educa.", enlace: "",
@@ -940,19 +834,12 @@ const fuentes = [
   ] }
 ];
 
-// ---------------------------------------------------------------------
-// 14. El guía (Karl Marx como muñeco de papel): datos curiosos por sección
-//     Salen del texto base; los marcados con (+) son datos generales sobre la
-//     vida de Marx que se agregaron para el muñeco (están en la guía de sustentación).
-//     La clave es el id de la sección. El primer dato de «inicio» es el saludo.
-//     Para agregar un dato, se escribe una línea más entre comillas.
-// ---------------------------------------------------------------------
 const curiosidades = {
   "inicio": [
     "¡Hola! Soy Karl Marx… bueno, un muñeco de papel recortado de mi foto. Te acompaño con datos curiosos: tócame cuando quieras otro.",
     "Esta historia dura 408 años: va de 1516 a 1924.",
-    "Nací en Tréveris (Prusia) en 1818 y morí en Londres en 1883. Lo que pasó en Rusia en 1917… ya no lo vi.",   // (+)
-    "Me recortaron de una foto de 1875, tomada en Londres por el fotógrafo John Mayall."   // (+)
+    "Nací en Tréveris (Prusia) en 1818 y morí en Londres en 1883. Lo que pasó en Rusia en 1917… ya no lo vi.",
+    "Me recortaron de una foto de 1875, tomada en Londres por el fotógrafo John Mayall."
   ],
   "contexto": [
     "La Revolución Industrial creó una clase nueva: el proletariado, los obreros que solo tienen su trabajo para vivir.",
@@ -973,15 +860,15 @@ const curiosidades = {
     "Entre el Manifiesto Comunista (1848) y el primer tomo de El capital (1867) pasaron 19 años.",
     "Plusvalía, en simple: lo que el obrero produce después de cubrir su salario y no se le paga.",
     "Mi meta era una sociedad sin propiedad privada… ¡y sin Estado! Acuérdate de esto en el capítulo 6.",
-    "Escribí buena parte de El capital en la sala de lectura del Museo Británico, en Londres.",   // (+)
-    "Engels no solo escribió conmigo el Manifiesto: durante años también me ayudó con dinero.",   // (+)
-    "Los tomos 2 y 3 de El capital salieron después de mi muerte: los publicó Engels en 1885 y 1894."   // (+)
+    "Escribí buena parte de El capital en la sala de lectura del Museo Británico, en Londres.",
+    "Engels no solo escribió conmigo el Manifiesto: durante años también me ayudó con dinero.",
+    "Los tomos 2 y 3 de El capital salieron después de mi muerte: los publicó Engels en 1885 y 1894."
   ],
   "capitulo-3": [
     "Los estatutos de la Primera Internacional los redacté yo, en Londres, en 1864.",
     "En la Internacional tuve que enfrentarme primero con Proudhon y luego con el ruso Bakunin, defensor del anarquismo.",
     "La Comuna de París fue aplastada en 1871… pero Lenin la tomó como referencia 46 años después.",
-    "Sobre la Comuna escribí un folleto ese mismo año: La guerra civil en Francia (1871)."   // (+)
+    "Sobre la Comuna escribí un folleto ese mismo año: La guerra civil en Francia (1871)."
   ],
   "capitulo-4": [
     "«Bolchevique» quiere decir «mayoritario». El nombre salió de una votación del partido en 1903.",
@@ -1016,7 +903,7 @@ const curiosidades = {
     "Mueve el comparador para ver lo que proponía Marx frente a lo que ocurrió."
   ],
   "fuentes": [
-    "Ojo: los 6 paneles son ilustraciones del equipo, no documentos históricos.",
+    "Ojo: los 6 paneles son ilustraciones hechas con IA, no documentos históricos.",
     "Yo sí salí de un documento real: una fotografía de 1875."
   ]
 };

@@ -1,38 +1,22 @@
-// =====================================================================
-// chispa.js — El guía del webdoc: Karl Marx como muñeco de papel
-// Es la foto de Marx de 1875 recortada en 4 piezas (img/marx/) que se
-// animan con CSS. Cuenta datos curiosos de la sección donde está el lector.
-// (Antes era «Chispa», la vela del panel 2: se mantienen los nombres
-// de las funciones para no romper el resto del código.)
-// Los datos están en el arreglo «curiosidades» de datos.js.
-// - Al llegar a una sección nueva, habla solo una vez (si no está silenciado).
-// - Al tocarlo, cuenta otro dato de esa sección.
-// =====================================================================
-
-// Estado del guía: sus elementos en la página y sus temporizadores
 const chispa = {
-  raiz: null,            // contenedor del muñeco y su globo
-  boton: null,           // el muñeco (es un botón)
-  globo: null,           // globo de diálogo
-  texto: null,           // texto que se ve, letra por letra
-  anuncio: null,         // el mismo texto completo, para lectores de pantalla
+  raiz: null,
+  boton: null,
+  globo: null,
+  texto: null,
+  anuncio: null,
   botonSilencio: null,
-  seccion: "inicio",     // sección donde está el lector
-  siguiente: {},         // sección → número del próximo dato
-  saludadas: new Set(),  // secciones donde ya habló solo
-  espera: null,          // temporizador antes de hablar solo
-  cierre: null,          // temporizador para cerrar el globo
-  escritura: null,       // temporizador del efecto de escribir
-  gesto: null,           // temporizador de los gestos cuando está quieto
-  cuenta: null,          // texto «Dato 2 de 5»
-  silenciada: false      // true = solo habla si lo tocan
+  seccion: "inicio",
+  siguiente: {},
+  saludadas: new Set(),
+  espera: null,
+  cierre: null,
+  escritura: null,
+  gesto: null,
+  cuenta: null,
+  silenciada: false
 };
 
-// Arma el muñeco de Marx con sus 4 piezas recortadas, apiladas en el mismo lienzo:
-// el cuerpo y la cabeza en 3 capas (fondo con la boca abierta pintada, mandíbula y parte de arriba).
-// La cabeza va un poco más grande que en la foto, como un muñeco «cabezón» (lo hace el CSS).
 function dibujarChispa() {
-  // Una pieza es una imagen .webp con fondo transparente (img/marx/marx-<nombre>.webp)
   const pieza = nombre => '<img class="marx-' + nombre + '" src="' + rutaImagen("marx/marx-" + nombre + ".webp") + '" alt="" draggable="false">';
   return '<span class="marx" aria-hidden="true">' +
     '<span class="marx-sombra"></span>' +
@@ -41,12 +25,11 @@ function dibujarChispa() {
   '</span>';
 }
 
-// Crea el muñeco de Marx y su globo de diálogo en la esquina inferior derecha
 function crearChispa() {
   try {
     chispa.silenciada = localStorage.getItem("webdoc-g2-chispa-silenciada") === "1";
   } catch (error) {
-    chispa.silenciada = false;   // si el navegador no deja guardar, empieza hablando
+    chispa.silenciada = false;
   }
   const raiz = document.createElement("div");
   raiz.className = "chispa";
@@ -77,32 +60,26 @@ function crearChispa() {
   actualizarBotonSilencio();
   programarGesto();
 
-  // Tocar a Marx: da un respingo (clase «tocado») y cuenta el siguiente dato de la sección
   chispa.boton.addEventListener("click", () => {
     chispa.raiz.classList.remove("tocado");
-    void chispa.raiz.offsetWidth;            // reinicia la animación del respingo
+    void chispa.raiz.offsetWidth;
     chispa.raiz.classList.add("tocado");
     setTimeout(() => chispa.raiz.classList.remove("tocado"), 700);
     decirDato(proximoDato(chispa.seccion), false);
   });
-  // «Otro dato» cuenta el siguiente; la × cierra el globo; «Silenciar» lo calla
   raiz.querySelector(".chispa-otro").addEventListener("click", () => decirDato(proximoDato(chispa.seccion), false));
   raiz.querySelector(".chispa-cerrar").addEventListener("click", () => { cerrarGlobo(); chispa.boton.focus(); });
   chispa.botonSilencio.addEventListener("click", alternarSilencioChispa);
 
-  // Mientras el lector tiene el cursor o el foco en el globo, no se cierra solo
   chispa.globo.addEventListener("mouseenter", () => clearTimeout(chispa.cierre));
   chispa.globo.addEventListener("focusin", () => clearTimeout(chispa.cierre));
   chispa.globo.addEventListener("mouseleave", () => programarCierre(chispa.texto.textContent));
 
-  // Escape cierra el globo
   document.addEventListener("keydown", e => {
     if (e.key === "Escape" && !chispa.globo.hidden) cerrarGlobo();
   });
 }
 
-// Devuelve el próximo dato curioso de una sección (al terminar, vuelve a empezar)
-// y actualiza el contador «Dato N de M»
 function proximoDato(seccion) {
   const lista = curiosidades[seccion] || curiosidades.inicio;
   const n = chispa.siguiente[seccion] || 0;
@@ -111,7 +88,6 @@ function proximoDato(seccion) {
   return lista[n];
 }
 
-// Marx dice un texto: abre el globo, mueve la mandíbula y escribe letra por letra
 function decirDato(texto, automatico) {
   clearTimeout(chispa.escritura);
   clearTimeout(chispa.cierre);
@@ -126,7 +102,6 @@ function decirDato(texto, automatico) {
     programarCierre(texto);
     return;
   }
-  // Efecto de escribir: una letra cada 22 milisegundos, con la mandíbula moviéndose (clase «hablando»)
   chispa.raiz.classList.add("hablando");
   let letras = 0;
   const escribir = () => {
@@ -142,14 +117,12 @@ function decirDato(texto, automatico) {
   escribir();
 }
 
-// Programa el cierre automático del globo (más tiempo si el texto es largo)
 function programarCierre(texto) {
   clearTimeout(chispa.cierre);
   const tiempo = Math.min(14000, 4500 + texto.length * 55);
   chispa.cierre = setTimeout(cerrarGlobo, tiempo);
 }
 
-// Cierra el globo de diálogo
 function cerrarGlobo() {
   clearTimeout(chispa.escritura);
   clearTimeout(chispa.cierre);
@@ -158,8 +131,6 @@ function cerrarGlobo() {
   chispa.boton.setAttribute("aria-expanded", "false");
 }
 
-// Se llama al cambiar de sección (desde actualizarIndice): si el lector se queda
-// un momento en la sección nueva, Marx habla solo una vez
 function chispaCambioDeSeccion(id) {
   if (!chispa.raiz) return;
   chispa.seccion = id;
@@ -172,26 +143,21 @@ function chispaCambioDeSeccion(id) {
   }, id === "inicio" ? 1600 : 1300);
 }
 
-// Silencia o reactiva a Marx (silenciado, solo habla si lo tocan)
 function alternarSilencioChispa() {
   chispa.silenciada = !chispa.silenciada;
   try {
     localStorage.setItem("webdoc-g2-chispa-silenciada", chispa.silenciada ? "1" : "0");
   } catch (error) {
-    // si el navegador no deja guardar, solo dura mientras la página esté abierta
   }
   actualizarBotonSilencio();
   if (chispa.silenciada) cerrarGlobo();
 }
 
-// Cambia el texto del botón según si Marx está silenciado o no
 function actualizarBotonSilencio() {
   chispa.botonSilencio.textContent = chispa.silenciada ? "Que hable solo" : "Silenciar";
   chispa.raiz.classList.toggle("silenciada", chispa.silenciada);
 }
 
-// Cada 6 a 13 segundos, si está quieto, hace un gesto al azar: mira a un lado, asiente o da un saltito.
-// Cada gesto es una clase de CSS que dura 1,4 segundos.
 function programarGesto() {
   clearTimeout(chispa.gesto);
   chispa.gesto = setTimeout(() => {

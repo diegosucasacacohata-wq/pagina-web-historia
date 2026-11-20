@@ -1,46 +1,33 @@
-// =====================================================================
-// red.js — Red interactiva de relaciones históricas (SVG + JavaScript propio)
-// Eje horizontal = tiempo (con un corte entre 1525 y 1775).
-// 5 carriles horizontales, uno por tipo: causas, ideas y obras, actores,
-// acontecimientos y consecuencias. Forma según el tipo, color según el capítulo.
-// =====================================================================
 const red = {
   svg: null,
   ancho: 1400,
   alto: 770,
-  posiciones: {},        // id del nodo → { x, y }
+  posiciones: {},
   filtroTipos: new Set(tiposNodo.map(t => t.id)),
-  filtroCapitulo: null,  // null = todos
+  filtroCapitulo: null,
   textoBusqueda: "",
   seleccionado: null,
-  pasoRecorrido: -1      // -1 = recorrido apagado
+  pasoRecorrido: -1
 };
 
-// Escala del tiempo de la red: cada par es [año, posición x]
 const TRAMOS_RED = [[1510, 130], [1525, 180], [1775, 236], [1830, 400], [1875, 530], [1900, 640], [1906, 790], [1913, 880], [1916, 930], [1917.5, 1100], [1919, 1215], [1925, 1385]];
 const CARRIL_ALTO = 140;
 const CARRIL_INICIO = 40;
-const SUBFILAS = [0, -46, 46];   // desplazamientos dentro del carril para que los nodos no se tapen
+const SUBFILAS = [0, -46, 46];
 
-// Busca un nodo por su id
 function nodoPorId(id) {
   return nodos.find(n => n.id === id);
 }
 
-// Frase de una conexión: «Revolución Industrial provoca Miseria obrera y cuestión social»
 function fraseConexion(c) {
   if (c.frase) return c.frase;
   return nodoPorId(c.desde).nombre + " " + c.relacion + " " + nodoPorId(c.hacia).nombre;
 }
 
-// Nombre del tipo en singular («Causa», «Actor»…)
 function nombreTipo(tipo) {
   return tiposNodo.find(t => t.id === tipo).singular;
 }
 
-// ---------- Dibujo ----------
-
-// Calcula dónde va cada nodo: x por su año, y por su carril (y una subfila si hay otro muy cerca)
 function calcularPosicionesRed() {
   red.posiciones = {};
   tiposNodo.forEach((tipo, carril) => {
@@ -58,7 +45,6 @@ function calcularPosicionesRed() {
   });
 }
 
-// Dibuja la forma de un nodo según su tipo
 function formaNodo(n) {
   if (n.tipo === "causa") return '<polygon class="forma" points="0,-16 16,0 0,16 -16,0"/>';
   if (n.tipo === "idea") {
@@ -73,7 +59,6 @@ function formaNodo(n) {
   return '<rect class="forma" x="-12" y="-12" width="24" height="24" rx="5"/>';
 }
 
-// Dibuja toda la red: carriles, eje del tiempo con su corte, flechas y nodos
 function dibujarRed() {
   red.svg = document.getElementById("red-svg");
   calcularPosicionesRed();
@@ -82,7 +67,6 @@ function dibujarRed() {
     '<marker id="flecha-activa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="punta-activa"/></marker>' +
     '</defs>';
 
-  // Carriles con su nombre
   tiposNodo.forEach((tipo, i) => {
     const y = CARRIL_INICIO + i * CARRIL_ALTO;
     html += '<g class="carril-fondo" data-tipo="' + tipo.id + '">' +
@@ -90,7 +74,6 @@ function dibujarRed() {
       '<text class="carril-nombre" x="12" y="' + (y + 22) + '">' + tipo.nombre + '</text></g>';
   });
 
-  // Eje del tiempo con marcas y el corte entre 1525 y 1775
   const yEje = CARRIL_INICIO + 5 * CARRIL_ALTO + 18;
   html += '<g class="eje">';
   [1516, 1780, 1800, 1825, 1850, 1875, 1900, 1905, 1910, 1914, 1917, 1920, 1924].forEach(a => {
@@ -102,7 +85,6 @@ function dibujarRed() {
   html += '<rect x="' + (xCorte - 10) + '" y="' + CARRIL_INICIO + '" width="20" height="' + (5 * CARRIL_ALTO) + '" class="corte"/>' +
     '<text x="' + xCorte + '" y="' + (yEje + 2) + '" class="corte-texto">// 1525–1775</text></g>';
 
-  // Flechas (conexiones)
   html += '<g class="aristas">';
   conexiones.forEach((c, i) => {
     const a = red.posiciones[c.desde], b = red.posiciones[c.hacia];
@@ -117,7 +99,6 @@ function dibujarRed() {
   });
   html += '</g>';
 
-  // Nodos agrupados por carril (así la secuencia los hace aparecer carril por carril)
   tiposNodo.forEach(tipo => {
     html += '<g class="carril-nodos" data-tipo="' + tipo.id + '">';
     nodos.filter(n => n.tipo === tipo.id).forEach(n => {
@@ -132,7 +113,6 @@ function dibujarRed() {
   });
   red.svg.innerHTML = html;
 
-  // Eventos: clic, toque o Enter sobre un nodo
   red.svg.querySelectorAll(".nodo").forEach(g => {
     g.addEventListener("click", () => mostrarDetalleNodo(g.dataset.id));
     g.addEventListener("keydown", e => {
@@ -146,9 +126,6 @@ function dibujarRed() {
   registrarSecuencia(document.getElementById("red-secuencia"), dibujarMontajeRed);
 }
 
-// ---------- Secuencia: la red se arma por carriles ----------
-
-// Hace aparecer los carriles uno por uno y luego dibuja las flechas; al final la red se vuelve interactiva
 function dibujarMontajeRed(avance) {
   red.svg.querySelectorAll(".carril-nodos").forEach((g, i) => {
     const e = suavizar(tramo(avance, 0.03 + i * 0.12, 0.17 + i * 0.12));
@@ -168,9 +145,6 @@ function dibujarMontajeRed(avance) {
   document.getElementById("red-subtitulo").textContent = textos[indice];
 }
 
-// ---------- Interacción ----------
-
-// Muestra el panel con los datos de un nodo y resalta sus conexiones
 function mostrarDetalleNodo(id) {
   const n = nodoPorId(id);
   if (!n) return;
@@ -196,13 +170,11 @@ function mostrarDetalleNodo(id) {
   ubicarPanelRed(id);
 }
 
-// Pone el panel al lado contrario del nodo para no taparlo
 function ubicarPanelRed(id) {
   const panel = document.getElementById("red-panel");
   panel.classList.toggle("a-la-izquierda", red.posiciones[id].x > red.ancho / 2);
 }
 
-// Resalta el nodo y sus conexiones; el resto se atenúa
 function resaltarConexiones(id) {
   const vecinos = new Set([id]);
   conexiones.forEach(c => {
@@ -219,7 +191,6 @@ function resaltarConexiones(id) {
   });
 }
 
-// Quita la selección y cierra el panel
 function cerrarPanelRed() {
   red.seleccionado = null;
   red.pasoRecorrido = -1;
@@ -228,7 +199,6 @@ function cerrarPanelRed() {
   red.svg.querySelectorAll(".resaltado, .elegido, .resaltada").forEach(e => e.classList.remove("resaltado", "elegido", "resaltada"));
 }
 
-// Aplica juntos los tres filtros: tipo, capítulo y búsqueda
 function aplicarFiltrosRed() {
   const texto = red.textoBusqueda.trim().toLowerCase();
   const visibles = new Set();
@@ -248,13 +218,11 @@ function aplicarFiltrosRed() {
   });
 }
 
-// Filtra la red por tipo (recibe la lista de tipos marcados)
 function filtrarRedPorTipo(tipos) {
   red.filtroTipos = new Set(tipos);
   aplicarFiltrosRed();
 }
 
-// Filtra la red por capítulo (null = todos)
 function filtrarRedPorCapitulo(n) {
   red.filtroCapitulo = n;
   document.querySelectorAll(".red-capitulo").forEach(b => {
@@ -264,7 +232,6 @@ function filtrarRedPorCapitulo(n) {
   aplicarFiltrosRed();
 }
 
-// Busca nodos por nombre; si hay uno solo, lo abre
 function buscarNodo(texto) {
   red.textoBusqueda = texto;
   aplicarFiltrosRed();
@@ -275,7 +242,6 @@ function buscarNodo(texto) {
   if (encontrados.length === 1) mostrarDetalleNodo(encontrados[0].id);
 }
 
-// Recorrido guiado «De la utopía al Estado»: muestra el paso indicado (0 a 9)
 function avanzarRecorrido(paso) {
   red.pasoRecorrido = limitar(paso, 0, recorrido.length - 1);
   const actual = recorrido[red.pasoRecorrido];
@@ -312,9 +278,6 @@ function avanzarRecorrido(paso) {
   }));
 }
 
-// ---------- Herramientas, leyenda y vista de lista ----------
-
-// Arma los filtros (casillas y botones de color), el buscador y los botones
 function construirHerramientasRed() {
   const caja = document.getElementById("red-herramientas");
   caja.innerHTML =
@@ -350,7 +313,6 @@ function construirHerramientasRed() {
   });
 }
 
-// Leyenda siempre visible: formas por tipo y colores por capítulo
 function construirLeyendaRed() {
   const formas = { causa: "◆", idea: "⬢", actor: "Ⓐ", acontecimiento: "●", consecuencia: "■" };
   document.getElementById("red-leyenda").innerHTML =
@@ -358,7 +320,6 @@ function construirLeyendaRed() {
     '<span class="leyenda-grupo">' + capitulos.map(c => '<span><i style="background: var(--c' + c.numero + ')"></i>Cap. ' + c.numero + '</span>').join("") + '</span>';
 }
 
-// Vista de lista: la misma información, accesible para lectores de pantalla y celulares pequeños
 function construirListaRed() {
   const lista = document.getElementById("red-lista");
   lista.innerHTML = '<h3>Red en forma de lista</h3>' + tiposNodo.map(t =>
@@ -369,7 +330,6 @@ function construirListaRed() {
     }).join("") + '</ul>').join("");
 }
 
-// Lleva a la red ya armada y filtrada por un capítulo (desde los enlaces de cada capítulo)
 function irARedFiltrada(capitulo) {
   cerrarPanelRed();
   filtrarRedPorCapitulo(capitulo);

@@ -1,20 +1,10 @@
-// =====================================================================
-// main.js — Arranque de la página y piezas generales
-// Índice, barra superior, reloj de años, partículas, video, conclusiones,
-// fuentes y eventos generales. Al final, iniciar() lo pone todo en marcha.
-// =====================================================================
 document.addEventListener("DOMContentLoaded", iniciar);
 
-// ---------- Utilidades compartidas ----------
-
-// Ruta de una imagen. En la versión de un solo archivo, las imágenes vienen incrustadas.
 function rutaImagen(archivo) {
   if (typeof IMAGENES_EMBEBIDAS !== "undefined" && IMAGENES_EMBEBIDAS[archivo]) return IMAGENES_EMBEBIDAS[archivo];
   return "img/" + archivo;
 }
 
-// Convierte un año en una posición x usando una escala por tramos [[año, x], …]
-// (así un tramo largo y vacío, como 1525–1775, ocupa poco espacio)
 function escalaDeTiempo(anio, tramos) {
   if (anio <= tramos[0][0]) return tramos[0][1];
   for (let i = 1; i < tramos.length; i++) {
@@ -25,7 +15,6 @@ function escalaDeTiempo(anio, tramos) {
   return tramos[tramos.length - 1][1];
 }
 
-// Hace lo contrario: de una posición x devuelve el año
 function anioDesdePosicion(x, tramos) {
   if (x <= tramos[0][1]) return tramos[0][0];
   for (let i = 1; i < tramos.length; i++) {
@@ -36,20 +25,15 @@ function anioDesdePosicion(x, tramos) {
   return tramos[tramos.length - 1][0];
 }
 
-// Quita las etiquetas HTML de un texto (para ordenar las fuentes alfabéticamente)
 function textoPlano(html) {
   return html.replace(/<[^>]+>/g, "");
 }
 
-// Lleva al inicio de un capítulo (lo usan el cubo y el mini-mapa)
 function irACapitulo(numero) {
   const destino = document.getElementById("capitulo-" + numero);
   if (destino) destino.scrollIntoView({ block: "start" });
 }
 
-// ---------- Inicio ----------
-
-// Llena los textos del Inicio y registra su secuencia (el cubo se arma en cubo.js)
 function construirInicio() {
   document.getElementById("barra-pregunta").textContent = config.pregunta;
   document.getElementById("pregunta-inicio").textContent = config.pregunta;
@@ -63,7 +47,6 @@ function construirInicio() {
   document.getElementById("integrantes-inicio").innerHTML = config.integrantes.map(nombre => "<li>" + nombre + "</li>").join("");
   document.getElementById("credito-portada").textContent = config.creditoImagenes + ": los 6 paneles, uno por capítulo.";
 
-  // Mosaico en 2D para pantallas sin 3D: los 6 paneles llegan uno por uno
   document.getElementById("mosaico-inicio").innerHTML = capitulos.map(cap =>
     '<div class="tesela" style="--color: var(--c' + cap.numero + ')"><img src="' + rutaImagen("panel-" + cap.panel + ".jpg") + '" alt="">' +
     '<span class="tesela-numero">' + cap.numero + '</span></div>').join("");
@@ -71,8 +54,6 @@ function construirInicio() {
   registrarSecuencia(document.getElementById("inicio-secuencia"), dibujarInicio);
 }
 
-// Dibuja el Inicio: llegan los paneles (en 2D). La pregunta central y los integrantes
-// ya están desde el principio; solo se apaga la indicación «o baja para empezar».
 function dibujarInicio(avance, el) {
   el.querySelector(".indicacion-bajar").style.opacity = (1 - tramo(avance, 0.02, 0.08)).toFixed(3);
   const desde = [[-1, 0], [1, 0], [-1, 0.4], [1, -0.4], [0, 1], [0, 1]];
@@ -83,11 +64,9 @@ function dibujarInicio(avance, el) {
   });
 }
 
-// ---------- Índice, migas, mini-mapa, barra de progreso y reloj ----------
-let indiceActual = "";    // id de la sección marcada ahora en el índice
-let migasActuales = "";   // texto de las migas (para no reescribirlo en cada cuadro)
+let indiceActual = "";
+let migasActuales = "";
 
-// Arma el índice lateral y el mini-mapa a partir de los títulos reales de la página
 function construirIndice() {
   const lista = document.getElementById("indice-lista");
   let html = "";
@@ -107,20 +86,17 @@ function construirIndice() {
     '<a href="#capitulo-' + cap.numero + '" data-capitulo="' + cap.numero + '" style="--color: var(--c' + cap.numero + ')" ' +
     'aria-label="Capítulo ' + cap.numero + ': ' + cap.titulo + '" title="Capítulo ' + cap.numero + ': ' + cap.titulo + '"><span></span></a>').join("");
 
-  // Lista de secciones que se vigilan para marcar el índice
   motor.secciones = Array.from(document.querySelectorAll("main > section[data-indice], .capitulo"));
   motor.marcasMigas = Array.from(document.querySelectorAll("[data-migas]"));
   motor.marcasAnio = Array.from(document.querySelectorAll("[data-anio]"));
 }
 
-// Marca en el índice la sección donde está el lector y actualiza migas y mini-mapa
 function actualizarIndice() {
   const alto = window.innerHeight;
   let actual = motor.secciones[0];
   for (const sec of motor.secciones) {
     if (sec.getBoundingClientRect().top <= alto * 0.35) actual = sec;
   }
-  // Detalle de las migas: el último paso o subtítulo que pasó por la mitad de la pantalla
   let detalle = "";
   for (const m of motor.marcasMigas) {
     if (!actual.contains(m)) continue;
@@ -137,14 +113,13 @@ function actualizarIndice() {
   }
   if (actual.id === indiceActual) return;
   indiceActual = actual.id;
-  chispaCambioDeSeccion(actual.id);   // el guía Marx cuenta un dato de la sección nueva
+  chispaCambioDeSeccion(actual.id);
   document.querySelectorAll("#indice-lista a").forEach(a => {
     if (a.dataset.destino === actual.id) a.setAttribute("aria-current", "location");
     else a.removeAttribute("aria-current");
   });
   document.documentElement.style.setProperty("--color-actual", numero ? "var(--c" + numero + ")" : "var(--tinta)");
   document.documentElement.style.setProperty("--tinta-actual", numero ? "var(--t" + numero + ")" : "var(--tinta)");
-  // Mini-mapa: se llenan los capítulos ya recorridos
   const despues = ["red", "linea-tiempo", "conclusiones", "fuentes"].includes(actual.id);
   document.querySelectorAll("#minimapa a").forEach(a => {
     const n = Number(a.dataset.capitulo);
@@ -153,7 +128,6 @@ function actualizarIndice() {
   });
 }
 
-// Barra fina de progreso de lectura y botón «Volver arriba»
 function actualizarBarraProgreso() {
   const total = document.documentElement.scrollHeight - window.innerHeight;
   const avance = total > 0 ? window.scrollY / total : 0;
@@ -161,16 +135,14 @@ function actualizarBarraProgreso() {
   document.getElementById("volver-arriba").classList.toggle("visible", window.scrollY > window.innerHeight * 1.2);
 }
 
-let anioReloj = "";   // año que muestra el reloj ahora
+let anioReloj = "";
 
-// «Reloj del recorrido»: muestra el año del relato según lo que se está leyendo
 function actualizarReloj() {
   const alto = window.innerHeight;
   let anio = "1516";
   for (const m of motor.marcasAnio) {
     if (m.getBoundingClientRect().top <= alto * 0.5) anio = m.dataset.anio;
   }
-  // Mientras la línea de tiempo está fija, el reloj sigue al año del centro
   const linea = document.getElementById("lt-secuencia").getBoundingClientRect();
   lt.activa = !motor.modoLectura && linea.top <= motor.altoBarra + 1 && linea.bottom >= alto - 1;
   if (lt.activa) anio = String(lt.anioCentro);
@@ -180,14 +152,12 @@ function actualizarReloj() {
   caja.textContent = anio;
   caja.classList.toggle("reloj-largo", anio.length > 5);
   caja.classList.remove("cambia");
-  void caja.offsetWidth;   // reinicia la animación corta del número
+  void caja.offsetWidth;
   caja.classList.add("cambia");
 }
 
-// ---------- Partículas temáticas (parallax, capa del 70 %) ----------
 const CANTIDAD_PARTICULAS = { dorada: 26, humo: 16, brasas: 34, nieve: 40, volantes: 22, polvo: 30 };
 
-// Crea las partículas de una capa (máximo 40). Solo se animan con transform y opacity.
 function crearParticulas(capa) {
   const tipo = capa.dataset.particula;
   const cantidad = Math.min(40, CANTIDAD_PARTICULAS[tipo] || 20);
@@ -203,7 +173,6 @@ function crearParticulas(capa) {
   capa.innerHTML = html;
 }
 
-// Crea todas las capas de partículas y solo las anima cuando están en pantalla
 function crearTodasLasParticulas() {
   const observador = new IntersectionObserver(entradas => {
     entradas.forEach(e => e.target.classList.toggle("activas", e.isIntersecting));
@@ -214,9 +183,6 @@ function crearTodasLasParticulas() {
   });
 }
 
-// ---------- Palabras clave ----------
-
-// Corre la definición si se sale de la pantalla y permite abrirla con un toque
 function prepararDefiniciones() {
   const ajustar = palabra => {
     const definicion = palabra.querySelector(".definicion");
@@ -243,23 +209,18 @@ function prepararDefiniciones() {
   });
 }
 
-// ---------- Videos del documental (introducción, capítulos y conclusión) ----------
-// Busca un video por su id ("capitulo-3", "conclusion")
 function videoPorId(id) {
   return videos.find(v => v.id === id);
 }
 
-// Título del video: «Capítulo 3: El movimiento obrero se organiza»
 function tituloDeVideo(video) {
   return video.capitulo ? "Capítulo " + video.capitulo + ": " + capitulos[video.capitulo - 1].titulo : video.titulo;
 }
 
-// Portada mientras no se reproduce: el panel del capítulo (o la imagen completa en la introducción y la conclusión)
 function portadaDe(video) {
   return rutaImagen(video.capitulo ? "panel-" + capitulos[video.capitulo - 1].panel + ".jpg" : "paneles-completos.jpg");
 }
 
-// Convierte un enlace de YouTube o de Google Drive en la dirección para incrustarlo (null si no es ninguno)
 function enlaceIncrustado(enlace) {
   const youtube = enlace.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([\w-]{11})/);
   if (youtube) return "https://www.youtube-nocookie.com/embed/" + youtube[1] + "?rel=0&cc_load_policy=1";
@@ -268,14 +229,12 @@ function enlaceIncrustado(enlace) {
   return null;
 }
 
-// Marcador «próximamente» mientras todavía no hay video (dice qué nombre debe tener el archivo)
 function htmlVideoPendiente(video) {
   return '<div class="video-pendiente"><img src="' + portadaDe(video) + '" alt="">' +
     '<p><strong>Video ' + (video.capitulo ? "del capítulo " + video.capitulo : "«" + (video.etiqueta || "Cierre") + "»") + ': próximamente</strong>' +
     '<span>Archivo esperado: <code>' + video.archivo + '</code></span></p></div>';
 }
 
-// Crea el reproductor de un video: enlace (YouTube o Drive), archivo .mp4 o «próximamente» si falta
 function crearReproductor(contenedor, video) {
   const enlace = (video.enlace || "").trim();
   const incrustado = enlace ? enlaceIncrustado(enlace) : null;
@@ -284,14 +243,11 @@ function crearReproductor(contenedor, video) {
       'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen src="' + incrustado + '"></iframe>';
     return;
   }
-  // Un archivo de la carpeta video/ (o un enlace directo a un .mp4)
   contenedor.innerHTML = '<video controls playsinline preload="metadata" poster="' + portadaDe(video) + '" src="' + (enlace || video.archivo) + '">' +
     (video.subtitulos ? '<track kind="subtitles" srclang="es" label="Español" src="' + video.subtitulos + '" default>' : '') + '</video>';
   contenedor.querySelector("video").addEventListener("error", () => { contenedor.innerHTML = htmlVideoPendiente(video); });
 }
 
-// Pone cada video del documental en su lugar: la introducción en el Inicio, cada capítulo
-// dentro de su sección (el bloque lo arma capitulos.js) y la conclusión en Conclusiones
 function construirVideos() {
   [["introduccion", "clip-introduccion", "El video de la introducción"],
    ["conclusion", "clip-conclusion", "El video de la conclusión"]].forEach(([id, caja, titulo]) => {
@@ -304,9 +260,6 @@ function construirVideos() {
   });
 }
 
-// ---------- Conclusiones ----------
-
-// Arma las conclusiones: respuesta, los 6 pasos, ideas clave, comparador y trabajo con fuentes
 function construirConclusiones() {
   document.getElementById("pregunta-conclusiones").textContent = config.pregunta;
   document.getElementById("respuesta-grupo").textContent = conclusiones.respuesta;
@@ -329,13 +282,11 @@ function construirConclusiones() {
   registrarSecuencia(document.getElementById("explosion"), dibujarExplosion);
 }
 
-// La vista explotada la mueve cubo.js; aquí solo aparecen los textos del escenario
 function dibujarExplosion(avance, el) {
   el.querySelector(".explosion-titulo").style.opacity = (0.4 + 0.6 * tramo(avance, 0.05, 0.2)).toFixed(3);
   el.querySelector(".explosion-cierre").style.opacity = tramo(avance, 0.88, 0.97).toFixed(3);
 }
 
-// Comparador con deslizador: «Lo que proponía Marx» frente a «Lo que ocurrió»
 function construirComparador() {
   const c = conclusiones.comparador;
   const lado = (datos, clase) => '<div class="comparador-lado ' + clase + '"><h4>' + datos.titulo + '</h4><ul>' +
@@ -355,9 +306,6 @@ function construirComparador() {
   caja.querySelectorAll("[data-corte]").forEach(b => b.addEventListener("click", () => mover(b.dataset.corte)));
 }
 
-// ---------- Fuentes y pie ----------
-
-// Lista de fuentes en APA 7, por categoría y en orden alfabético
 function construirFuentes() {
   document.getElementById("lista-fuentes").innerHTML = fuentes.map(grupo => {
     const ordenadas = grupo.lista.slice().sort((a, b) => textoPlano(a.apa).localeCompare(textoPlano(b.apa), "es"));
@@ -369,16 +317,6 @@ function construirFuentes() {
   }).join("");
 }
 
-// Código fuente, recursos usados y declaración de uso de IA (al final de Fuentes)
-function construirRecursos() {
-  const enlace = (config.repositorio || "").trim();
-  document.getElementById("recursos").innerHTML =
-    '<p><b>Código fuente:</b> ' + (enlace ? '<a href="' + enlace + '" target="_blank" rel="noopener">' + enlace + '</a>' : 'la carpeta de esta página (index.html, css/, js/, img/ y video/), con su README.') + '</p>' +
-    '<ul class="lista-recursos">' + config.recursos.map(r => '<li>' + r + '</li>').join("") + '</ul>' +
-    '<p class="uso-ia"><b>Uso de inteligencia artificial:</b> ' + config.usoIA + '</p>';
-}
-
-// Pie de página: integrantes, curso, universidad, año y nota sobre las imágenes
 function construirPie() {
   document.getElementById("pie").innerHTML =
     '<p class="pie-titulo">' + config.titulo + '</p>' +
@@ -388,9 +326,6 @@ function construirPie() {
     '<p><b>Imágenes:</b> ' + config.creditoImagenes + '. Son ilustraciones, no documentos históricos.</p>';
 }
 
-// ---------- Eventos generales ----------
-
-// Interruptor de modo lectura, índice en celular, enlaces de los capítulos, «Volver arriba» y tamaño de ventana
 function prepararEventosGenerales() {
   document.getElementById("interruptor-lectura").addEventListener("change", e => {
     alternarModoLectura(e.target.checked);
@@ -414,7 +349,6 @@ function prepararEventosGenerales() {
     document.querySelectorAll(".palabra-clave.abierta").forEach(x => x.classList.remove("abierta"));
   });
 
-  // Enlaces «Ver este capítulo en la red» y «Ver en la línea de tiempo»
   document.addEventListener("click", e => {
     const enlaceRed = e.target.closest("[data-red-capitulo]");
     if (enlaceRed) { e.preventDefault(); irARedFiltrada(Number(enlaceRed.dataset.redCapitulo)); return; }
@@ -429,7 +363,6 @@ function prepararEventosGenerales() {
     document.getElementById("titulo-principal").focus({ preventScroll: true });
   });
 
-  // Si cambia la preferencia «reducir movimiento» y el usuario no eligió otra cosa, se respeta
   const reducir = window.matchMedia("(prefers-reduced-motion: reduce)");
   reducir.addEventListener("change", () => {
     let guardado = null;
@@ -445,9 +378,6 @@ function prepararEventosGenerales() {
   window.addEventListener("scroll", pedirActualizacion, { passive: true });
 }
 
-// ---------- Arranque ----------
-
-// Pone todo en marcha, en orden: textos, capítulos, red, video, línea de tiempo, cubo y eventos
 function iniciar() {
   motor.modoLectura = document.documentElement.classList.contains("modo-lectura");
   document.getElementById("interruptor-lectura").checked = motor.modoLectura;
@@ -460,7 +390,6 @@ function iniciar() {
   dibujarLineaTiempo();
   construirConclusiones();
   construirFuentes();
-  construirRecursos();
   construirPie();
   prepararComprueba();
   prepararCubo();
@@ -471,7 +400,6 @@ function iniciar() {
   prepararEventosGenerales();
   motor.capas = Array.from(document.querySelectorAll(".capa-parallax"));
   motor.alActualizar.push(actualizarIndice, actualizarBarraProgreso, actualizarReloj);
-  // Las imágenes cambian de tamaño al cargar: se recalculan los enfoques
   window.addEventListener("load", () => { reenfocarScrollytelling(); redibujarTodo(); });
   pedirActualizacion();
 }

@@ -1,39 +1,23 @@
-// =====================================================================
-// cubo.js — «El cubo de los seis pasos» (nivel 5)
-// Un cubo 3D hecho con CSS: cada cara es un panel del equipo.
-// - Inicio: las 6 caras llegan volando, se ensamblan y el cubo gira.
-// - Toda la página: queda pequeño en un costado y gira al capítulo en curso.
-// - Entre capítulos: crece al centro y gira 90° hasta la cara siguiente.
-// - Conclusiones: vista explotada, las caras se separan y forman una fila.
-// Cada cara se coloca con una matriz 4×4 (transform: matrix3d) calculada aquí.
-// =====================================================================
 const cubo = {
-  capa: null,          // capa fija que contiene el cubo
-  posicion: null,      // elemento que se ubica en la pantalla
-  contenedor: null,    // elemento con perspectiva
-  caras: [],           // los 6 botones-cara
-  ranuras: [],         // dónde va cada cara (frente, derecha, arriba…)
-  correcciones: [],    // giro en su plano para que cada panel se vea derecho
-  orientaciones: [],   // orientación del cubo en cada capítulo
-  giros: [],           // giro de 90° entre un capítulo y el siguiente
-  LADO: 200            // tamaño base de una cara en píxeles
+  capa: null,
+  posicion: null,
+  contenedor: null,
+  caras: [],
+  ranuras: [],
+  correcciones: [],
+  orientaciones: [],
+  giros: [],
+  LADO: 200
 };
 
-// Orden de las caras: capítulo 1 al frente, 2 a la derecha, 3 arriba, 4 a la izquierda, 5 abajo, 6 atrás.
-// Así cada cambio de capítulo es un giro de 90° hacia una cara vecina.
 const RECORRIDO_CARAS = ["frente", "derecha", "arriba", "izquierda", "abajo", "atras"];
 
-// Desde dónde llega volando cada cara en el Inicio (x, y, z)
 const DIRECCIONES_VUELO = [[-1, -0.3, 0], [1, -0.4, 0], [0, -1, 0.3], [-1, 0.5, 0], [0, 1, 0.2], [1, 0.6, -0.5]];
 
-// ---------- Matemática 3D (matrices 4×4 guardadas por columnas, como las lee CSS) ----------
-
-// Matriz que no cambia nada
 function identidad() {
   return [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
 }
 
-// Multiplica dos matrices: primero se aplica b y luego a
 function multiplicar(a, b) {
   const r = new Array(16);
   for (let c = 0; c < 4; c++) {
@@ -46,40 +30,33 @@ function multiplicar(a, b) {
   return r;
 }
 
-// Convierte grados a radianes
 function radianes(grados) {
   return grados * Math.PI / 180;
 }
 
-// Giro alrededor del eje X (como rotateX de CSS)
 function rotarX(grados) {
   const c = Math.cos(radianes(grados)), s = Math.sin(radianes(grados));
   return [1, 0, 0, 0, 0, c, s, 0, 0, -s, c, 0, 0, 0, 0, 1];
 }
 
-// Giro alrededor del eje Y (como rotateY de CSS)
 function rotarY(grados) {
   const c = Math.cos(radianes(grados)), s = Math.sin(radianes(grados));
   return [c, 0, -s, 0, 0, 1, 0, 0, s, 0, c, 0, 0, 0, 0, 1];
 }
 
-// Giro en el plano de la pantalla (como rotateZ de CSS)
 function rotarZ(grados) {
   const c = Math.cos(radianes(grados)), s = Math.sin(radianes(grados));
   return [c, s, 0, 0, -s, c, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
 }
 
-// Desplazamiento en x, y, z (en píxeles)
 function trasladar(x, y, z) {
   return [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1];
 }
 
-// Cambio de tamaño igual en los tres ejes
 function escalar(s) {
   return [s, 0, 0, 0, 0, s, 0, 0, 0, 0, s, 0, 0, 0, 0, 1];
 }
 
-// Aplica solo la parte de giro de una matriz a un vector (sirve para saber hacia dónde mira una cara)
 function aplicarGiro(m, v) {
   return [
     m[0] * v[0] + m[4] * v[1] + m[8] * v[2],
@@ -88,12 +65,10 @@ function aplicarGiro(m, v) {
   ];
 }
 
-// Escribe la matriz como texto para CSS: matrix3d(...)
 function matrizACSS(m) {
   return "matrix3d(" + m.map(n => (Math.abs(n) < 1e-9 ? 0 : n).toFixed(6)).join(",") + ")";
 }
 
-// Convierte la parte de giro de una matriz en un cuaternión (sirve para interpolar giros sin deformar)
 function matrizACuaternion(m) {
   const m00 = m[0], m01 = m[4], m02 = m[8];
   const m10 = m[1], m11 = m[5], m12 = m[9];
@@ -116,7 +91,6 @@ function matrizACuaternion(m) {
   return [x, y, z, w];
 }
 
-// Convierte un cuaternión de vuelta en matriz de giro
 function cuaternionAMatriz(q) {
   const [x, y, z, w] = q;
   return [
@@ -127,7 +101,6 @@ function cuaternionAMatriz(q) {
   ];
 }
 
-// Interpola dos giros por el camino más corto (slerp)
 function interpolarCuaterniones(a, b, t) {
   let producto = a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3];
   let destino = b;
@@ -144,7 +117,6 @@ function interpolarCuaterniones(a, b, t) {
   return a.map((v, i) => pa * v + pb * destino[i]);
 }
 
-// Separa una matriz en tamaño, giro y posición
 function descomponer(m) {
   const tam = Math.hypot(m[0], m[1], m[2]);
   const giro = m.slice();
@@ -152,7 +124,6 @@ function descomponer(m) {
   return { tam, giro: matrizACuaternion(giro), pos: [m[12], m[13], m[14]] };
 }
 
-// Mezcla dos matrices sin deformar la cara (posición, giro y tamaño por separado)
 function interpolarMatrices(a, b, t) {
   const da = descomponer(a), db = descomponer(b);
   const giro = cuaternionAMatriz(interpolarCuaterniones(da.giro, db.giro, t));
@@ -161,16 +132,12 @@ function interpolarMatrices(a, b, t) {
   return multiplicar(trasladar(pos[0], pos[1], pos[2]), multiplicar(escalar(tam), giro));
 }
 
-// Mezcla solo los giros de dos matrices
 function interpolarGiro(a, b, t) {
   if (t <= 0) return a;
   if (t >= 1) return b;
   return cuaternionAMatriz(interpolarCuaterniones(matrizACuaternion(a), matrizACuaternion(b), t));
 }
 
-// ---------- Preparación ----------
-
-// Matriz que lleva una cara a su ranura del cubo
 function colocacionDeRanura(nombre) {
   if (nombre === "derecha") return rotarY(90);
   if (nombre === "atras") return rotarY(180);
@@ -180,7 +147,6 @@ function colocacionDeRanura(nombre) {
   return identidad();
 }
 
-// Calcula la orientación del cubo en cada capítulo y el giro de 90° entre capítulos
 function calcularOrientaciones() {
   cubo.ranuras = RECORRIDO_CARAS.map(colocacionDeRanura);
   cubo.orientaciones = [identidad()];
@@ -192,14 +158,13 @@ function calcularOrientaciones() {
     for (const [eje, angulo] of candidatos) {
       const giro = eje === "x" ? rotarX(angulo) : rotarY(angulo);
       const mira = aplicarGiro(multiplicar(giro, actual), normalSiguiente);
-      if (mira[2] > 0.99) {   // la cara siguiente queda mirando al usuario
+      if (mira[2] > 0.99) {
         cubo.giros.push({ eje, angulo });
         cubo.orientaciones.push(multiplicar(giro, actual));
         break;
       }
     }
   }
-  // Giro en su plano para que cada panel aparezca derecho cuando le toca
   cubo.correcciones = cubo.ranuras.map((ranura, c) => {
     const vista = multiplicar(cubo.orientaciones[c], ranura);
     const arriba = aplicarGiro(vista, [0, -1, 0]);
@@ -208,7 +173,6 @@ function calcularOrientaciones() {
   });
 }
 
-// Crea las 6 caras del cubo dentro de la capa fija
 function prepararCubo() {
   cubo.capa = document.getElementById("capa-cubo");
   if (!cubo.capa) return;
@@ -219,7 +183,7 @@ function prepararCubo() {
     const cara = document.createElement("button");
     cara.type = "button";
     cara.className = "cara";
-    cara.tabIndex = -1;   // el índice ya permite llegar con teclado; el cubo es un atajo visual
+    cara.tabIndex = -1;
     cara.style.setProperty("--color", "var(--c" + cap.numero + ")");
     cara.style.setProperty("--tinta-cap", "var(--t" + cap.numero + ")");
     cara.title = "Ir al capítulo " + cap.numero + ": " + cap.titulo;
@@ -234,9 +198,6 @@ function prepararCubo() {
   motor.alActualizar.push(actualizarCubo);
 }
 
-// ---------- Poses del cubo ----------
-
-// Orientación del cubo en una posición del relato (1 = capítulo 1 … 6 = capítulo 6; 2,5 = a mitad del giro)
 function orientacionEn(posicion) {
   const p = limitar(posicion, 1, 6);
   const k = Math.min(Math.floor(p), 5);
@@ -247,14 +208,12 @@ function orientacionEn(posicion) {
   return multiplicar(giro, cubo.orientaciones[k - 1]);
 }
 
-// Centro del área de contenido (sin contar el índice lateral ni el margen del cubo)
 function centroContenido() {
   const izquierda = motor.anchoIndice;
   const derecha = window.innerWidth - motor.margenCubo;
   return { x: (izquierda + derecha) / 2, ancho: derecha - izquierda };
 }
 
-// Pose pequeña, fija en un costado
 function poseEsquina(posicion) {
   const angosto = window.innerWidth < 1100;
   const lado = angosto ? 52 : 80;
@@ -266,7 +225,6 @@ function poseEsquina(posicion) {
   };
 }
 
-// Pose grande en el centro (transiciones entre capítulos)
 function poseCentro(posicion, tamano) {
   const centro = centroContenido();
   const escenario = window.innerHeight - motor.altoBarra;
@@ -277,7 +235,6 @@ function poseCentro(posicion, tamano) {
   };
 }
 
-// Pose del Inicio: las caras llegan volando (0–55 %), el cubo gira (50–92 %)
 function poseInicio(avance) {
   const centro = centroContenido();
   const escenario = window.innerHeight - motor.altoBarra;
@@ -295,7 +252,6 @@ function poseInicio(avance) {
   };
 }
 
-// Pose de la vista explotada: se separan (20–45 %), forman la fila (45–82 %), aparecen las palabras (82–95 %)
 function poseExplosion(avance) {
   const centro = centroContenido();
   const escenario = window.innerHeight - motor.altoBarra;
@@ -313,7 +269,6 @@ function poseExplosion(avance) {
   };
 }
 
-// Mezcla dos poses (t = 0 → a, t = 1 → b)
 function mezclarPoses(a, b, t) {
   if (t <= 0) return a;
   if (t >= 1) return b;
@@ -331,22 +286,17 @@ function mezclarPoses(a, b, t) {
   return r;
 }
 
-// ---------- Dibujo ----------
-
-// Matriz final de la cara c: su ranura, separada del centro y corregida para verse derecha
 function matrizCara(c, base, separacion) {
   const local = multiplicar(cubo.ranuras[c],
     multiplicar(trasladar(0, 0, cubo.LADO / 2 + separacion), rotarZ(cubo.correcciones[c])));
   return multiplicar(base, local);
 }
 
-// Matriz de la cara c cuando está en la fila de la vista explotada
 function matrizFila(c, pose) {
   const x = (c - 2.5) * (pose.tamFila + pose.hueco);
   return multiplicar(trasladar(x, 0, 0), escalar(pose.tamFila / cubo.LADO));
 }
 
-// Coloca las 6 caras según una pose
 function dibujarCubo(pose) {
   const base = multiplicar(escalar(pose.escala),
     multiplicar(rotarX(pose.inclX), multiplicar(rotarY(pose.inclY), pose.orient)));
@@ -369,7 +319,6 @@ function dibujarCubo(pose) {
   });
 }
 
-// Posición del relato: 1 a 6 según el capítulo; entre capítulos, el giro avanza con la transición
 function posicionDelRelato() {
   let posicion = 1;
   const transiciones = document.querySelectorAll(".transicion");
@@ -382,7 +331,6 @@ function posicionDelRelato() {
   return posicion;
 }
 
-// Decide la pose del cubo según dónde está el usuario y lo dibuja (corre en cada cuadro)
 function actualizarCubo() {
   const visible = !motor.modoLectura && !motor.sin3D;
   cubo.capa.hidden = !visible;
@@ -391,17 +339,15 @@ function actualizarCubo() {
   const posicion = posicionDelRelato();
   let pose = poseEsquina(posicion);
 
-  // 1. Inicio: mientras el escenario está fijo, el cubo se arma en el centro
   const inicio = document.getElementById("inicio-secuencia");
   const cajaInicio = inicio.getBoundingClientRect();
   const salida = limitar((alto - cajaInicio.bottom) / (alto * 0.7), 0, 1);
   if (salida < 1) {
     const pi = poseInicio(progresoDeSeccion(inicio));
-    pi.desplazY = -Math.max(0, alto - cajaInicio.bottom);  // acompaña al escenario cuando se suelta
+    pi.desplazY = -Math.max(0, alto - cajaInicio.bottom);
     pose = mezclarPoses(pi, pose, suavizar(salida));
   }
 
-  // 2. Entre capítulos: el cubo crece al centro mientras gira 90°
   document.querySelectorAll(".transicion").forEach(t => {
     const avance = progresoDeSeccion(t);
     if (avance <= 0 || avance >= 1) return;
@@ -409,7 +355,6 @@ function actualizarCubo() {
     if (crecer > 0) pose = mezclarPoses(pose, poseCentro(posicion, 1), crecer);
   });
 
-  // 3. Conclusiones: vista explotada
   const explosion = document.getElementById("explosion");
   let opacidadCapa = 1;
   if (explosion && explosion.offsetParent !== null) {
@@ -417,7 +362,7 @@ function actualizarCubo() {
     const avance = progresoDeSeccion(explosion);
     if (avance > 0) {
       const pe = poseExplosion(avance);
-      if (caja.bottom < alto) pe.desplazY = -(alto - caja.bottom);   // se va con el escenario
+      if (caja.bottom < alto) pe.desplazY = -(alto - caja.bottom);
       pose = mezclarPoses(pose, pe, suavizar(tramo(avance, 0, 0.18)));
       if (caja.bottom < motor.altoBarra) opacidadCapa = 0;
     }

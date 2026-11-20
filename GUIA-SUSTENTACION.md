@@ -32,7 +32,7 @@ Se sigue el mismo orden de la página. El guion completo, con el texto para deci
 | 9:30–10:45 | 8. Red de relaciones | El recorrido guiado, un filtro y el nodo «Revolución de Octubre» con su fuente | | I.4, II.4 |
 | 10:45–11:45 | 9. Línea de tiempo y Marx | Las fechas dobles de 1905 y 1917, «Ver en la red» y un dato de Marx | | I.4 |
 | 11:45–13:15 | 10. Conclusiones | La respuesta en 6 pasos, las ideas clave, el comparador y dos casos de «Cómo trabajamos las fuentes» | | I.3, II.5 |
-| 13:15–14:15 | 11. Fuentes, código y uso de IA | Las 3 categorías con su nota, el enlace a GitHub y el README | | I.6, II.2, II.4 |
+| 13:15–14:15 | 11. Fuentes, código y uso de IA | Las 3 categorías con su nota y el código en GitHub (README con la tabla de funciones); la declaración de IA va en PDF | | I.6, II.2, II.4 |
 | 14:15–15:00 | 12. Cierre | La primera pantalla: una frase cada uno | Todo el grupo | — |
 
 Sugerencia de reparto: cada integrante expone su capítulo y una de las partes 1, 8, 9, 10 u 11, así los seis hablan dos veces.
@@ -131,16 +131,14 @@ Casi todos los datos curiosos salen del texto base. Estos se agregaron sobre la 
 
 **¿Y la accesibilidad?** «Modo lectura» (sin animaciones; se activa solo si el sistema pide reducir movimiento), todo funciona con teclado, los textos dinámicos usan `aria-live` y la red tiene una vista de lista para lectores de pantalla.
 
-**¿Por qué hay comentarios en el código?** Porque lo pide la base del proyecto: cada función tiene arriba un comentario en español que dice qué hace, para que cualquiera del grupo pueda explicarla.
-
-**¿Usaron IA?** Sí, y está declarado al final de Fuentes («Uso de inteligencia artificial»). Completen el formato de la docente con lo mismo: qué se hizo con IA y qué hizo el grupo.
+**¿Usaron IA?** Sí: para la parte gráfica (las ilustraciones de los paneles, el muñeco de Marx y los gráficos de los videos) y como apoyo en el HTML y la programación. Está en la declaración de uso de IA, que se entrega en PDF. La investigación, el guion, la narración y la grabación son del grupo.
 
 ---
 
 ## 7. Antes de presentar (punto I.7)
 
 - [ ] Abrir `index.html` con doble clic **en la computadora de la clase** y probar: scroll, un capítulo completo, red, línea de tiempo, videos y enlaces de Fuentes.
-- [ ] Completar en `js/datos.js`: `usoIA`, el origen de los paneles y la inicial o el año de González Quesada (2021) y Pro (s. f.).
+- [ ] Completar la inicial o el año de González Quesada (2021) y Pro (s. f.) en las fuentes.
 - [ ] Verificar la fecha de la Primera Internacional (28 o 29 de septiembre) y corregir el video del capítulo 6 (dice 280 000 km², guerra civil y NEP en 1922, y URSS en 1923) y el del capítulo 5 (dice «13 de abril»).
 - [ ] Editar el capítulo 3 (IMG_1227.MOV) y exportarlo como `video/capitulo-3.mp4`; volver a exportar el capítulo 6 si quieren que tenga música y gráficos 3D como los demás.
 - [ ] Llegar a 12–15 minutos de video (hoy son 9:34 sin el capítulo 3) y subir el documental completo a YouTube o Drive como respaldo.
